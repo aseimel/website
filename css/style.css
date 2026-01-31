@@ -1,0 +1,403 @@
+/*
+ * LaTeX-style Academic Website CSS
+ * Based on LaTeX.css with Computer Modern Unicode font
+ */
+
+/* Import LaTeX.css from CDN */
+@import url('https://cdn.jsdelivr.net/npm/latex.css@1.10.0/style.min.css');
+
+/* CMU Serif Font Faces - Self-hosted WOFF2 */
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('../assets/fonts/cmu-serif-roman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('../assets/fonts/cmu-serif-italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('../assets/fonts/cmu-serif-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root variables */
+:root {
+  --body-bg: #fefdfb;
+  --body-color: #1a1a1a;
+  --link-color: #1a1a1a;
+  --header-border: #333;
+  --nav-link-color: #1a1a1a;
+  --content-width: 800px;
+}
+
+/* Base styles */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'CMU Serif', 'Latin Modern Roman', 'Computer Modern', Georgia, serif;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Site Header - LaTeX title-page inspired */
+.site-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--header-border);
+  background-color: var(--body-bg);
+}
+
+.site-title {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.site-subtitle {
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin: 0;
+  color: #444;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Navigation */
+.site-nav {
+  text-align: center;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--header-border);
+  margin-top: 1rem;
+}
+
+.site-nav a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  margin: 0 1rem;
+  padding: 0.25rem 0;
+  font-size: 1rem;
+  transition: border-bottom 0.2s ease;
+}
+
+.site-nav a:hover {
+  border-bottom: 1px solid var(--nav-link-color);
+}
+
+.site-nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid var(--nav-link-color);
+}
+
+.nav-separator {
+  color: #999;
+  margin: 0 0.25rem;
+}
+
+/* Main content */
+main {
+  margin-top: 2rem;
+}
+
+/* Home page 3-column grid layout */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+
+/* Desktop grid positioning */
+.grid-photo {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.grid-bio {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.grid-linkedin {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: center;
+  padding-top: 1rem;
+}
+
+.grid-contact {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.grid-bio p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.linkedin-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #333;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--link-color);
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.linkedin-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Contact info */
+.contact-info {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+.contact-info h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+
+/* CV sections */
+.cv-section {
+  margin-bottom: 2.5rem;
+}
+
+.cv-section h2 {
+  font-size: 1.4rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cv-entry {
+  margin-bottom: 1.25rem;
+  padding-left: 0;
+}
+
+.cv-entry .date {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.15rem;
+}
+
+.cv-entry .title {
+  font-weight: bold;
+  margin-bottom: 0.1rem;
+}
+
+.cv-entry .institution {
+  font-style: italic;
+  color: #333;
+}
+
+/* Publications */
+.publications-section {
+  margin-bottom: 2.5rem;
+}
+
+.publications-section h2 {
+  font-size: 1.4rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.publication {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.publication .authors {
+  font-weight: normal;
+}
+
+.publication .authors strong {
+  font-weight: bold;
+}
+
+.publication .paper-title {
+  font-style: italic;
+}
+
+.publication .venue {
+  font-weight: normal;
+}
+
+.publication .year {
+  font-weight: normal;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    padding: 1rem;
+  }
+
+  .site-header {
+    padding: 1rem 0.75rem;
+  }
+
+  .site-title {
+    font-size: 1.6rem;
+  }
+
+  .site-subtitle {
+    font-size: 1rem;
+  }
+
+  .site-nav a {
+    margin: 0 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1.5rem;
+  }
+
+  .grid-photo {
+    grid-column: 1;
+    grid-row: auto;
+    order: 1;
+  }
+
+  .grid-bio {
+    grid-column: 1;
+    grid-row: auto;
+    order: 2;
+  }
+
+  .grid-bio p {
+    text-align: left;
+  }
+
+  .grid-contact {
+    grid-column: 1;
+    grid-row: auto;
+    order: 3;
+  }
+
+  .grid-linkedin {
+    grid-column: 1;
+    grid-row: auto;
+    order: 4;
+    padding-top: 0;
+  }
+
+  .linkedin-btn {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .site-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  .site-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .site-nav {
+    padding: 0.5rem 0;
+  }
+
+  .site-nav a {
+    margin: 0 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .cv-entry .date {
+    font-size: 0.9rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background-color: white;
+    max-width: none;
+    padding: 0;
+  }
+
+  .site-header {
+    border: none;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .external-links a {
+    border: none;
+    padding: 0;
+  }
+
+  .external-links a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}
