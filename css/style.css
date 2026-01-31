@@ -35,10 +35,26 @@
 :root {
   --body-bg: #fefdfb;
   --body-color: #1a1a1a;
-  --link-color: #1a1a1a;
+  --link-color: #555;
   --header-border: #333;
   --nav-link-color: #1a1a1a;
   --content-width: 800px;
+}
+
+/* Override LaTeX.css red links */
+a,
+a:visited,
+a:link,
+body a,
+main a {
+  color: var(--link-color) !important;
+}
+
+a:hover,
+a:active,
+body a:hover,
+main a:hover {
+  color: #333 !important;
 }
 
 /* Base styles */
@@ -61,7 +77,7 @@ body {
 /* Site Header - LaTeX title-page inspired */
 .site-header {
   text-align: center;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem 0.75rem;
   margin-bottom: 1.5rem;
   border: 1px solid var(--header-border);
   background-color: var(--body-bg);
@@ -87,9 +103,9 @@ body {
 /* Navigation */
 .site-nav {
   text-align: center;
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid var(--header-border);
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .site-nav a {
@@ -120,37 +136,24 @@ main {
   margin-top: 2rem;
 }
 
-/* Home page 3-column grid layout */
+/* Home page 2-column grid layout */
 .home-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1.5rem 2rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
   align-items: start;
 }
 
-/* Desktop grid positioning */
-.grid-photo {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: center;
+.grid-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.grid-bio {
-  grid-column: 2;
-  grid-row: 1 / 3;
-}
-
-.grid-linkedin {
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: center;
-  padding-top: 1rem;
-}
-
-.grid-contact {
-  grid-column: 1;
-  grid-row: 2;
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .profile-photo {
@@ -165,36 +168,71 @@ main {
   hyphens: auto;
 }
 
-.linkedin-btn {
-  display: inline-block;
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border: 1px solid #333;
   border-radius: 3px;
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--body-color) !important;
   text-align: center;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
-.linkedin-btn:hover {
+.social-btn:hover {
   background-color: #f0f0f0;
+}
+
+.social-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  color: var(--body-color);
+}
+
+.social-icon-img {
+  width: 1.3rem;
+  height: 1.3rem;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 /* Contact info */
 .contact-info {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  background-color: #fafafa;
+  padding: 0;
 }
 
 .contact-info h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: normal;
 }
 
-.contact-info p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
+.contact-list {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-list dt {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.75rem;
+}
+
+.contact-list dt:first-child {
+  margin-top: 0;
+}
+
+.contact-list dd {
+  margin: 0.25rem 0 0 0;
 }
 
 
@@ -274,9 +312,14 @@ main {
   margin-top: 3rem;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
-  text-align: center;
+  text-align: center !important;
   font-size: 0.9rem;
   color: #666;
+}
+
+.site-footer p {
+  text-align: center !important;
+  margin: 0;
 }
 
 /* Responsive Design */
@@ -308,41 +351,23 @@ main {
 
   .home-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
     gap: 1.5rem;
   }
 
-  .grid-photo {
-    grid-column: 1;
-    grid-row: auto;
-    order: 1;
+  .grid-sidebar {
+    order: 2;
   }
 
   .grid-bio {
-    grid-column: 1;
-    grid-row: auto;
-    order: 2;
+    order: 1;
   }
 
   .grid-bio p {
     text-align: left;
   }
 
-  .grid-contact {
-    grid-column: 1;
-    grid-row: auto;
-    order: 3;
-  }
-
-  .grid-linkedin {
-    grid-column: 1;
-    grid-row: auto;
-    order: 4;
-    padding-top: 0;
-  }
-
-  .linkedin-btn {
-    display: block;
+  .social-btn {
+    display: flex;
     width: 100%;
   }
 }

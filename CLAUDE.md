@@ -50,3 +50,7 @@ Font source: [CM Unicode](https://sourceforge.net/projects/cm-unicode/) or [CTAN
 - Max content width: 800px
 - Header: Boxed title with name and institution
 - Navigation: Horizontal links (Home | CV | Papers)
+
+## Workflow
+
+- **Commit after every change:** Always commit changes immediately after completing each task or modification. Do not batch multiple changes into a single commit.
