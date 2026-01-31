@@ -60,6 +60,9 @@ main a:hover {
 /* Base styles */
 html {
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -340,7 +343,7 @@ main {
 /* Responsive Design */
 @media (max-width: 768px) {
   html {
-    font-size: 15px;
+    font-size: 16px;  /* Keep same as desktop - don't shrink on mobile */
   }
 
   body {
@@ -365,21 +368,27 @@ main {
   }
 
   .home-grid {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 1.5rem;
   }
 
   .grid-photo {
+    grid-column: auto;
+    grid-row: auto;
     order: 1;
     text-align: center;
   }
 
   .grid-bio {
+    grid-column: auto;
+    grid-row: auto;
     order: 2;
   }
 
   .grid-sidebar {
+    grid-column: auto;
+    grid-row: auto;
     order: 3;
   }
 
@@ -395,7 +404,7 @@ main {
 
 @media (max-width: 480px) {
   html {
-    font-size: 14px;
+    font-size: 16px;  /* Keep readable on small screens */
   }
 
   .site-title {
