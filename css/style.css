@@ -365,13 +365,14 @@ main {
   }
 
   .home-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
   }
 
   .grid-photo {
     order: 1;
+    text-align: center;
   }
 
   .grid-bio {
