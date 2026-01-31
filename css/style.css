@@ -370,35 +370,41 @@ main {
   .home-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.5rem;
+    gap: 1.5rem !important;
   }
 
   .grid-photo {
-    grid-column: auto;
-    grid-row: auto;
-    order: 1;
-    text-align: center;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    order: 1 !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .grid-photo .profile-photo {
+    margin: 0 auto !important;
   }
 
   .grid-bio {
-    grid-column: auto;
-    grid-row: auto;
-    order: 2;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    order: 2 !important;
   }
 
   .grid-sidebar {
-    grid-column: auto;
-    grid-row: auto;
-    order: 3;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    order: 3 !important;
   }
 
   .grid-bio p {
-    text-align: left;
+    text-align: left !important;
   }
 
   .social-btn {
-    display: flex;
-    width: 100%;
+    display: flex !important;
+    width: 100% !important;
   }
 }
 

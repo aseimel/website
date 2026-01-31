@@ -51,6 +51,10 @@ Font source: [CM Unicode](https://sourceforge.net/projects/cm-unicode/) or [CTAN
 - Header: Boxed title with name and institution
 - Navigation: Horizontal links (Home | CV | Papers)
 
+## CSS Guidelines
+
+- **Always use `!important`:** When modifying CSS, always use `!important` on property values. LaTeX.css (loaded from CDN) has high specificity and will override our custom styles without it.
+
 ## Workflow
 
 - **Commit after every change:** Always commit changes immediately after completing each task or modification. Do not batch multiple changes into a single commit.
