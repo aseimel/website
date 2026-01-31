@@ -377,6 +377,7 @@ main {
     grid-column: auto !important;
     grid-row: auto !important;
     order: 1 !important;
+    width: 100% !important;
     text-align: center !important;
     display: flex !important;
     justify-content: center !important;
@@ -396,11 +397,31 @@ main {
     grid-column: auto !important;
     grid-row: auto !important;
     order: 3 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
   }
 
   .grid-bio p {
     text-align: justify !important;
     hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+  }
+
+  .sidebar-links {
+    width: 100% !important;
+    max-width: 300px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .contact-info {
+    width: fit-content !important;
+    text-align: left !important;
   }
 
   .social-btn {
