@@ -399,7 +399,8 @@ main {
   }
 
   .grid-bio p {
-    text-align: left !important;
+    text-align: justify !important;
+    hyphens: auto !important;
   }
 
   .social-btn {
