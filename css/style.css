@@ -337,6 +337,14 @@ main {
   font-weight: normal;
 }
 
+/* Expand hint legend */
+.expand-hint {
+  font-size: 0.9rem !important;
+  font-style: italic !important;
+  color: #666 !important;
+  margin-bottom: 1.5rem !important;
+}
+
 /* Expandable publications - Harvard style */
 .publication .citation {
   margin: 0 !important;
