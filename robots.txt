@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seimel.io/sitemap.xml
+
+Disallow: /arminseimel.WordPress.2026-01-31.xml
