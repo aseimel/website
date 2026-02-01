@@ -253,6 +253,11 @@ main {
   margin: 0.25rem 0 0 0 !important;
 }
 
+.contact-list dd a {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 
 /* CV sections */
 .cv-section {
