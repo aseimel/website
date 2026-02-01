@@ -339,9 +339,9 @@ main {
 
 /* Expand hint legend */
 .expand-hint {
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
   font-style: italic !important;
-  color: #666 !important;
+  color: #888 !important;
   margin-bottom: 1.5rem !important;
 }
 
