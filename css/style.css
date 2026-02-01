@@ -338,11 +338,14 @@ main {
 }
 
 /* Expand hint legend */
+main .expand-hint,
 .expand-hint {
   font-size: 0.8rem !important;
   font-style: italic !important;
   color: #888 !important;
   margin-bottom: 1.5rem !important;
+  background: none !important;
+  background-color: transparent !important;
 }
 
 /* Expandable publications - Harvard style */
@@ -351,20 +354,48 @@ main {
 }
 
 .expand-btn {
+  /* Reset all properties */
   all: unset !important;
+
+  /* Explicit WebKit resets - critical for Safari/DuckDuckGo */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+
+  /* Explicit background removal */
+  background: none !important;
+  background-color: transparent !important;
+
+  /* Explicit border removal */
+  border: none !important;
+
+  /* Remove mobile tap highlight */
+  -webkit-tap-highlight-color: transparent !important;
+
+  /* Layout properties */
   display: block !important;
   width: 100% !important;
-  text-align: left !important;
   cursor: pointer !important;
+
+  /* Typography - inherit from parent */
   font-family: inherit !important;
   font-size: inherit !important;
   line-height: inherit !important;
   color: inherit !important;
+
+  /* Text alignment */
   text-align: justify !important;
   hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+
+  /* Remove any box-shadow */
+  box-shadow: none !important;
 }
 
-.expand-btn:hover {
+.expand-btn:hover,
+.expand-btn:active,
+.expand-btn:focus-visible {
+  background: none !important;
   background-color: transparent !important;
 }
 
