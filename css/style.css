@@ -337,6 +337,83 @@ main {
   font-weight: normal;
 }
 
+/* Expandable publications - Harvard style */
+.publication .citation {
+  margin: 0 !important;
+}
+
+.expand-btn {
+  all: unset !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  text-align: justify !important;
+  hyphens: auto !important;
+}
+
+.expand-btn:hover {
+  background-color: transparent !important;
+}
+
+.expand-btn:focus {
+  outline: 2px solid #333 !important;
+  outline-offset: 2px !important;
+}
+
+.expand-icon {
+  display: inline-block !important;
+  font-size: 0.7em !important;
+  margin-left: 0.5em !important;
+  transition: transform 0.2s ease !important;
+  vertical-align: middle !important;
+}
+
+.expand-btn[aria-expanded="true"] .expand-icon {
+  transform: rotate(0deg) !important;
+}
+
+.abstract {
+  margin: 0.75rem 0 0 1.5rem !important;
+  padding: 0 !important;
+  border-left: 2px solid #ddd !important;
+  padding-left: 1rem !important;
+}
+
+.abstract p {
+  margin: 0 0 0.75rem 0 !important;
+  text-align: justify !important;
+  hyphens: auto !important;
+  font-size: 0.95rem !important;
+  color: #333 !important;
+}
+
+.full-article-link {
+  display: inline-block !important;
+  font-size: 0.95rem !important;
+  color: var(--link-color) !important;
+  text-decoration: none !important;
+}
+
+.full-article-link:hover {
+  text-decoration: underline !important;
+}
+
+/* Policy brief title link */
+.paper-title-link {
+  font-style: italic !important;
+  color: var(--link-color) !important;
+  text-decoration: none !important;
+}
+
+.paper-title-link:hover {
+  text-decoration: underline !important;
+}
+
 /* Footer */
 .site-footer {
   margin-top: 3rem;
