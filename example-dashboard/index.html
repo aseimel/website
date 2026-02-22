@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Democracy Monitor — Demo-Prototyp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="header-title">German Democracy Monitor</h1>
+            <span class="header-subtitle">Illiberaler Diskurs-Tracker · Demo-Prototyp</span>
+        </div>
+    </header>
+
+    <div class="disclaimer-banner">
+        Konzeptdemonstration mit vollst&auml;ndig synthetischen Daten &mdash; Alle Namen, Scores und Texte sind frei erfunden. Kein Bezug zu realen Personen oder Ereignissen.
+    </div>
+
+    <main class="dashboard">
+
+        <div class="controls-row">
+            <div class="time-range-controls">
+                <button class="btn-range active" data-range="all">Alle</button>
+                <button class="btn-range" data-range="36">3 Jahre</button>
+                <button class="btn-range" data-range="12">12 Monate</button>
+                <button class="btn-range" data-range="6">6 Monate</button>
+            </div>
+            <div class="mp-selector">
+                <label for="mp-select">Abgeordnete/r</label>
+                <select id="mp-select"></select>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="score-chart"></canvas>
+        </div>
+
+        <div class="selection-indicator" id="selection-indicator">
+            Showing all documents · Click a chart point to filter
+        </div>
+
+        <div class="table-container">
+            <table id="documents-table">
+                <thead>
+                    <tr>
+                        <th data-sort="label">Quelle</th>
+                        <th data-sort="score">Score</th>
+                        <th data-sort="date">Datum</th>
+                    </tr>
+                </thead>
+                <tbody id="documents-body">
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- Text Viewer Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modal-title"></span>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-meta" id="modal-meta"></div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>Demo-Prototyp · Synthetische Daten · Dr. Armin Seimel, GESIS</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="js/data.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
