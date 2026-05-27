@@ -133,10 +133,17 @@ body {
 .chart-panel {
   position: relative !important;
   height: 580px !important;
-  margin: 1.5rem 0 !important;
+  margin: 1.5rem 0 0.5rem !important;
   padding: 1rem !important;
   border: 1px solid #333 !important;
   background: #fff !important;
+}
+
+.line-style-note {
+  margin: 0 0 1.5rem 0 !important;
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  font-style: italic !important;
 }
 
 .loading-message {

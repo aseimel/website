@@ -37,7 +37,8 @@
     selectedIds: [],
     years: [],
     currentYear: null,
-    showPaths: true,
+    showEconomic: true,
+    showGaltan: true,
     chart: null
   };
 
@@ -52,7 +53,8 @@
     el.yearLabel = document.getElementById('year-label');
     el.yearMin = document.getElementById('year-min');
     el.yearMax = document.getElementById('year-max');
-    el.showPaths = document.getElementById('show-paths');
+    el.showEconomic = document.getElementById('show-economic');
+    el.showGaltan = document.getElementById('show-galtan');
     el.clearParties = document.getElementById('clear-parties');
     el.partyChips = document.getElementById('party-chips');
     el.tableBody = document.getElementById('party-table-body');
@@ -76,8 +78,21 @@
       render();
     });
 
-    el.showPaths.addEventListener('change', function() {
-      state.showPaths = el.showPaths.checked;
+    el.showEconomic.addEventListener('change', function() {
+      state.showEconomic = el.showEconomic.checked;
+      if (!state.showEconomic && !state.showGaltan) {
+        state.showGaltan = true;
+        el.showGaltan.checked = true;
+      }
+      renderChart();
+    });
+
+    el.showGaltan.addEventListener('change', function() {
+      state.showGaltan = el.showGaltan.checked;
+      if (!state.showEconomic && !state.showGaltan) {
+        state.showEconomic = true;
+        el.showEconomic.checked = true;
+      }
       renderChart();
     });
 
@@ -152,7 +167,7 @@
       party.observations.sort(function(a, b) { return a.year - b.year; });
       party.firstYear = party.observations[0].year;
       party.lastYear = party.observations[party.observations.length - 1].year;
-      party.label = party.shortName + ' - ' + party.name + ' (' + party.country + ', ' + party.firstYear + '-' + party.lastYear + ')';
+      party.label = party.shortName + ' - ' + party.name + ' (' + party.firstYear + '-' + party.lastYear + ')';
       return party;
     }).sort(function(a, b) {
       return countryLabel(a.country).localeCompare(countryLabel(b.country)) || a.shortName.localeCompare(b.shortName);
@@ -175,7 +190,7 @@
       return countryLabel(a).localeCompare(countryLabel(b));
     }).forEach(function(country) {
       var group = document.createElement('optgroup');
-      group.label = countryLabel(country) + ' (' + country + ')';
+      group.label = countryLabel(country);
       grouped.get(country).forEach(function(party) {
         var option = document.createElement('option');
         option.value = party.id;
@@ -248,48 +263,60 @@
   function renderChart() {
     var datasets = [];
     var selectedParties = state.selectedIds.map(function(id) { return state.partyMap.get(id); }).filter(Boolean);
+    var visibleYears = [];
 
     selectedParties.forEach(function(party) {
-      if (state.showPaths) {
+      if (state.showEconomic) {
         datasets.push({
           type: 'line',
-          label: party.shortName + ' trajectory',
+          label: party.shortName + ' (' + party.country + ') - Economic LR',
           data: party.observations.map(function(obs) {
-            return { x: obs.economic, y: obs.galtan, year: obs.year, party: party };
+            visibleYears.push(obs.year);
+            return { x: obs.year, y: obs.economic, year: obs.year, party: party, dimension: 'Economic LR', obs: obs };
           }),
-          borderColor: alpha(party.color, 0.45),
-          backgroundColor: alpha(party.color, 0.12),
-          borderWidth: 1.5,
-          pointRadius: 0,
-          pointHitRadius: 0,
-          tension: 0.15,
+          borderColor: party.color,
+          backgroundColor: party.color,
+          borderWidth: 2.25,
+          pointRadius: function(context) { return pointRadiusForYear(context.raw); },
+          pointHoverRadius: 7,
+          tension: 0.2,
           showLine: true
         });
       }
 
-      var current = observationForYear(party, state.currentYear);
-      if (!current) return;
-      datasets.push({
-        type: 'scatter',
-        label: party.shortName + ' (' + party.country + ')',
-        data: [{ x: current.economic, y: current.galtan, year: current.year, party: party, obs: current }],
-        borderColor: '#1a1a1a',
-        backgroundColor: party.color,
-        pointRadius: 7,
-        pointHoverRadius: 9,
-        pointBorderWidth: 1.5
-      });
+      if (state.showGaltan) {
+        datasets.push({
+          type: 'line',
+          label: party.shortName + ' (' + party.country + ') - GAL-TAN',
+          data: party.observations.map(function(obs) {
+            visibleYears.push(obs.year);
+            return { x: obs.year, y: obs.galtan, year: obs.year, party: party, dimension: 'GAL-TAN', obs: obs };
+          }),
+          borderColor: party.color,
+          backgroundColor: party.color,
+          borderWidth: 2.25,
+          borderDash: [7, 4],
+          pointRadius: function(context) { return pointRadiusForYear(context.raw); },
+          pointHoverRadius: 7,
+          tension: 0.2,
+          showLine: true
+        });
+      }
     });
+
+    var xBounds = yearBounds(visibleYears);
 
     if (state.chart) {
       state.chart.data.datasets = datasets;
-      state.chart.options.plugins.title.text = 'Party positions in ' + state.currentYear;
+      state.chart.options.plugins.title.text = 'Party estimates over time';
+      state.chart.options.scales.x.min = xBounds.min;
+      state.chart.options.scales.x.max = xBounds.max;
       state.chart.update();
       return;
     }
 
     state.chart = new Chart(document.getElementById('party-chart'), {
-      type: 'scatter',
+      type: 'line',
       data: { datasets: datasets },
       options: {
         responsive: true,
@@ -299,13 +326,12 @@
         plugins: {
           title: {
             display: true,
-            text: 'Party positions in ' + state.currentYear,
+            text: 'Party estimates over time',
             color: '#1a1a1a',
             font: { family: "'CMU Serif', Georgia, serif", size: 17, weight: 'normal' }
           },
           legend: {
             labels: {
-              filter: function(item) { return item.text.indexOf(' trajectory') === -1; },
               font: { family: "'CMU Serif', Georgia, serif" }
             }
           },
@@ -317,20 +343,16 @@
               },
               label: function(item) {
                 var raw = item.raw;
-                return [
-                  countryLabel(raw.party.country) + ', ' + raw.year,
-                  'Economic LR: ' + formatNumber(raw.x),
-                  'GAL-TAN: ' + formatNumber(raw.y)
-                ];
+                return raw.dimension + ': ' + formatNumber(raw.y) + ' (' + raw.year + ')';
               },
               afterLabel: function(item) {
-                if (!item.raw.obs) return '';
+                if (!item.raw.obs || !item.raw.dimension) return '';
                 var obs = item.raw.obs;
                 var lines = [];
-                if (obs.economicLow !== null && obs.economicHigh !== null) {
+                if (item.raw.dimension === 'Economic LR' && obs.economicLow !== null && obs.economicHigh !== null) {
                   lines.push('Economic 95% CI: ' + formatNumber(obs.economicLow) + '-' + formatNumber(obs.economicHigh));
                 }
-                if (obs.galtanLow !== null && obs.galtanHigh !== null) {
+                if (item.raw.dimension === 'GAL-TAN' && obs.galtanLow !== null && obs.galtanHigh !== null) {
                   lines.push('GAL-TAN 95% CI: ' + formatNumber(obs.galtanLow) + '-' + formatNumber(obs.galtanHigh));
                 }
                 if (obs.vote !== null) lines.push('Vote share: ' + formatNumber(obs.vote) + '%');
@@ -341,22 +363,40 @@
         },
         scales: {
           x: {
-            min: 0,
-            max: 1,
-            title: { display: true, text: 'Economic left-right', color: '#1a1a1a' },
+            type: 'linear',
+            min: xBounds.min,
+            max: xBounds.max,
+            title: { display: true, text: 'Year', color: '#1a1a1a' },
             grid: { color: '#e7e2d8' },
-            ticks: { color: '#333' }
+            ticks: {
+              color: '#333',
+              precision: 0,
+              callback: function(value) { return String(Math.round(value)); }
+            }
           },
           y: {
             min: 0,
             max: 1,
-            title: { display: true, text: 'GAL-TAN', color: '#1a1a1a' },
+            title: { display: true, text: 'Estimated position', color: '#1a1a1a' },
             grid: { color: '#e7e2d8' },
             ticks: { color: '#333' }
           }
         }
       }
     });
+  }
+
+  function yearBounds(years) {
+    if (years.length === 0) return { min: state.years[0], max: state.years[state.years.length - 1] };
+    var min = Math.min.apply(null, years);
+    var max = Math.max.apply(null, years);
+    if (min === max) return { min: min - 1, max: max + 1 };
+    return { min: min, max: max };
+  }
+
+  function pointRadiusForYear(raw) {
+    if (!raw) return 0;
+    return raw.year === state.currentYear ? 5 : 2;
   }
 
   function renderTable() {

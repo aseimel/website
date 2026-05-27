@@ -29,7 +29,7 @@
   <main class="party2d-page">
     <section class="party2d-intro">
       <h2>Party Position Estimates</h2>
-      <p>Preliminary two-dimensional party estimates. Select parties below to compare economic left-right and GAL-TAN positions by year.</p>
+      <p>Preliminary party estimates. Select parties below to compare economic left-right and GAL-TAN positions over time.</p>
     </section>
 
     <section class="party2d-controls" aria-label="Party estimate controls">
@@ -44,7 +44,7 @@
       </div>
 
       <div class="control-block year-control">
-        <label for="year-slider">Year <span id="year-label"></span></label>
+        <label for="year-slider">Highlight/table year <span id="year-label"></span></label>
         <input type="range" id="year-slider" disabled>
         <div class="year-bounds">
           <span id="year-min"></span>
@@ -54,8 +54,12 @@
 
       <div class="control-block view-options">
         <label>
-          <input type="checkbox" id="show-paths" checked>
-          Show party trajectories
+          <input type="checkbox" id="show-economic" checked>
+          Economic left-right
+        </label>
+        <label>
+          <input type="checkbox" id="show-galtan" checked>
+          GAL-TAN
         </label>
         <button type="button" id="clear-parties" disabled>Clear selection</button>
       </div>
@@ -68,10 +72,11 @@
       </div>
     </section>
 
-    <section class="chart-panel" aria-label="Party position chart">
+    <section class="chart-panel" aria-label="Party position time series chart">
       <div class="loading-message" id="loading-message">Loading party estimates...</div>
       <canvas id="party-chart"></canvas>
     </section>
+    <p class="line-style-note">Line styles: solid = economic left-right; dashed = GAL-TAN. Party colours identify parties.</p>
 
     <section class="party-table-section">
       <h3>Current Year Values</h3>
