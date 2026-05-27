@@ -34,17 +34,16 @@
 
     <section class="party2d-controls" aria-label="Party estimate controls">
       <div class="control-block party-picker">
-        <label for="party-select">Add party</label>
+        <label for="party-search">Add party</label>
         <div class="picker-row">
-          <select id="party-select" disabled>
-            <option>Loading parties...</option>
-          </select>
+          <input type="search" id="party-search" list="party-options" placeholder="Search party or country" disabled>
+          <datalist id="party-options"></datalist>
           <button type="button" id="add-party" disabled>Add</button>
         </div>
       </div>
 
       <div class="control-block year-control">
-        <label for="year-slider">Highlight/table year <span id="year-label"></span></label>
+        <label for="year-slider">Table year <span id="year-label"></span></label>
         <input type="range" id="year-slider" disabled>
         <div class="year-bounds">
           <span id="year-min"></span>

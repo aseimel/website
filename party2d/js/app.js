@@ -5,16 +5,16 @@
   var MAX_INITIAL_SELECTION = 4;
 
   var COUNTRY_NAMES = {
-    AT: 'Austria', BE: 'Belgium', BG: 'Bulgaria', CH: 'Switzerland', CY: 'Cyprus', CZ: 'Czechia',
+    AL: 'Albania', AD: 'Andorra', AM: 'Armenia', AR: 'Argentina', AU: 'Australia', AZ: 'Azerbaijan', AT: 'Austria', BA: 'Bosnia and Herzegovina', BE: 'Belgium', BG: 'Bulgaria', BO: 'Bolivia', BR: 'Brazil', BY: 'Belarus', CA: 'Canada', CH: 'Switzerland', CL: 'Chile', CO: 'Colombia', CR: 'Costa Rica', CY: 'Cyprus', CZ: 'Czechia',
     DE: 'Germany', DK: 'Denmark', EE: 'Estonia', ES: 'Spain', FI: 'Finland', FR: 'France',
-    GB: 'United Kingdom', GR: 'Greece', HR: 'Croatia', HU: 'Hungary', IE: 'Ireland', IS: 'Iceland',
-    IT: 'Italy', LT: 'Lithuania', LU: 'Luxembourg', LV: 'Latvia', MT: 'Malta', NL: 'Netherlands',
-    NO: 'Norway', PL: 'Poland', PT: 'Portugal', RO: 'Romania', SE: 'Sweden', SI: 'Slovenia',
-    SK: 'Slovakia'
+    GB: 'United Kingdom', GE: 'Georgia', GR: 'Greece', HR: 'Croatia', HU: 'Hungary', DO: 'Dominican Republic', EC: 'Ecuador', IE: 'Ireland', IL: 'Israel', IS: 'Iceland',
+    IT: 'Italy', JP: 'Japan', KR: 'South Korea', LI: 'Liechtenstein', LK: 'Sri Lanka', LT: 'Lithuania', LU: 'Luxembourg', LV: 'Latvia', MD: 'Moldova', ME: 'Montenegro', MK: 'North Macedonia', MT: 'Malta', MX: 'Mexico', NL: 'Netherlands', NZ: 'New Zealand',
+    NO: 'Norway', PA: 'Panama', PE: 'Peru', PL: 'Poland', PT: 'Portugal', RO: 'Romania', RS: 'Serbia', RU: 'Russia', SE: 'Sweden', SI: 'Slovenia',
+    SK: 'Slovakia', TR: 'Turkey', UA: 'Ukraine', US: 'United States', UY: 'Uruguay', XK: 'Kosovo', ZA: 'South Africa'
   };
 
   var PARTY_COLORS = {
-    CDU: '#000000', CSU: '#008AC5', SPD: '#E3000F', FDP: '#FFED00', GRUENE: '#64A12D', GRUNE: '#64A12D',
+    CDU: '#000000', CSU: '#008AC5', SPD: '#E3000F', FDP: '#FFED00', GRUENE: '#46962b', GRUNE: '#46962b', GRUNEN: '#46962b',
     AFD: '#009EE0', LINKE: '#BE3075', PDS: '#BE3075', SSW: '#003C78', OVP: '#63C3D1', SPO: '#E31E2D',
     FPO: '#005DA8', NEOS: '#E84188', BZO: '#F58220', SPOE: '#E31E2D', PSOE: '#EF1C27', PP: '#1D84CE',
     VOX: '#63BE21', PODEMOS: '#6A2E68', IU: '#B00020', ERC: '#FFB232', CIU: '#1B75BB', PSC: '#EF1C27',
@@ -28,11 +28,26 @@
     M: '#52BDEC', V: '#DA291C', C: '#009933', L: '#006AB3', KD: '#005EA8', MP: '#83CF39', SDSE: '#DDDD00',
     AP: '#005BAA', DNA: '#E31836', SF: '#C00418', RV: '#663399', DF: '#005BAA', EL: '#D71920', FRP: '#024EA2',
     H: '#87ADD7', SV: '#BA0000', KRF: '#F2D230', VENSTRE: '#008542', SPNO: '#008542', SDP: '#ED1B34', KOK: '#006CB4',
-    PSFI: '#F00A64', KESK: '#349A2B', VIHR: '#61BF1A', KDPI: '#0235A4', EKRE: '#005EA8', RE: '#FFD300', SDE: '#E10600'
+    PSFI: '#F00A64', KESK: '#349A2B', VIHR: '#61BF1A', KDPI: '#0235A4', EKRE: '#005EA8', RE: '#FFD300', SDE: '#E10600',
+    TPSL: '#E11931', ERP: '#004B8D', BZO: '#F58220', OVP: '#63C3D1', SPO: '#E31E2D', FPO: '#005DA8'
+  };
+
+  // party_id is the Party Facts ID, matching the identifier used by partycoloR.
+  var PARTY_FACTS_COLORS = {
+    463: '#005DA8',
+    491: '#004B8D',
+    599: '#F58220',
+    1164: '#E11931',
+    1329: '#63C3D1',
+    1384: '#E31E2D',
+    1659: '#46962B',
+    1970: '#E84188',
+    4094: '#005EA8'
   };
 
   var state = {
     parties: [],
+    partySearch: new Map(),
     partyMap: new Map(),
     selectedIds: [],
     years: [],
@@ -47,7 +62,8 @@
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
-    el.partySelect = document.getElementById('party-select');
+    el.partySearch = document.getElementById('party-search');
+    el.partyOptions = document.getElementById('party-options');
     el.addParty = document.getElementById('add-party');
     el.yearSlider = document.getElementById('year-slider');
     el.yearLabel = document.getElementById('year-label');
@@ -66,11 +82,18 @@
 
   function wireEvents() {
     el.addParty.addEventListener('click', function() {
-      addSelectedParty(el.partySelect.value);
+      addSelectedParty(resolvePartySearch(el.partySearch.value));
     });
 
-    el.partySelect.addEventListener('change', function() {
-      el.addParty.disabled = !el.partySelect.value;
+    el.partySearch.addEventListener('input', function() {
+      el.addParty.disabled = !resolvePartySearch(el.partySearch.value);
+    });
+
+    el.partySearch.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        addSelectedParty(resolvePartySearch(el.partySearch.value));
+      }
     });
 
     el.yearSlider.addEventListener('input', function() {
@@ -179,25 +202,15 @@
   }
 
   function setupControls() {
-    var grouped = new Map();
+    state.partySearch.clear();
+    el.partyOptions.innerHTML = '';
     state.parties.forEach(function(party) {
-      if (!grouped.has(party.country)) grouped.set(party.country, []);
-      grouped.get(party.country).push(party);
-    });
-
-    el.partySelect.innerHTML = '<option value="">Choose a party...</option>';
-    Array.from(grouped.keys()).sort(function(a, b) {
-      return countryLabel(a).localeCompare(countryLabel(b));
-    }).forEach(function(country) {
-      var group = document.createElement('optgroup');
-      group.label = countryLabel(country);
-      grouped.get(country).forEach(function(party) {
-        var option = document.createElement('option');
-        option.value = party.id;
-        option.textContent = party.label;
-        group.appendChild(option);
-      });
-      el.partySelect.appendChild(group);
+      var value = party.shortName + ' - ' + party.name + ' - ' + countryLabel(party.country) + ' (' + party.country + ', ' + party.firstYear + '-' + party.lastYear + ')';
+      state.partySearch.set(value, party.id);
+      state.partySearch.set(party.id, party.id);
+      var option = document.createElement('option');
+      option.value = value;
+      el.partyOptions.appendChild(option);
     });
 
     el.yearSlider.min = state.years[0];
@@ -207,7 +220,7 @@
     el.yearMin.textContent = state.years[0];
     el.yearMax.textContent = state.years[state.years.length - 1];
 
-    el.partySelect.disabled = false;
+    el.partySearch.disabled = false;
     el.yearSlider.disabled = false;
   }
 
@@ -227,7 +240,13 @@
   function addSelectedParty(id) {
     if (!id || state.selectedIds.indexOf(id) !== -1) return;
     state.selectedIds.push(id);
+    el.partySearch.value = '';
+    el.addParty.disabled = true;
     render();
+  }
+
+  function resolvePartySearch(value) {
+    return state.partySearch.get(cleanText(value)) || null;
   }
 
   function removeParty(id) {
@@ -267,40 +286,11 @@
 
     selectedParties.forEach(function(party) {
       if (state.showEconomic) {
-        datasets.push({
-          type: 'line',
-          label: party.shortName + ' (' + party.country + ') - Economic',
-          data: party.observations.map(function(obs) {
-            visibleYears.push(obs.year);
-            return { x: obs.year, y: obs.economic, year: obs.year, party: party, dimension: 'Economic', obs: obs };
-          }),
-          borderColor: party.color,
-          backgroundColor: party.color,
-          borderWidth: 2.25,
-          pointRadius: function(context) { return pointRadiusForYear(context.raw); },
-          pointHoverRadius: 7,
-          tension: 0.2,
-          showLine: true
-        });
+        addDimensionDatasets(datasets, party, 'Economic', 'economic', 'economicLow', 'economicHigh', [], visibleYears);
       }
 
       if (state.showCultural) {
-        datasets.push({
-          type: 'line',
-          label: party.shortName + ' (' + party.country + ') - Cultural',
-          data: party.observations.map(function(obs) {
-            visibleYears.push(obs.year);
-            return { x: obs.year, y: obs.cultural, year: obs.year, party: party, dimension: 'Cultural', obs: obs };
-          }),
-          borderColor: party.color,
-          backgroundColor: party.color,
-          borderWidth: 2.25,
-          borderDash: [7, 4],
-          pointRadius: function(context) { return pointRadiusForYear(context.raw); },
-          pointHoverRadius: 7,
-          tension: 0.2,
-          showLine: true
-        });
+        addDimensionDatasets(datasets, party, 'Cultural', 'cultural', 'culturalLow', 'culturalHigh', [7, 4], visibleYears);
       }
     });
 
@@ -332,10 +322,16 @@
           },
           legend: {
             labels: {
+              filter: function(item, chartData) {
+                return item.datasetIndex !== null && chartData.datasets[item.datasetIndex].role === 'estimate';
+              },
               font: { family: "'CMU Serif', Georgia, serif" }
             }
           },
           tooltip: {
+            filter: function(item) {
+              return item.dataset.role === 'estimate';
+            },
             callbacks: {
               title: function(items) {
                 var raw = items[0].raw;
@@ -343,7 +339,7 @@
               },
               label: function(item) {
                 var raw = item.raw;
-                return raw.dimension + ': ' + formatNumber(raw.y) + ' (' + raw.year + ')';
+                return raw.dimension + ': ' + formatNumber(raw.value) + ' (' + raw.year + ')';
               },
               afterLabel: function(item) {
                 if (!item.raw.obs || !item.raw.dimension) return '';
@@ -386,17 +382,69 @@
     });
   }
 
+  function addDimensionDatasets(datasets, party, label, valueKey, lowKey, highKey, dash, visibleYears) {
+    var color = party.color;
+    var lowerData = [];
+    var upperData = [];
+    var lineData = [];
+
+    party.observations.forEach(function(obs) {
+      visibleYears.push(obs.year);
+      lowerData.push({ x: obs.year, y: obs[lowKey], year: obs.year, party: party, dimension: label, obs: obs, value: obs[valueKey] });
+      upperData.push({ x: obs.year, y: obs[highKey], year: obs.year, party: party, dimension: label, obs: obs, value: obs[valueKey] });
+      lineData.push({ x: obs.year, y: obs[valueKey], year: obs.year, party: party, dimension: label, obs: obs, value: obs[valueKey] });
+    });
+
+    datasets.push({
+      type: 'line',
+      label: party.shortName + ' (' + party.country + ') - ' + label + ' lower',
+      data: lowerData,
+      borderColor: 'transparent',
+      backgroundColor: 'transparent',
+      pointRadius: 0,
+      pointHitRadius: 0,
+      borderWidth: 0,
+      tension: 0.2,
+      role: 'ribbon-bound'
+    });
+
+    datasets.push({
+      type: 'line',
+      label: party.shortName + ' (' + party.country + ') - ' + label + ' ribbon',
+      data: upperData,
+      borderColor: 'transparent',
+      backgroundColor: alpha(color, label === 'Economic' ? 0.12 : 0.08),
+      pointRadius: 0,
+      pointHitRadius: 0,
+      borderWidth: 0,
+      tension: 0.2,
+      fill: '-1',
+      role: 'ribbon'
+    });
+
+    datasets.push({
+      type: 'line',
+      label: party.shortName + ' (' + party.country + ') - ' + label,
+      data: lineData,
+      borderColor: color,
+      backgroundColor: color,
+      borderWidth: 2.4,
+      borderDash: dash,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      pointHitRadius: 8,
+      tension: 0.2,
+      showLine: true,
+      role: 'estimate'
+    });
+  }
+
   function yearBounds(years) {
     if (years.length === 0) return { min: state.years[0], max: state.years[state.years.length - 1] };
     var min = Math.min.apply(null, years);
     var max = Math.max.apply(null, years);
     if (min === max) return { min: min - 1, max: max + 1 };
     return { min: min, max: max };
-  }
-
-  function pointRadiusForYear(raw) {
-    if (!raw) return 0;
-    return raw.year === state.currentYear ? 5 : 2;
   }
 
   function renderTable() {
@@ -431,6 +479,7 @@
   }
 
   function partyColor(party) {
+    if (PARTY_FACTS_COLORS[party.id]) return PARTY_FACTS_COLORS[party.id];
     var shortName = normalizeKey(party.shortName);
     if (PARTY_COLORS[shortName]) return PARTY_COLORS[shortName];
     return hashColor(party.country + ':' + party.id + ':' + party.shortName);

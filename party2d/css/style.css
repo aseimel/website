@@ -36,14 +36,14 @@ body {
   gap: 0.5rem !important;
 }
 
-.party2d-controls select,
+.party2d-controls input[type="search"],
 .party2d-controls button,
 .party2d-controls input[type="range"] {
   font-family: inherit !important;
   font-size: 0.95rem !important;
 }
 
-.party2d-controls select {
+.party2d-controls input[type="search"] {
   width: 100% !important;
   min-width: 0 !important;
   padding: 0.4rem !important;
@@ -66,7 +66,7 @@ body {
 }
 
 .party2d-controls button:disabled,
-.party2d-controls select:disabled,
+.party2d-controls input[type="search"]:disabled,
 .party2d-controls input:disabled {
   cursor: not-allowed !important;
   opacity: 0.55 !important;
