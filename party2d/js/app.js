@@ -2,8 +2,6 @@
   'use strict';
 
   var DATA_URL = 'party2d_estimates_v0.csv';
-  var MAX_INITIAL_SELECTION = 4;
-
   var COUNTRY_NAMES = {
     AL: 'Albania', AD: 'Andorra', AM: 'Armenia', AR: 'Argentina', AU: 'Australia', AZ: 'Azerbaijan', AT: 'Austria', BA: 'Bosnia and Herzegovina', BE: 'Belgium', BG: 'Bulgaria', BO: 'Bolivia', BR: 'Brazil', BY: 'Belarus', CA: 'Canada', CH: 'Switzerland', CL: 'Chile', CO: 'Colombia', CR: 'Costa Rica', CY: 'Cyprus', CZ: 'Czechia',
     DE: 'Germany', DK: 'Denmark', EE: 'Estonia', ES: 'Spain', FI: 'Finland', FR: 'France',
@@ -68,7 +66,6 @@
     el.showCultural = document.getElementById('show-cultural');
     el.clearParties = document.getElementById('clear-parties');
     el.partyChips = document.getElementById('party-chips');
-    el.tableBody = document.getElementById('party-table-body');
     el.loading = document.getElementById('loading-message');
 
     wireEvents();
@@ -130,7 +127,6 @@
       complete: function(results) {
         buildData(results.data);
         setupControls();
-        pickInitialParties();
         el.loading.classList.add('hidden');
         render();
       },
@@ -205,19 +201,6 @@
     el.partySearch.disabled = false;
   }
 
-  function pickInitialParties() {
-    var byShortName = new Set(['SPD', 'CDU', 'FDP', 'GRUNE']);
-    state.selectedIds = state.parties.filter(function(party) {
-      return party.country === 'DE' && byShortName.has(party.shortName.toUpperCase());
-    }).slice(0, MAX_INITIAL_SELECTION).map(function(party) { return party.id; });
-
-    if (state.selectedIds.length === 0) {
-      state.selectedIds = state.parties.slice(0, Math.min(MAX_INITIAL_SELECTION, state.parties.length)).map(function(party) {
-        return party.id;
-      });
-    }
-  }
-
   function addSelectedParty(id) {
     if (!id || state.selectedIds.indexOf(id) !== -1) return;
     state.selectedIds.push(id);
@@ -239,7 +222,6 @@
     el.clearParties.disabled = state.selectedIds.length === 0;
     renderChips();
     renderChart();
-    renderTable();
   }
 
   function renderChips() {
@@ -444,41 +426,12 @@
     return { min: min, max: max };
   }
 
-  function renderTable() {
-    var rows = state.selectedIds.map(function(id) {
-      var party = state.partyMap.get(id);
-      var obs = latestObservation(party);
-      return { party: party, obs: obs };
-    }).filter(function(row) { return row.party && row.obs; });
-
-    if (rows.length === 0) {
-      el.tableBody.innerHTML = '<tr><td colspan="6">Select parties to compare estimates.</td></tr>';
-      return;
-    }
-
-    el.tableBody.innerHTML = rows.map(function(row) {
-      return '<tr>' +
-        '<td><span class="party-name-cell"><span class="party-color-dot" style="background:' + row.party.color + '"></span>' + escapeHtml(row.party.shortName + ' - ' + row.party.name) + '</span></td>' +
-        '<td>' + escapeHtml(countryLabel(row.party.country)) + '</td>' +
-        '<td>' + row.obs.year + '</td>' +
-        '<td>' + (row.obs.vote === null ? '&mdash;' : formatNumber(row.obs.vote) + '%') + '</td>' +
-        '<td>' + estimateWithCi(row.obs.economic, row.obs.economicLow, row.obs.economicHigh) + '</td>' +
-        '<td>' + estimateWithCi(row.obs.cultural, row.obs.culturalLow, row.obs.culturalHigh) + '</td>' +
-        '</tr>';
-    }).join('');
-  }
-
   function observationForYear(party, year) {
     if (!party) return null;
     for (var i = 0; i < party.observations.length; i++) {
       if (party.observations[i].year === year) return party.observations[i];
     }
     return null;
-  }
-
-  function latestObservation(party) {
-    if (!party || party.observations.length === 0) return null;
-    return party.observations[party.observations.length - 1];
   }
 
   function partyColor(party) {
@@ -517,12 +470,6 @@
 
   function countryLabel(code) {
     return COUNTRY_NAMES[code] || code;
-  }
-
-  function estimateWithCi(value, low, high) {
-    var html = formatNumber(value);
-    if (low !== null && high !== null) html += ' <span class="empty-state">[' + formatNumber(low) + ', ' + formatNumber(high) + ']</span>';
-    return html;
   }
 
   function isFiniteNumber(value) {
