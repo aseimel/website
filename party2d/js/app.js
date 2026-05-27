@@ -51,7 +51,6 @@
     partyMap: new Map(),
     selectedIds: [],
     years: [],
-    currentYear: null,
     showEconomic: true,
     showCultural: true,
     chart: null
@@ -65,10 +64,6 @@
     el.partySearch = document.getElementById('party-search');
     el.partyOptions = document.getElementById('party-options');
     el.addParty = document.getElementById('add-party');
-    el.yearSlider = document.getElementById('year-slider');
-    el.yearLabel = document.getElementById('year-label');
-    el.yearMin = document.getElementById('year-min');
-    el.yearMax = document.getElementById('year-max');
     el.showEconomic = document.getElementById('show-economic');
     el.showCultural = document.getElementById('show-cultural');
     el.clearParties = document.getElementById('clear-parties');
@@ -94,11 +89,6 @@
         event.preventDefault();
         addSelectedParty(resolvePartySearch(el.partySearch.value));
       }
-    });
-
-    el.yearSlider.addEventListener('input', function() {
-      state.currentYear = Number(el.yearSlider.value);
-      render();
     });
 
     el.showEconomic.addEventListener('change', function() {
@@ -198,7 +188,6 @@
 
     state.partyMap = map;
     state.years = Array.from(years).sort(function(a, b) { return a - b; });
-    state.currentYear = state.years[state.years.length - 1];
   }
 
   function setupControls() {
@@ -213,15 +202,7 @@
       el.partyOptions.appendChild(option);
     });
 
-    el.yearSlider.min = state.years[0];
-    el.yearSlider.max = state.years[state.years.length - 1];
-    el.yearSlider.step = 1;
-    el.yearSlider.value = state.currentYear;
-    el.yearMin.textContent = state.years[0];
-    el.yearMax.textContent = state.years[state.years.length - 1];
-
     el.partySearch.disabled = false;
-    el.yearSlider.disabled = false;
   }
 
   function pickInitialParties() {
@@ -255,8 +236,6 @@
   }
 
   function render() {
-    el.yearLabel.textContent = state.currentYear ? '(' + state.currentYear + ')' : '';
-    el.yearSlider.value = state.currentYear;
     el.clearParties.disabled = state.selectedIds.length === 0;
     renderChips();
     renderChart();
@@ -325,6 +304,24 @@
               filter: function(item, chartData) {
                 return item.datasetIndex !== null && chartData.datasets[item.datasetIndex].role === 'estimate';
               },
+              generateLabels: function(chart) {
+                return chart.data.datasets.reduce(function(labels, dataset, index) {
+                  if (dataset.role !== 'estimate') return labels;
+                  labels.push({
+                    text: dataset.label,
+                    datasetIndex: index,
+                    hidden: !chart.isDatasetVisible(index),
+                    fillStyle: 'rgba(255, 255, 255, 0)',
+                    strokeStyle: dataset.borderColor,
+                    lineWidth: dataset.borderWidth,
+                    lineDash: dataset.borderDash || [],
+                    pointStyle: 'line'
+                  });
+                  return labels;
+                }, []);
+              },
+              boxWidth: 34,
+              boxHeight: 2,
               font: { family: "'CMU Serif', Georgia, serif" }
             }
           },
@@ -413,7 +410,7 @@
       label: party.shortName + ' (' + party.country + ') - ' + label + ' ribbon',
       data: upperData,
       borderColor: 'transparent',
-      backgroundColor: alpha(color, label === 'Economic' ? 0.12 : 0.08),
+      backgroundColor: alpha(color, label === 'Economic' ? 0.035 : 0.025),
       pointRadius: 0,
       pointHitRadius: 0,
       borderWidth: 0,
@@ -450,12 +447,12 @@
   function renderTable() {
     var rows = state.selectedIds.map(function(id) {
       var party = state.partyMap.get(id);
-      var obs = observationForYear(party, state.currentYear);
+      var obs = latestObservation(party);
       return { party: party, obs: obs };
     }).filter(function(row) { return row.party && row.obs; });
 
     if (rows.length === 0) {
-      el.tableBody.innerHTML = '<tr><td colspan="5">No selected parties have estimates for this year.</td></tr>';
+      el.tableBody.innerHTML = '<tr><td colspan="6">Select parties to compare estimates.</td></tr>';
       return;
     }
 
@@ -463,6 +460,7 @@
       return '<tr>' +
         '<td><span class="party-name-cell"><span class="party-color-dot" style="background:' + row.party.color + '"></span>' + escapeHtml(row.party.shortName + ' - ' + row.party.name) + '</span></td>' +
         '<td>' + escapeHtml(countryLabel(row.party.country)) + '</td>' +
+        '<td>' + row.obs.year + '</td>' +
         '<td>' + (row.obs.vote === null ? '&mdash;' : formatNumber(row.obs.vote) + '%') + '</td>' +
         '<td>' + estimateWithCi(row.obs.economic, row.obs.economicLow, row.obs.economicHigh) + '</td>' +
         '<td>' + estimateWithCi(row.obs.cultural, row.obs.culturalLow, row.obs.culturalHigh) + '</td>' +
@@ -476,6 +474,11 @@
       if (party.observations[i].year === year) return party.observations[i];
     }
     return null;
+  }
+
+  function latestObservation(party) {
+    if (!party || party.observations.length === 0) return null;
+    return party.observations[party.observations.length - 1];
   }
 
   function partyColor(party) {
@@ -504,6 +507,7 @@
   }
 
   function alpha(color, opacity) {
+    if (color.indexOf('hsl(') === 0) return color.replace('hsl(', 'hsla(').replace(')', ', ' + opacity + ')');
     if (color.indexOf('#') !== 0 || color.length !== 7) return color;
     var r = parseInt(color.slice(1, 3), 16);
     var g = parseInt(color.slice(3, 5), 16);
