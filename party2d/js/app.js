@@ -38,7 +38,7 @@
     years: [],
     currentYear: null,
     showEconomic: true,
-    showGaltan: true,
+    showCultural: true,
     chart: null
   };
 
@@ -54,7 +54,7 @@
     el.yearMin = document.getElementById('year-min');
     el.yearMax = document.getElementById('year-max');
     el.showEconomic = document.getElementById('show-economic');
-    el.showGaltan = document.getElementById('show-galtan');
+    el.showCultural = document.getElementById('show-cultural');
     el.clearParties = document.getElementById('clear-parties');
     el.partyChips = document.getElementById('party-chips');
     el.tableBody = document.getElementById('party-table-body');
@@ -80,16 +80,16 @@
 
     el.showEconomic.addEventListener('change', function() {
       state.showEconomic = el.showEconomic.checked;
-      if (!state.showEconomic && !state.showGaltan) {
-        state.showGaltan = true;
-        el.showGaltan.checked = true;
+      if (!state.showEconomic && !state.showCultural) {
+        state.showCultural = true;
+        el.showCultural.checked = true;
       }
       renderChart();
     });
 
-    el.showGaltan.addEventListener('change', function() {
-      state.showGaltan = el.showGaltan.checked;
-      if (!state.showEconomic && !state.showGaltan) {
+    el.showCultural.addEventListener('change', function() {
+      state.showCultural = el.showCultural.checked;
+      if (!state.showEconomic && !state.showCultural) {
         state.showEconomic = true;
         el.showEconomic.checked = true;
       }
@@ -154,9 +154,9 @@
         economic: Number(row.economic_lr),
         economicLow: numberOrNull(row.economic_lr_q025),
         economicHigh: numberOrNull(row.economic_lr_q975),
-        galtan: Number(row.galtan),
-        galtanLow: numberOrNull(row.galtan_q025),
-        galtanHigh: numberOrNull(row.galtan_q975),
+        cultural: Number(row.galtan),
+        culturalLow: numberOrNull(row.galtan_q025),
+        culturalHigh: numberOrNull(row.galtan_q975),
         vote: numberOrNull(row.pervote)
       };
       party.observations.push(observation);
@@ -269,10 +269,10 @@
       if (state.showEconomic) {
         datasets.push({
           type: 'line',
-          label: party.shortName + ' (' + party.country + ') - Economic LR',
+          label: party.shortName + ' (' + party.country + ') - Economic',
           data: party.observations.map(function(obs) {
             visibleYears.push(obs.year);
-            return { x: obs.year, y: obs.economic, year: obs.year, party: party, dimension: 'Economic LR', obs: obs };
+            return { x: obs.year, y: obs.economic, year: obs.year, party: party, dimension: 'Economic', obs: obs };
           }),
           borderColor: party.color,
           backgroundColor: party.color,
@@ -284,13 +284,13 @@
         });
       }
 
-      if (state.showGaltan) {
+      if (state.showCultural) {
         datasets.push({
           type: 'line',
-          label: party.shortName + ' (' + party.country + ') - GAL-TAN',
+          label: party.shortName + ' (' + party.country + ') - Cultural',
           data: party.observations.map(function(obs) {
             visibleYears.push(obs.year);
-            return { x: obs.year, y: obs.galtan, year: obs.year, party: party, dimension: 'GAL-TAN', obs: obs };
+            return { x: obs.year, y: obs.cultural, year: obs.year, party: party, dimension: 'Cultural', obs: obs };
           }),
           borderColor: party.color,
           backgroundColor: party.color,
@@ -349,11 +349,11 @@
                 if (!item.raw.obs || !item.raw.dimension) return '';
                 var obs = item.raw.obs;
                 var lines = [];
-                if (item.raw.dimension === 'Economic LR' && obs.economicLow !== null && obs.economicHigh !== null) {
+                if (item.raw.dimension === 'Economic' && obs.economicLow !== null && obs.economicHigh !== null) {
                   lines.push('Economic 95% CI: ' + formatNumber(obs.economicLow) + '-' + formatNumber(obs.economicHigh));
                 }
-                if (item.raw.dimension === 'GAL-TAN' && obs.galtanLow !== null && obs.galtanHigh !== null) {
-                  lines.push('GAL-TAN 95% CI: ' + formatNumber(obs.galtanLow) + '-' + formatNumber(obs.galtanHigh));
+                if (item.raw.dimension === 'Cultural' && obs.culturalLow !== null && obs.culturalHigh !== null) {
+                  lines.push('Cultural 95% CI: ' + formatNumber(obs.culturalLow) + '-' + formatNumber(obs.culturalHigh));
                 }
                 if (obs.vote !== null) lines.push('Vote share: ' + formatNumber(obs.vote) + '%');
                 return lines;
@@ -417,7 +417,7 @@
         '<td>' + escapeHtml(countryLabel(row.party.country)) + '</td>' +
         '<td>' + (row.obs.vote === null ? '&mdash;' : formatNumber(row.obs.vote) + '%') + '</td>' +
         '<td>' + estimateWithCi(row.obs.economic, row.obs.economicLow, row.obs.economicHigh) + '</td>' +
-        '<td>' + estimateWithCi(row.obs.galtan, row.obs.galtanLow, row.obs.galtanHigh) + '</td>' +
+        '<td>' + estimateWithCi(row.obs.cultural, row.obs.culturalLow, row.obs.culturalHigh) + '</td>' +
         '</tr>';
     }).join('');
   }

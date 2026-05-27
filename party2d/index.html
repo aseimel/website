@@ -29,7 +29,7 @@
   <main class="party2d-page">
     <section class="party2d-intro">
       <h2>Party Position Estimates</h2>
-      <p>Preliminary party estimates. Select parties below to compare economic left-right and GAL-TAN positions over time.</p>
+      <p>Preliminary party estimates. Select parties below to compare economic and cultural positions over time.</p>
     </section>
 
     <section class="party2d-controls" aria-label="Party estimate controls">
@@ -55,11 +55,11 @@
       <div class="control-block view-options">
         <label>
           <input type="checkbox" id="show-economic" checked>
-          Economic left-right
+          Economic
         </label>
         <label>
-          <input type="checkbox" id="show-galtan" checked>
-          GAL-TAN
+          <input type="checkbox" id="show-cultural" checked>
+          Cultural
         </label>
         <button type="button" id="clear-parties" disabled>Clear selection</button>
       </div>
@@ -76,7 +76,7 @@
       <div class="loading-message" id="loading-message">Loading party estimates...</div>
       <canvas id="party-chart"></canvas>
     </section>
-    <p class="line-style-note">Line styles: solid = economic left-right; dashed = GAL-TAN. Party colours identify parties.</p>
+    <p class="line-style-note">Line styles: solid = economic; dashed = cultural. Party colours identify parties.</p>
 
     <section class="party-table-section">
       <h3>Current Year Values</h3>
@@ -87,8 +87,8 @@
               <th>Party</th>
               <th>Country</th>
               <th>Vote Share</th>
-              <th>Economic LR</th>
-              <th>GAL-TAN</th>
+              <th>Economic</th>
+              <th>Cultural</th>
             </tr>
           </thead>
           <tbody id="party-table-body">
