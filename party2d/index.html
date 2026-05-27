@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive party position estimates dashboard for comparing parties across countries and time.">
+  <meta name="author" content="Armin Seimel">
+  <meta name="robots" content="index, follow">
+  <title>Party Estimates | Armin Seimel</title>
+  <link rel="canonical" href="https://seimel.io/party2d/">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Armin Seimel</h1>
+    <p class="site-subtitle">GESIS - Leibniz Institute for the Social Sciences</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <span class="nav-separator">|</span>
+      <a href="../cv.html">CV</a>
+      <span class="nav-separator">|</span>
+      <a href="../papers.html">Papers</a>
+      <span class="nav-separator">|</span>
+      <a href="./" class="active">Party Estimates</a>
+    </nav>
+  </header>
+
+  <main class="party2d-page">
+    <section class="party2d-intro">
+      <h2>Party Position Estimates</h2>
+      <p>Preliminary two-dimensional party estimates. Select parties below to compare economic left-right and GAL-TAN positions by year.</p>
+    </section>
+
+    <section class="party2d-controls" aria-label="Party estimate controls">
+      <div class="control-block party-picker">
+        <label for="party-select">Add party</label>
+        <div class="picker-row">
+          <select id="party-select" disabled>
+            <option>Loading parties...</option>
+          </select>
+          <button type="button" id="add-party" disabled>Add</button>
+        </div>
+      </div>
+
+      <div class="control-block year-control">
+        <label for="year-slider">Year <span id="year-label"></span></label>
+        <input type="range" id="year-slider" disabled>
+        <div class="year-bounds">
+          <span id="year-min"></span>
+          <span id="year-max"></span>
+        </div>
+      </div>
+
+      <div class="control-block view-options">
+        <label>
+          <input type="checkbox" id="show-paths" checked>
+          Show party trajectories
+        </label>
+        <button type="button" id="clear-parties" disabled>Clear selection</button>
+      </div>
+    </section>
+
+    <section class="selected-parties" aria-live="polite">
+      <h3>Selected Parties</h3>
+      <div id="party-chips" class="party-chips">
+        <span class="empty-state">No parties selected yet.</span>
+      </div>
+    </section>
+
+    <section class="chart-panel" aria-label="Party position chart">
+      <div class="loading-message" id="loading-message">Loading party estimates...</div>
+      <canvas id="party-chart"></canvas>
+    </section>
+
+    <section class="party-table-section">
+      <h3>Current Year Values</h3>
+      <div class="table-scroll">
+        <table class="party-table">
+          <thead>
+            <tr>
+              <th>Party</th>
+              <th>Country</th>
+              <th>Vote Share</th>
+              <th>Economic LR</th>
+              <th>GAL-TAN</th>
+            </tr>
+          </thead>
+          <tbody id="party-table-body">
+            <tr><td colspan="5">Select parties to compare estimates.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Seimel</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
