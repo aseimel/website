@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static academic website for Armin Seimel (seimel.io), a Postdoctoral Researcher at the University of Amsterdam.
+This is a static academic website for Armin Seimel (seimel.io), a Senior Researcher at GESIS - Leibniz Institute for the Social Sciences.
 
 ## Technical Stack
 
 - **Framework:** Pure HTML/CSS (no build tools required)
-- **Styling:** LaTeX.css (CDN) + Computer Modern Unicode font (self-hosted)
+- **Styling:** Local LaTeX.css + embedded Latin Modern font
 - **Design:** LaTeX document styling with mobile-first responsive design
 
 ## File Structure
@@ -20,9 +20,10 @@ seimel_website/
 ├── cv.html             # CV page
 ├── papers.html         # Publications page
 ├── css/
-│   └── style.css       # Custom CSS + CMU font declarations
+│   └── style.css       # Custom CSS + local LaTeX.css import
 ├── assets/
-│   ├── fonts/          # CMU Serif WOFF2 files (to be added)
+│   ├── vendor/         # Local copies of third-party CSS/JS assets
+│   ├── fonts/          # Optional additional self-hosted fonts
 │   └── images/
 │       └── profile.jpg # Profile photo (to be added)
 ├── arminseimel.WordPress.2026-01-31.xml  # Original WordPress export
@@ -37,12 +38,12 @@ To view the website locally, simply open `index.html` in a web browser. No build
 
 Before deployment, add:
 1. **Profile photo:** Save as `assets/images/profile.jpg`
-2. **CMU Serif fonts:** Download WOFF2 files and place in `assets/fonts/`:
-   - `cmu-serif-roman.woff2`
-   - `cmu-serif-italic.woff2`
-   - `cmu-serif-bold.woff2`
 
-Font source: [CM Unicode](https://sourceforge.net/projects/cm-unicode/) or [CTAN](https://ctan.org/pkg/cm-unicode)
+### Dependency Policy
+
+- Prefer local, vendored copies of CSS, JavaScript, and font assets over CDN or externally hosted resources.
+- Avoid runtime third-party asset requests unless explicitly required.
+- Keep the LaTeX-style typography as close as practical to Computer Modern; the local `assets/vendor/latex.css` file embeds Latin Modern, an open-source Computer Modern successor.
 
 ## Design Notes
 
@@ -53,7 +54,7 @@ Font source: [CM Unicode](https://sourceforge.net/projects/cm-unicode/) or [CTAN
 
 ## CSS Guidelines
 
-- **Always use `!important`:** When modifying CSS, always use `!important` on property values. LaTeX.css (loaded from CDN) has high specificity and will override our custom styles without it.
+- **Always use `!important`:** When modifying CSS, always use `!important` on property values. LaTeX.css has high specificity and will override our custom styles without it.
 
 ## Workflow
 

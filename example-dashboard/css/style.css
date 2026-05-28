@@ -14,7 +14,7 @@
     --color-border: #e0e0e0;
     --color-band-fill: rgba(20, 33, 61, 0.10);
 
-    --font-family: 'Source Sans 3', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --wide-width: 1000px;
     --spacing: 24px;
 }
