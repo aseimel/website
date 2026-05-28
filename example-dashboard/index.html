@@ -74,8 +74,14 @@
     </div>
 
     <footer class="site-footer">
-        <p>Demo-Prototyp · Synthetische Daten · Dr. Armin Seimel, GESIS</p>
+        <p>&copy; <span class="copyright-year">2026</span> Dr. Armin Seimel, GESIS &middot; Demo-Prototyp &middot; Synthetische Daten &middot; <a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
     </footer>
+
+    <script>
+        document.querySelectorAll('.copyright-year').forEach(function(el) {
+            el.textContent = new Date().getFullYear();
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
     <script src="js/data.js"></script>

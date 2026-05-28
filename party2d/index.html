@@ -71,8 +71,14 @@
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <script>document.write(new Date().getFullYear())</script> Seimel</p>
+    <p>&copy; <span class="copyright-year">2026</span> Seimel &middot; <a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
   </footer>
+
+  <script>
+    document.querySelectorAll('.copyright-year').forEach(function(el) {
+      el.textContent = new Date().getFullYear();
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
