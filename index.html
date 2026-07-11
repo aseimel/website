@@ -8,7 +8,8 @@
   <meta name="robots" content="index, follow">
   <title>Armin Seimel | GESIS - Leibniz Institute for the Social Sciences</title>
   <link rel="canonical" href="https://seimel.io/">
-  <link rel="stylesheet" href="css/style.css">
+    <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
+  <link rel="stylesheet" href="css/style.css?v=3">
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile">
@@ -71,6 +72,7 @@
     "publisher": {"@id": "https://seimel.io/#person"}
   }
   </script>
+  <script src="js/theme.js?v=2"></script>
 </head>
 <body>
   <header class="site-header">
@@ -82,6 +84,8 @@
       <a href="cv.html">CV</a>
       <span class="nav-separator">|</span>
       <a href="papers.html">Papers</a>
+          <span class="nav-separator" aria-hidden="true">|</span>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme"><span aria-hidden="true">◐</span> <span data-theme-label>Theme</span></button>
     </nav>
   </header>
 

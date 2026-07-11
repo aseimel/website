@@ -2,6 +2,7 @@
   'use strict';
 
   var DATA_URL = 'party2d_estimates_v0.csv';
+  var DEFAULT_PARTY_IDS = ['463'];
   var COUNTRY_NAMES = {
     AL: 'Albania', AD: 'Andorra', AM: 'Armenia', AR: 'Argentina', AU: 'Australia', AZ: 'Azerbaijan', AT: 'Austria', BA: 'Bosnia and Herzegovina', BE: 'Belgium', BG: 'Bulgaria', BO: 'Bolivia', BR: 'Brazil', BY: 'Belarus', CA: 'Canada', CH: 'Switzerland', CL: 'Chile', CO: 'Colombia', CR: 'Costa Rica', CY: 'Cyprus', CZ: 'Czechia',
     DE: 'Germany', DK: 'Denmark', EE: 'Estonia', ES: 'Spain', FI: 'Finland', FR: 'France',
@@ -126,6 +127,7 @@
       skipEmptyLines: true,
       complete: function(results) {
         buildData(results.data);
+        state.selectedIds = DEFAULT_PARTY_IDS.filter(function(id) { return state.partyMap.has(id); });
         setupControls();
         el.loading.classList.add('hidden');
         render();
@@ -240,7 +242,28 @@
     }).join('');
   }
 
+
+
+  function chartTheme() {
+    var styles = getComputedStyle(document.documentElement);
+    return { ink: styles.getPropertyValue('--body-color').trim() || '#1a1a1a', muted: styles.getPropertyValue('--ink-muted').trim() || '#333', grid: styles.getPropertyValue('--chart-grid').trim() || '#e7e2d8', surface: styles.getPropertyValue('--surface').trim() || '#fffefa' };
+  }
+
+  function applyChartTheme() {
+    if (!state.chart) return;
+    var theme = chartTheme();
+    state.chart.options.plugins.title.color = theme.ink;
+    state.chart.options.plugins.legend.labels.color = theme.ink;
+    state.chart.options.plugins.tooltip.backgroundColor = theme.surface;
+    state.chart.options.plugins.tooltip.titleColor = theme.ink;
+    state.chart.options.plugins.tooltip.bodyColor = theme.ink;
+    ['x', 'y'].forEach(function(axis) { state.chart.options.scales[axis].title.color = theme.ink; state.chart.options.scales[axis].ticks.color = theme.muted; state.chart.options.scales[axis].grid.color = theme.grid; });
+  }
+
+  window.addEventListener('site-theme-change', function() { if (state.chart) { applyChartTheme(); state.chart.update(); } });
+
   function renderChart() {
+    var theme = chartTheme();
     var datasets = [];
     var selectedParties = state.selectedIds.map(function(id) { return state.partyMap.get(id); }).filter(Boolean);
     var visibleYears = [];
@@ -258,6 +281,7 @@
     var xBounds = yearBounds(visibleYears);
 
     if (state.chart) {
+      applyChartTheme();
       state.chart.data.datasets = datasets;
       state.chart.options.plugins.title.text = 'Party estimates over time';
       state.chart.options.scales.x.min = xBounds.min;
@@ -278,7 +302,7 @@
           title: {
             display: true,
             text: 'Party estimates over time',
-            color: '#1a1a1a',
+            color: theme.ink,
             font: { family: "'CMU Serif', Georgia, serif", size: 17, weight: 'normal' }
           },
           legend: {
@@ -308,6 +332,9 @@
             }
           },
           tooltip: {
+            backgroundColor: theme.surface,
+            titleColor: theme.ink,
+            bodyColor: theme.ink,
             filter: function(item) {
               return item.dataset.role === 'estimate';
             },
@@ -341,10 +368,10 @@
             type: 'linear',
             min: xBounds.min,
             max: xBounds.max,
-            title: { display: true, text: 'Year', color: '#1a1a1a' },
-            grid: { color: '#e7e2d8' },
+            title: { display: true, text: 'Year', color: theme.ink },
+            grid: { color: theme.grid },
             ticks: {
-              color: '#333',
+              color: theme.muted,
               precision: 0,
               callback: function(value) { return String(Math.round(value)); }
             }
@@ -352,17 +379,25 @@
           y: {
             min: 0,
             max: 1,
-            title: { display: true, text: 'Estimated position', color: '#1a1a1a' },
-            grid: { color: '#e7e2d8' },
-            ticks: { color: '#333' }
+            title: { display: true, text: 'Estimated position', color: theme.ink },
+            grid: { color: theme.grid },
+            ticks: { color: theme.muted }
           }
         }
       }
     });
   }
 
+
+
+  function chartLineColor(color) {
+    if (getComputedStyle(document.documentElement).colorScheme !== 'dark' || color.charAt(0) !== '#' || color.length !== 7) return color;
+    var luminance = (parseInt(color.slice(1, 3), 16) * 0.2126 + parseInt(color.slice(3, 5), 16) * 0.7152 + parseInt(color.slice(5, 7), 16) * 0.0722) / 255;
+    return luminance < 0.2 ? '#f0ece4' : color;
+  }
+
   function addDimensionDatasets(datasets, party, label, valueKey, lowKey, highKey, dash, visibleYears) {
-    var color = party.color;
+    var color = chartLineColor(party.color);
     var lowerData = [];
     var upperData = [];
     var lineData = [];

@@ -190,3 +190,142 @@ body {
     padding: 0.5rem !important;
   }
 }
+
+
+/* Live Gitea release panel */
+.release-panel {
+  margin: 2rem 0 1rem !important;
+  padding: 1.35rem !important;
+  border: 1px solid #333 !important;
+  background: #fffefa !important;
+}
+
+.release-panel-heading {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.release-panel-heading h3 {
+  margin: 0 !important;
+}
+
+.eyebrow {
+  margin: 0 0 0.2rem !important;
+  color: #666 !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.release-repository-link,
+.release-all-link {
+  color: #1a1a1a !important;
+  text-underline-offset: 0.16em !important;
+}
+
+.release-meta {
+  margin: 0 0 0.65rem !important;
+  color: #555 !important;
+  font-size: 0.9rem !important;
+}
+
+.release-description {
+  margin: 0 0 1rem !important;
+  max-width: 78ch !important;
+  line-height: 1.55 !important;
+  white-space: pre-line !important;
+}
+
+.release-actions {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)) !important;
+  gap: 0.65rem !important;
+  margin: 1rem 0 !important;
+}
+
+.release-download {
+  display: block !important;
+  padding: 0.7rem 0.8rem !important;
+  border: 1px solid #333 !important;
+  background: #fff !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  text-decoration: none !important;
+}
+
+.release-download:hover,
+.release-download:focus-visible {
+  background: #f0f0f0 !important;
+  text-decoration: underline !important;
+}
+
+.release-footer {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+
+.release-loading,
+.release-error {
+  margin: 0 !important;
+  color: #666 !important;
+  font-style: italic !important;
+}
+
+@media (max-width: 520px) {
+  .release-panel-heading {
+    flex-direction: column !important;
+  }
+
+  .release-actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+ .party2d-download-callout {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 0.2rem 0.55rem !important;
+  margin: 1.15rem 0 0 !important;
+  color: #555 !important;
+  font-size: 0.95rem !important;
+}
+
+.party2d-download-callout a {
+  color: #1a1a1a !important;
+  font-weight: 650 !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.2em !important;
+}
+
+.party2d-download-callout a:hover,
+.party2d-download-callout a:focus-visible {
+  color: #000 !important;
+  text-decoration-thickness: 2px !important;
+}
+
+#latest-release {
+  scroll-margin-top: 1.5rem !important;
+}
+
+
+/* Theme-aware Party2D surfaces */
+.party2d-page { --party-surface:#fffefa; --party-surface-soft:#f3f2ee; --party-ink:#1a1a1a; --party-muted:#5f5b54; --party-border:#333; }
+@media (prefers-color-scheme: dark) { html:not([data-theme]) .party2d-page { --party-surface:#211f1c; --party-surface-soft:#292622; --party-ink:#e9e5dd; --party-muted:#c2bcb1; --party-border:#aaa296; } }
+html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface-soft:#292622; --party-ink:#e9e5dd; --party-muted:#c2bcb1; --party-border:#aaa296; }
+.party2d-page .party2d-controls,.party2d-page .selected-parties,.party2d-page .party-chip,.party2d-page .release-panel,.party2d-page .chart-panel { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .party2d-controls button,.party2d-page .party-chip button,.party2d-page .release-download { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .party2d-controls button:hover,.party2d-page .party-chip button:hover,.party2d-page .release-download:hover,.party2d-page .release-download:focus-visible { background:var(--party-surface-soft) !important; }
+.party2d-page .empty-state,.party2d-page .loading-message,.party2d-page .line-style-note,.party2d-page .release-meta,.party2d-page .eyebrow,.party2d-page .release-error,.party2d-page .party2d-download-callout { color:var(--party-muted) !important; }
+.party2d-page .loading-message { background:color-mix(in srgb, var(--party-surface) 92%, transparent) !important; }
+
+.party2d-page input[type="search"],.party2d-page select { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .release-repository-link,.party2d-page .release-all-link,.party2d-page .party2d-download-callout a { color:var(--party-ink) !important; }
+.party2d-page .party2d-download-callout a:hover,.party2d-page .party2d-download-callout a:focus-visible { color:var(--party-ink) !important; }
+.party2d-page .party-color-dot { border-color:var(--party-border) !important; }

@@ -587,3 +587,35 @@ main .expand-hint,
     font-size: 0.8em;
   }
 }
+
+
+/* Site-wide colour system and theme control */
+:root { color-scheme: light; --surface:#fffefa; --surface-muted:#f3f2ee; --ink-muted:#5f5b54; --border-soft:#d8d3ca; --hover-surface:#efede8; --focus-ring:#4b5563; --chart-grid:#e7e2d8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) { color-scheme:dark; --body-bg:#181715; --body-color:#e9e5dd; --link-color:#d7d0c4; --header-border:#aaa296; --nav-link-color:#f0ece4; --surface:#211f1c; --surface-muted:#292622; --ink-muted:#c2bcb1; --border-soft:#514c44; --hover-surface:#34312c; --focus-ring:#d8d0c2; --chart-grid:#4a453d; } }
+:root[data-theme="dark"] { color-scheme:dark; --body-bg:#181715; --body-color:#e9e5dd; --link-color:#d7d0c4; --header-border:#aaa296; --nav-link-color:#f0ece4; --surface:#211f1c; --surface-muted:#292622; --ink-muted:#c2bcb1; --border-soft:#514c44; --hover-surface:#34312c; --focus-ring:#d8d0c2; --chart-grid:#4a453d; }
+:root[data-theme="light"] { color-scheme:light; }
+.site-header,.social-btn,.publication,.expand-content,pre,code,table,th,td { border-color:var(--border-soft) !important; }
+.site-header,.social-btn,.publication,.expand-content,pre,code { background-color:var(--surface) !important; }
+.site-subtitle,.nav-separator,.expand-hint,.site-footer,.contact-list,.date,.institution { color:var(--ink-muted) !important; }
+.social-btn:hover,.expand-btn:hover,.expand-btn:focus-visible { background-color:var(--hover-surface) !important; }
+.theme-toggle { appearance:none; border:0; margin-left:.45rem; padding:.18rem .32rem; background:transparent; color:var(--nav-link-color); font:inherit; font-size:.85rem; cursor:pointer; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.2em; }
+.theme-toggle:hover { color:var(--body-color); text-decoration-thickness:2px; }
+.theme-toggle:focus-visible { outline:2px solid var(--focus-ring); outline-offset:3px; }
+
+/* Preserve link hover contrast when the effective palette is dark. */
+:root[data-theme="dark"] a:hover,
+:root[data-theme="dark"] a:active,
+:root[data-theme="dark"] body a:hover,
+:root[data-theme="dark"] main a:hover { color:var(--body-color) !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) a:hover,
+  :root:not([data-theme]) a:active,
+  :root:not([data-theme]) body a:hover,
+  :root:not([data-theme]) main a:hover { color:var(--body-color) !important; }
+}
+
+/* Theme-sensitive legacy details. */
+.contact-list dt { color:var(--ink-muted) !important; }
+.abstract { border-left-color:var(--border-soft) !important; }
+.abstract p { color:var(--body-color) !important; }
+.expand-btn:focus-visible { outline-color:var(--focus-ring) !important; }

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>German Democracy Monitor — Demo-Prototyp</title>
-    <link rel="stylesheet" href="css/style.css">
+      <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -12,6 +13,7 @@
         <div class="header-inner">
             <h1 class="header-title">German Democracy Monitor</h1>
             <span class="header-subtitle">Illiberaler Diskurs-Tracker · Demo-Prototyp</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme"><span aria-hidden="true">◐</span> <span data-theme-label>Theme</span></button>
         </div>
     </header>
 
@@ -81,8 +83,9 @@
     </script>
 
     <script src="../assets/vendor/chart.umd.min.js"></script>
+    <script src="../js/theme.js?v=2"></script>
     <script src="js/data.js"></script>
-    <script src="js/chart.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/chart.js?v=2"></script>
+    <script src="js/app.js?v=2"></script>
 </body>
 </html>
