@@ -398,6 +398,7 @@
 
   function addDimensionDatasets(datasets, party, label, valueKey, lowKey, highKey, dash, visibleYears) {
     var color = chartLineColor(party.color);
+    var ribbonColor = alpha(color, label === 'Economic' ? 0.12 : 0.09);
     var lowerData = [];
     var upperData = [];
     var lineData = [];
@@ -414,7 +415,7 @@
       label: party.shortName + ' (' + party.country + ') - ' + label + ' lower',
       data: lowerData,
       borderColor: 'transparent',
-      backgroundColor: 'transparent',
+      backgroundColor: ribbonColor,
       pointRadius: 0,
       pointHitRadius: 0,
       borderWidth: 0,
@@ -427,12 +428,12 @@
       label: party.shortName + ' (' + party.country + ') - ' + label + ' ribbon',
       data: upperData,
       borderColor: 'transparent',
-      backgroundColor: alpha(color, label === 'Economic' ? 0.035 : 0.025),
+      backgroundColor: 'transparent',
       pointRadius: 0,
       pointHitRadius: 0,
       borderWidth: 0,
       tension: 0.2,
-      fill: '-1',
+      fill: { target: '-1', above: ribbonColor, below: ribbonColor },
       role: 'ribbon'
     });
 
