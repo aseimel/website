@@ -6,10 +6,12 @@
   <meta name="description" content="Interactive party position estimates dashboard for comparing parties across countries and time.">
   <meta name="author" content="Armin Seimel">
   <meta name="robots" content="index, follow">
-  <title>Party Estimates | Armin Seimel</title>
+  <title>Party2D | Armin Seimel</title>
   <link rel="canonical" href="https://seimel.io/party2d/">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/style.css">
+    <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
+  <link rel="stylesheet" href="../css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=5">
+  <script src="../js/theme.js?v=2"></script>
 </head>
 <body>
   <header class="site-header">
@@ -22,14 +24,17 @@
       <span class="nav-separator">|</span>
       <a href="../papers.html">Papers</a>
       <span class="nav-separator">|</span>
-      <a href="./" class="active">Party Estimates</a>
+      <a href="./" class="active">Party2D</a>
+          <span class="nav-separator" aria-hidden="true">|</span>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme"><span aria-hidden="true">◐</span> <span data-theme-label>Theme</span></button>
     </nav>
   </header>
 
   <main class="party2d-page">
     <section class="party2d-intro">
-      <h2>Party Position Estimates</h2>
-      <p>Preliminary party estimates. Select parties below to compare economic and cultural positions over time.</p>
+      <h2>Party2D</h2>
+      <p>Interactive party-position estimates. Select parties below to compare economic and cultural positions over time.</p>
+      <p class="party2d-download-callout"><a href="#latest-release">Jump to the latest release <span aria-hidden="true">↓</span></a></p>
     </section>
 
     <section class="party2d-controls" aria-label="Party estimate controls">
@@ -68,6 +73,19 @@
     </section>
     <p class="line-style-note">Line styles: solid = economic; dashed = cultural. Party colours identify parties.</p>
 
+    <section id="latest-release" class="release-panel" aria-labelledby="release-title">
+      <div class="release-panel-heading">
+        <div>
+          <p class="eyebrow">Data access</p>
+          <h3 id="release-title">Latest Party2D data release</h3>
+        </div>
+        <a class="release-repository-link" href="https://git.seimel.app/armin/party2d" target="_blank" rel="noopener noreferrer">Repository</a>
+      </div>
+      <div id="release-content" class="release-content" aria-live="polite">
+        <p class="release-loading">Loading the latest release…</p>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -82,6 +100,7 @@
 
   <script src="../assets/vendor/papaparse.min.js"></script>
   <script src="../assets/vendor/chart.umd.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=4"></script>
+  <script src="js/releases.js?v=3"></script>
 </body>
 </html>

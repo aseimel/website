@@ -1,0 +1,12 @@
+/* CV preview: compact academic timeline within the existing reading width. */
+.cv-page main { margin-top: 1.5rem; }
+.cv-page .cv-section { margin-bottom: 2.75rem; }
+.cv-page .cv-section h2 { display:flex; align-items:baseline; gap:1rem; margin:0 0 .9rem; padding-bottom:.45rem; border-bottom-color:var(--header-border); }
+.cv-page .cv-entry { display:grid; grid-template-columns:8.5rem minmax(0,1fr); column-gap:1.25rem; row-gap:.12rem; margin:0; padding:.8rem 0; border-bottom:1px solid var(--border-soft); }
+.cv-page .cv-entry:last-child { border-bottom:0; }
+.cv-page .cv-entry .date { grid-column:1; grid-row:1 / span 2; align-self:start; margin:0; padding-top:.12rem; color:var(--ink-muted); font-size:.9rem; line-height:1.4; text-align:right; }
+.cv-page .cv-entry .title,.cv-page .cv-entry .institution { grid-column:2; margin:0; }
+.cv-page .cv-entry .title { font-size:1.04rem; line-height:1.35; }
+.cv-page .cv-entry .institution { color:var(--ink-muted); line-height:1.4; }
+@media (max-width:680px) { .cv-page .cv-entry { grid-template-columns:1fr; row-gap:.2rem; padding:.95rem 0; } .cv-page .cv-entry .date,.cv-page .cv-entry .title,.cv-page .cv-entry .institution { grid-column:1; grid-row:auto; text-align:left; } .cv-page .cv-entry .date { padding-top:0; font-size:.88rem; } }
+@media print { .cv-page .cv-entry { grid-template-columns:9.5rem 1fr; column-gap:1.25rem; padding:.35rem 0; } }

@@ -2,6 +2,8 @@
  * Chart module for the German Democracy Monitor demo.
  * Wraps Chart.js to render a score line with confidence interval band.
  */
+function dashboardTheme() { var s=getComputedStyle(document.documentElement); return { ink:s.getPropertyValue('--color-dark-ui').trim() || '#32373c', navy:s.getPropertyValue('--color-navy').trim() || '#14213d', border:s.getPropertyValue('--color-border').trim() || '#f0f0f0', band:s.getPropertyValue('--color-band-fill').trim() || 'rgba(20,33,61,.10)', bg:s.getPropertyValue('--color-bg').trim() || '#ffffff' }; }
+
 window.DashboardChart = {
     chart: null,
     onPointClick: null,
@@ -12,6 +14,7 @@ window.DashboardChart = {
      * @param {string} timeRange - "all" or a number string like "36", "12", "6"
      */
     render(mpData, timeRange) {
+        var theme = dashboardTheme();
         var scores = this._filterByRange(mpData.scores, timeRange);
         var labels = scores.map(function(s) { return DashboardChart._formatMonth(s.month); });
 
@@ -30,7 +33,7 @@ window.DashboardChart = {
                 label: '_lower',
                 data: scores.map(function(s) { return s.lower; }),
                 borderColor: 'transparent',
-                backgroundColor: 'rgba(20, 33, 61, 0.10)',
+                backgroundColor: theme.band,
                 pointRadius: 0,
                 pointHitRadius: 0,
                 fill: '+1',
@@ -51,12 +54,12 @@ window.DashboardChart = {
             {
                 label: 'Illiberal Discourse Score',
                 data: scores.map(function(s) { return s.score; }),
-                borderColor: '#14213d',
+                borderColor: theme.navy,
                 borderWidth: 2.5,
                 pointRadius: 4,
                 pointHoverRadius: 7,
-                pointBackgroundColor: '#14213d',
-                pointBorderColor: '#ffffff',
+                pointBackgroundColor: theme.navy,
+                pointBorderColor: theme.bg,
                 pointBorderWidth: 2,
                 fill: false,
                 tension: 0.3,
@@ -93,7 +96,7 @@ window.DashboardChart = {
                             return 'Klicken zum Filtern';
                         }
                     },
-                    backgroundColor: '#14213d',
+                    backgroundColor: theme.navy,
                     titleFont: { family: "'Source Sans 3', sans-serif", weight: '600', size: 13 },
                     bodyFont: { family: "'Source Sans 3', sans-serif", size: 13 },
                     padding: 12,
@@ -106,7 +109,7 @@ window.DashboardChart = {
                     grid: { display: false },
                     ticks: {
                         font: { family: "'Source Sans 3', sans-serif", size: 12 },
-                        color: '#32373c',
+                        color: theme.ink,
                         maxRotation: 0,
                         autoSkip: true,
                         maxTicksLimit: 12
@@ -115,10 +118,10 @@ window.DashboardChart = {
                 y: {
                     min: 0,
                     max: 1,
-                    grid: { color: '#f0f0f0' },
+                    grid: { color: theme.border },
                     ticks: {
                         font: { family: "'Source Sans 3', sans-serif", size: 12 },
-                        color: '#32373c',
+                        color: theme.ink,
                         stepSize: 0.2,
                         callback: function(v) { return v.toFixed(1); }
                     },
@@ -126,7 +129,7 @@ window.DashboardChart = {
                         display: true,
                         text: 'Illiberaler Diskurs-Score',
                         font: { family: "'Source Sans 3', sans-serif", size: 13, weight: '600' },
-                        color: '#32373c'
+                        color: theme.ink
                     }
                 }
             },

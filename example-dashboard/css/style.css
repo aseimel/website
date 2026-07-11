@@ -368,3 +368,10 @@ body {
     color: var(--color-mid-gray);
     border-top: 1px solid var(--color-border);
 }
+
+
+/* Shared system theme support. */
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) { color-scheme:dark; --color-primary:#ece8e0; --color-bg:#181715; --color-dark-ui:#d1cbc0; --color-navy:#2d3c57; --color-light-gray:#292622; --color-mid-gray:#afa89c; --color-border:#514c44; --color-band-fill:rgba(151,171,205,.22); } }
+:root[data-theme="dark"] { color-scheme:dark; --color-primary:#ece8e0; --color-bg:#181715; --color-dark-ui:#d1cbc0; --color-navy:#2d3c57; --color-light-gray:#292622; --color-mid-gray:#afa89c; --color-border:#514c44; --color-band-fill:rgba(151,171,205,.22); }
+.theme-toggle { border:1px solid rgba(255,255,255,.55); border-radius:3px; padding:4px 8px; background:transparent; color:#fff; font:inherit; font-size:.78rem; cursor:pointer; }
+.theme-toggle:hover,.theme-toggle:focus-visible { background:rgba(255,255,255,.14); outline:2px solid #fff; outline-offset:2px; }

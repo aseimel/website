@@ -270,6 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
         modalOverlay.classList.remove('visible');
     }
 
+    window.addEventListener('site-theme-change', function() { updateDashboard(); });
+
     // Start
     init();
 });
