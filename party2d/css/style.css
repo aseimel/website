@@ -336,6 +336,15 @@ body {
   color: #555 !important;
 }
 
+.release-prerelease {
+  display: inline-block !important;
+  margin: 0.5rem 0 0 !important;
+  padding: 0.3rem 0.6rem !important;
+  border: 1px solid currentColor !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+
 .party2d-page .sources-panel {
   background: var(--party-surface) !important;
   border-color: var(--party-border) !important;
