@@ -2,6 +2,12 @@ body {
   max-width: 980px !important;
 }
 
+.site-header {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .party2d-page h2,
 .party2d-page h3 {
   border-bottom: 1px solid #333 !important;
