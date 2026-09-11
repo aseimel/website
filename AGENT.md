@@ -17,3 +17,12 @@ The header, nav, and theme strip are identical on all six pages (`index.html`, `
 - Relative paths are the only per-page difference: root pages use `party2d/` and `index.html`-style links, `party2d/index.html` uses `../` prefixes and `./` for its self link. Active states mark the current page only.
 - After any chrome edit, parse-check all six pages, then push. The site has no preview step, so the six-page check is the gate.
 - Bump the `css/style.css?v=` query string on every page that loads it whenever `css/style.css` changes, so visitors never see a mix of old CSS and new markup.
+
+## Width Discipline (strict)
+
+Every page renders at exactly one measure. The token is `--content-width` (700px) in `css/style.css`, and every page body uses it.
+
+- Never set a page-specific `body` max-width. No page gets a wider body for any reason without an explicit user decision.
+- Header, nav, theme strip, text, controls, figures, and tables all share the same edges on every page. A narrow header over wide content, or wide figures under narrow text, is a broken layout.
+- Figure blocks must fit the frame instead of widening it: use responsive grids such as `repeat(auto-fit, minmax(...))` for control panels, and `overflow-x: auto` wrappers for tables that need more room.
+- If a future page genuinely needs a different width, the user decides first, and then the entire page including the header moves to the new measure together. Partial-width pages are never allowed.
