@@ -291,6 +291,66 @@ body {
   opacity: 0.6 !important;
 }
 
+.sources-panel {
+  margin: 2rem 0 1rem !important;
+  padding: 1.35rem !important;
+  border: 1px solid #333 !important;
+  background: #fffefa !important;
+}
+
+.sources-panel h3 {
+  margin: 0 0 0.6rem !important;
+}
+
+.sources-panel p {
+  max-width: 78ch !important;
+  line-height: 1.55 !important;
+}
+
+.sources-table-wrap {
+  overflow-x: auto !important;
+  margin: 1rem 0 !important;
+}
+
+.sources-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 0.92rem !important;
+}
+
+.sources-table th,
+.sources-table td {
+  padding: 0.5rem 0.65rem !important;
+  border: 1px solid #333 !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+
+.sources-table thead th {
+  font-weight: 700 !important;
+}
+
+.sources-note {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+  color: #555 !important;
+}
+
+.party2d-page .sources-panel {
+  background: var(--party-surface) !important;
+  border-color: var(--party-border) !important;
+  color: var(--party-ink) !important;
+}
+
+.party2d-page .sources-table th,
+.party2d-page .sources-table td {
+  border-color: var(--party-border) !important;
+}
+
+.party2d-page .sources-note {
+  color: var(--party-muted) !important;
+}
+
 .release-download:hover,
 .release-download:focus-visible {
   background: #f0f0f0 !important;

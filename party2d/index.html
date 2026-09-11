@@ -34,7 +34,7 @@
     <section class="party2d-intro">
       <h2>Party2D</h2>
       <p>Interactive party-position estimates. Select parties below to compare economic and cultural positions over time.</p>
-      <p>Party2D tracks where parties stand on two simple scales, economic left versus right and cultural cosmopolitan versus traditionalist. It covers 708 parties in 65 countries from 1944 to 2025, combining party manifestos, media coverage, and expert surveys into one comparable measure with uncertainty shown for every estimate.</p>
+      <p>Party2D tracks where parties stand on two simple scales, economic left versus right and cultural cosmopolitan versus traditionalist. It covers 708 parties in 65 countries from 1944 to 2025. These are statistical estimates based on several expert surveys of party positions combined with coded manifesto and media texts, placed on one comparable scale with uncertainty shown for every estimate.</p>
       <p class="party2d-download-callout"><a href="#latest-release">Jump to the latest release <span aria-hidden="true">↓</span></a></p>
     </section>
 
@@ -92,6 +92,29 @@
         </div>
         <p class="release-footer"><a class="release-all-link" href="https://git.seimel.app/armin/party2d/releases" target="_blank" rel="noopener noreferrer">View all releases and release notes</a></p>
       </div>
+    </section>
+
+    <section class="sources-panel" aria-labelledby="sources-title">
+      <p class="eyebrow">Sources</p>
+      <h3 id="sources-title">Data sources behind the estimates</h3>
+      <p>Party2D combines expert surveys with coded manifesto and media texts. The table below mirrors Table 1 of the paper. Please cite the original sources when you use the data.</p>
+      <div class="sources-table-wrap">
+        <table class="sources-table">
+          <thead>
+            <tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Years</th><th scope="col">Parties</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Manifesto Project</td><td>Coded manifestos</td><td>1920 to 2025</td><td>713</td></tr>
+            <tr><td>PolDem media coding</td><td>Coded media coverage</td><td>1972 to 2017</td><td>93</td></tr>
+            <tr><td>Chapel Hill Expert Survey family</td><td>Expert survey</td><td>1999 to 2024</td><td>390</td></tr>
+            <tr><td>V-Party</td><td>Expert survey</td><td>1970 to 2019</td><td>589</td></tr>
+            <tr><td>Populism and Political Parties Expert Survey</td><td>Expert survey</td><td>2018 to 2023</td><td>225</td></tr>
+            <tr><td>Global Party Survey</td><td>Expert survey</td><td>2019</td><td>271</td></tr>
+            <tr><td>Morgan historical experts</td><td>Expert survey</td><td>1945 to 1973</td><td>72</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sources-note">Party counts and year ranges describe input coverage before building the 1944 to 2025 release. Full references are in the paper and in the repository setup docs at <a href="https://git.seimel.app/armin/party2d" target="_blank" rel="noopener noreferrer">git.seimel.app/armin/party2d</a>.</p>
     </section>
 
   </main>
