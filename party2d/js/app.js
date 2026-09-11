@@ -326,6 +326,7 @@
                 return item.datasetIndex !== null && chartData.datasets[item.datasetIndex].role === 'estimate';
               },
               generateLabels: function(chart) {
+                var ink = chartTheme().ink;
                 return chart.data.datasets.reduce(function(labels, dataset, index) {
                   if (dataset.role !== 'estimate') return labels;
                   labels.push({
@@ -336,7 +337,9 @@
                     strokeStyle: dataset.borderColor,
                     lineWidth: dataset.borderWidth,
                     lineDash: dataset.borderDash || [],
-                    pointStyle: 'line'
+                    pointStyle: 'line',
+                    fontColor: ink,
+                    color: ink
                   });
                   return labels;
                 }, []);
