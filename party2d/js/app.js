@@ -235,7 +235,7 @@
     el.partyChips.innerHTML = state.selectedIds.map(function(id) {
       var party = state.partyMap.get(id);
       return '<span class="party-chip">' +
-        '<span class="party-color-dot" style="background:' + party.color + '"></span>' +
+        '<span class="party-color-dot" style="background:' + chartLineColor(party.color) + '"></span>' +
         escapeHtml(party.shortName + ' (' + party.country + ')') +
         '<button type="button" data-party-id="' + party.id + '" aria-label="Remove ' + escapeHtml(party.shortName) + '">&times;</button>' +
         '</span>';
@@ -258,6 +258,20 @@
     state.chart.options.plugins.tooltip.titleColor = theme.ink;
     state.chart.options.plugins.tooltip.bodyColor = theme.ink;
     ['x', 'y'].forEach(function(axis) { state.chart.options.scales[axis].title.color = theme.ink; state.chart.options.scales[axis].ticks.color = theme.muted; state.chart.options.scales[axis].grid.color = theme.grid; });
+    state.chart.data.datasets.forEach(function(dataset) {
+      if (!dataset._partyColor) return;
+      var themed = chartLineColor(dataset._partyColor);
+      if (dataset.role === 'estimate') {
+        dataset.borderColor = themed;
+        dataset.backgroundColor = themed;
+      } else if (dataset.role === 'ribbon-bound') {
+        dataset.backgroundColor = alpha(themed, dataset._dimension === 'Economic' ? 0.12 : 0.09);
+      } else if (dataset.role === 'ribbon') {
+        var ribbon = alpha(themed, dataset._dimension === 'Economic' ? 0.12 : 0.09);
+        dataset.fill = { target: '-1', above: ribbon, below: ribbon };
+      }
+    });
+    renderChips();
   }
 
   window.addEventListener('site-theme-change', function() { if (state.chart) { applyChartTheme(); state.chart.update(); } });
@@ -307,6 +321,7 @@
           },
           legend: {
             labels: {
+              color: theme.ink,
               filter: function(item, chartData) {
                 return item.datasetIndex !== null && chartData.datasets[item.datasetIndex].role === 'estimate';
               },
@@ -390,10 +405,33 @@
 
 
 
+  function isDarkTheme() {
+    try {
+      if (getComputedStyle(document.documentElement).colorScheme === 'dark') return true;
+    } catch (e) {}
+    try {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') return true;
+    } catch (e) {}
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !document.documentElement.getAttribute('data-theme')) return true;
+    } catch (e) {}
+    return false;
+  }
+
   function chartLineColor(color) {
-    if (getComputedStyle(document.documentElement).colorScheme !== 'dark' || color.charAt(0) !== '#' || color.length !== 7) return color;
-    var luminance = (parseInt(color.slice(1, 3), 16) * 0.2126 + parseInt(color.slice(3, 5), 16) * 0.7152 + parseInt(color.slice(5, 7), 16) * 0.0722) / 255;
-    return luminance < 0.2 ? '#f0ece4' : color;
+    if (!isDarkTheme() || color.charAt(0) !== '#' || color.length !== 7) return color;
+    var r = parseInt(color.slice(1, 3), 16);
+    var g = parseInt(color.slice(3, 5), 16);
+    var b = parseInt(color.slice(5, 7), 16);
+    var luminance = (r * 0.2126 + g * 0.7152 + b * 0.0722) / 255;
+    if (luminance >= 0.35) return color;
+    // Blend dark colors toward white to keep them visible while preserving hue,
+    // so SPD red stays reddish and CDU black becomes gray instead of both turning white.
+    var mix = 0.65;
+    var nr = Math.round(r + (255 - r) * mix);
+    var ng = Math.round(g + (255 - g) * mix);
+    var nb = Math.round(b + (255 - b) * mix);
+    return '#' + [nr, ng, nb].map(function(v) { var h = v.toString(16); return h.length === 1 ? '0' + h : h; }).join('');
   }
 
   function addDimensionDatasets(datasets, party, label, valueKey, lowKey, highKey, dash, visibleYears) {
@@ -420,7 +458,9 @@
       pointHitRadius: 0,
       borderWidth: 0,
       tension: 0.2,
-      role: 'ribbon-bound'
+      role: 'ribbon-bound',
+      _partyColor: party.color,
+      _dimension: label
     });
 
     datasets.push({
@@ -434,7 +474,9 @@
       borderWidth: 0,
       tension: 0.2,
       fill: { target: '-1', above: ribbonColor, below: ribbonColor },
-      role: 'ribbon'
+      role: 'ribbon',
+      _partyColor: party.color,
+      _dimension: label
     });
 
     datasets.push({
@@ -450,7 +492,9 @@
       pointHitRadius: 8,
       tension: 0.2,
       showLine: true,
-      role: 'estimate'
+      role: 'estimate',
+      _partyColor: party.color,
+      _dimension: label
     });
   }
 
