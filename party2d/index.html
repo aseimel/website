@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://seimel.io/party2d/">
     <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
   <link rel="stylesheet" href="../css/style.css?v=3">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
   <script src="../js/theme.js?v=2"></script>
 </head>
 <body>
@@ -34,6 +34,7 @@
     <section class="party2d-intro">
       <h2>Party2D</h2>
       <p>Interactive party-position estimates. Select parties below to compare economic and cultural positions over time.</p>
+      <p>Party2D tracks where parties stand on two simple scales, economic left versus right and cultural cosmopolitan versus traditionalist. It covers 708 parties in 65 countries from 1944 to 2025, combining party manifestos, media coverage, and expert surveys into one comparable measure with uncertainty shown for every estimate.</p>
       <p class="party2d-download-callout"><a href="#latest-release">Jump to the latest release <span aria-hidden="true">↓</span></a></p>
     </section>
 
@@ -82,7 +83,15 @@
         <a class="release-repository-link" href="https://git.seimel.app/armin/party2d" target="_blank" rel="noopener noreferrer">Repository</a>
       </div>
       <div id="release-content" class="release-content" aria-live="polite">
-        <p class="release-loading">Loading the latest release…</p>
+        <h4 class="release-name">Party2D Estimates v0 (pre-release)</h4>
+        <p class="release-meta">Published August 13, 2026</p>
+        <p class="release-description">Two-dimensional party-position estimates release.</p>
+        <div class="release-actions">
+          <a class="release-download" href="https://git.seimel.app/armin/party2d/releases/download/v0/party_2d_election_year_panel_v0.zip" target="_blank" rel="noopener noreferrer" title="party_2d_election_year_panel_v0.zip">Download election-year panel (.zip)</a>
+          <a class="release-download" href="https://git.seimel.app/armin/party2d/releases/download/v0/party_2d_annual_model_output_v0.csv.xz" target="_blank" rel="noopener noreferrer" title="party_2d_annual_model_output_v0.csv.xz">Download annual model output (.csv.xz)</a>
+          <a class="release-download" href="https://git.seimel.app/armin/party2d/releases/download/v0/party_2d_diagnostics_report_v0.pdf" target="_blank" rel="noopener noreferrer" title="party_2d_diagnostics_report_v0.pdf">Download diagnostics report (.pdf)</a>
+        </div>
+        <p class="release-footer"><a class="release-all-link" href="https://git.seimel.app/armin/party2d/releases" target="_blank" rel="noopener noreferrer">View all releases and release notes</a></p>
       </div>
     </section>
 
@@ -101,6 +110,6 @@
   <script src="../assets/vendor/papaparse.min.js"></script>
   <script src="../assets/vendor/chart.umd.min.js"></script>
   <script src="js/app.js?v=9"></script>
-  <script src="js/releases.js?v=3"></script>
+  <script src="js/releases.js?v=4"></script>
 </body>
 </html>
