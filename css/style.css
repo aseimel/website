@@ -126,6 +126,29 @@ body {
   text-align: center !important;
 }
 
+.nav-row-utils {
+  padding-top: 0 !important;
+}
+
+.nav-links-utils {
+  grid-column: 3 !important;
+  justify-self: end !important;
+}
+
+.nav-row-utils .theme-toggle {
+  font-size: 0.78rem !important;
+  color: #999 !important;
+  text-decoration: none !important;
+  margin-left: 0 !important;
+}
+
+.nav-row-utils .theme-toggle:hover {
+  color: var(--body-color) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.2em !important;
+}
+
 .nav-row-data {
   border-top: 1px dotted var(--header-border);
   margin-top: 0.35rem;
