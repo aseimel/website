@@ -126,23 +126,20 @@ body {
   text-align: center !important;
 }
 
-.nav-row-utils {
-  padding-top: 0 !important;
+.theme-strip {
+  max-width: var(--content-width) !important;
+  margin: -1.1rem auto 1rem !important;
+  text-align: right !important;
 }
 
-.nav-links-utils {
-  grid-column: 3 !important;
-  justify-self: end !important;
-}
-
-.nav-row-utils .theme-toggle {
+.theme-strip .theme-toggle {
   font-size: 0.78rem !important;
   color: #999 !important;
   text-decoration: none !important;
   margin-left: 0 !important;
 }
 
-.nav-row-utils .theme-toggle:hover {
+.theme-strip .theme-toggle:hover {
   color: var(--body-color) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
