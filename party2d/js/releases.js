@@ -3,22 +3,47 @@
 
   var RELEASE_API = 'https://git.seimel.app/api/v1/repos/armin/party2d/releases?limit=1';
   var RELEASES_URL = 'https://git.seimel.app/armin/party2d/releases';
-  var CACHE_KEY = 'party2d-latest-release-v1';
+  var CACHE_KEY = '***';
 
-  document.addEventListener('DOMContentLoaded', loadLatestRelease);
+  document.addEventListener('DOMContentLoaded', init);
 
-  function loadLatestRelease() {
+  function init() {
     var target = document.getElementById('release-content');
-    if (!target || !window.fetch) return;
+    if (!target) return;
 
-    // The page already contains a static fallback with direct download links,
-    // so the site works with no network, no location permission, and no live API.
-    // Here we only try to enhance it with the newest release info.
+    // Never contact the self-hosted Gitea (192.168.x.x) on page load.
+    // That private address is what triggers the browser local network prompt.
+    // Show the baked-in static release only. Live check happens on explicit click.
     var cached = readCache();
     if (cached) {
-      try { renderRelease(target, cached); } catch (e) { /* keep static fallback */ }
+      try { renderRelease(target, cached, true); } catch (e) { /* keep static */ }
     }
+    ensureCheckButton(target);
+  }
 
+  function ensureCheckButton(target) {
+    if (document.getElementById('release-check')) return;
+    var wrap = document.createElement('p');
+    wrap.className = 'release-footer';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'release-check';
+    btn.className = 'release-check-button';
+    btn.textContent = 'Check for newer release';
+    btn.addEventListener('click', function () {
+      btn.disabled = true;
+      btn.textContent = 'Checking…';
+      checkLive(target, btn);
+    });
+    wrap.appendChild(btn);
+    target.appendChild(wrap);
+  }
+
+  function checkLive(target, btn) {
+    if (!window.fetch) {
+      btn.textContent = 'Check unavailable';
+      return;
+    }
     var controller = null;
     var timeoutId = null;
     try {
@@ -39,17 +64,16 @@
       .then(function (releases) {
         if (!Array.isArray(releases) || !releases.length) throw new Error('No published release found');
         writeCache(releases[0]);
-        renderRelease(target, releases[0]);
+        renderRelease(target, releases[0], true);
+        ensureCheckButton(target);
       })
       .catch(function () {
-        // Keep the static fallback on screen. Only show a gentle note if
-        // we have neither a live release nor a cached one rendered.
-        if (!cached) {
-          var note = document.createElement('p');
-          note.className = 'release-note';
-          note.textContent = 'Showing the bundled release. Live update unavailable, check the repository for newer versions.';
-          target.appendChild(note);
-        }
+        var note = document.createElement('p');
+        note.className = 'release-note';
+        note.textContent = 'Live check failed, likely off local network. The downloads above remain available.';
+        target.appendChild(note);
+        btn.disabled = false;
+        btn.textContent = 'Retry check';
       })
       .then(function () {
         if (timeoutId) clearTimeout(timeoutId);
@@ -67,7 +91,7 @@
     try { localStorage.setItem(CACHE_KEY, JSON.stringify(release)); } catch (e) { /* ignore */ }
   }
 
-  function renderRelease(target, release) {
+  function renderRelease(target, release, keepCheck) {
     target.replaceChildren();
 
     var title = document.createElement('h4');
@@ -132,8 +156,7 @@
 
   function assetLabel(name) {
     if (/election.?year.*\.(zip|tar\.gz|csv(\.(gz|xz))?)$/i.test(name)) {
-      var ext = fileExt(name);
-      return 'Download election-year panel (.' + ext + ')';
+      return 'Download election-year panel (.' + fileExt(name) + ')';
     }
     if (/annual.*model.*\.(zip|tar\.gz|csv(\.(gz|xz))?)$/i.test(name)) {
       return 'Download annual model output (.' + fileExt(name) + ')';
