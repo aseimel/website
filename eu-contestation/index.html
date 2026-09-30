@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive estimates of party contestation of European integration, 1945 to 2022.">
+  <meta name="author" content="Armin Seimel">
+  <meta name="robots" content="index, follow">
+  <title>EU Contestation | Armin Seimel</title>
+  <link rel="canonical" href="https://seimel.io/eu-contestation/">
+    <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
+  <link rel="stylesheet" href="../css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=1">
+  <script src="../js/theme.js?v=2"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Armin Seimel</h1>
+    <p class="site-subtitle">GESIS - Leibniz Institute for the Social Sciences</p>
+    <nav class="site-nav" aria-label="Site">
+      <div class="nav-row">
+        <span class="nav-label">Pages</span>
+        <span class="nav-links">
+        <a href="../index.html">Home</a>
+        <span class="nav-separator">|</span>
+        <a href="../cv.html">CV</a>
+        <span class="nav-separator">|</span>
+        <a href="../papers.html">Papers</a>
+        </span>
+      </div>
+      <div class="nav-row nav-row-data">
+        <span class="nav-label">Data</span>
+        <span class="nav-links">
+        <a href="../party2d/">Party2D</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="active">EU Contestation</a>
+        </span>
+      </div>
+    </nav>
+  </header>
+  <div class="theme-strip">
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme"><span aria-hidden="true">◐</span> <span data-theme-label>Theme</span></button>
+  </div>
+
+  <main class="party2d-page">
+    <section class="party2d-intro">
+      <h2>EU Contestation</h2>
+      <p>Interactive estimates of how intensely parties contested European integration. Select parties below to compare contestation intensity across elections.</p>
+      <p>Contestation intensity (theta) runs from 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election. Estimates come from a Bayesian measurement model combining coded manifesto and media texts with expert surveys, covering 25 selected parties in 28 European countries from 1945 to 2022.</p>
+      <p>Each dot is the posterior mean for one party in one election, with 95 percent credible intervals. Gray ticks at zero mark elections with no measurable contestation. Estimates are distinct per election, so points are not connected by lines.</p>
+      <p class="release-prerelease">Paper forthcoming at the European Journal of Political Research.</p>
+      <p class="party2d-download-callout"><a href="#latest-release">Jump to the data release <span aria-hidden="true">↓</span></a></p>
+    </section>
+
+    <section class="party2d-controls" aria-label="Contestation estimate controls">
+      <div class="control-block party-picker">
+        <label for="party-search">Add party</label>
+        <div class="picker-row">
+          <input type="search" id="party-search" list="party-options" placeholder="Search party or group" disabled>
+          <datalist id="party-options"></datalist>
+          <button type="button" id="add-party" disabled>Add</button>
+        </div>
+      </div>
+
+      <div class="control-block group-filter-block">
+        <label for="group-filter">Party group</label>
+        <div class="picker-row">
+          <select id="group-filter">
+            <option value="all">All groups</option>
+            <option value="Eurosceptic Right">Eurosceptic Right</option>
+            <option value="Social Democrats">Social Democrats</option>
+            <option value="Conservatives">Conservatives</option>
+            <option value="Green Parties">Green Parties</option>
+            <option value="Historic Early Contesters">Historic Early Contesters</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="control-block view-options">
+        <button type="button" id="clear-parties" disabled>Clear selection</button>
+      </div>
+    </section>
+
+    <section class="selected-parties" aria-live="polite">
+      <h3>Selected Parties</h3>
+      <div id="party-chips" class="party-chips">
+        <span class="empty-state">No parties selected yet.</span>
+      </div>
+    </section>
+
+    <section class="chart-panel" aria-label="Party contestation time series chart">
+      <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
+      <canvas id="party-chart"></canvas>
+    </section>
+    <p class="line-style-note">Dots show posterior means per election with 95 percent credible intervals. Gray ticks at zero mark elections with no measurable contestation.</p>
+
+    <section id="latest-release" class="release-panel" aria-labelledby="release-title">
+      <div class="release-panel-heading">
+        <div>
+          <p class="eyebrow">Data access</p>
+          <h3 id="release-title">EU contestation data</h3>
+        </div>
+        <a class="release-repository-link" href="https://doi.org/10.7910/DVN/NH2LU1" target="_blank" rel="noopener noreferrer">Harvard Dataverse</a>
+      </div>
+      <div id="release-content" class="release-content" aria-live="polite">
+        <h4 class="release-name">Party contestation trajectories, 1945 to 2022</h4>
+        <p class="release-meta">Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022. Forthcoming, European Journal of Political Research.</p>
+        <p class="release-description">Posterior party contestation trajectories for 25 selected parties. The Dataverse deposit is forthcoming and not yet public. A copy of the plotted file is available locally below.</p>
+        <div class="release-actions">
+          <a class="release-download" href="party_contestation.csv" download title="party_contestation.csv">Download plotted data (.csv)</a>
+          <a class="release-download" href="https://doi.org/10.7910/DVN/NH2LU1" target="_blank" rel="noopener noreferrer" title="Harvard Dataverse deposit">Harvard Dataverse deposit (forthcoming)</a>
+        </div>
+        <p class="release-footer">If you use the data, please cite the paper as forthcoming at the European Journal of Political Research.</p>
+      </div>
+    </section>
+
+    <section class="sources-panel" aria-labelledby="sources-title">
+      <p class="eyebrow">Sources</p>
+      <h3 id="sources-title">Data sources behind the estimates</h3>
+      <p>The contestation estimates combine coded manifesto and media texts with expert surveys of party positions. If you use the data, please cite the paper.</p>
+      <div class="sources-table-wrap">
+        <table class="sources-table">
+          <thead>
+            <tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Years</th><th scope="col">Parties</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="https://manifesto-project.wzb.eu/" target="_blank" rel="noopener noreferrer">Manifesto Project</a></td><td>Coded manifestos</td><td>1945 to 2022</td><td>405</td></tr>
+            <tr><td><a href="https://poldem.eui.eu/" target="_blank" rel="noopener noreferrer">PolDem media coding</a></td><td>Coded media coverage</td><td>1972 to 2017</td><td>98</td></tr>
+            <tr><td>Ray survey</td><td>Expert survey</td><td>1984 to 1996</td><td>120</td></tr>
+            <tr><td><a href="https://www.chesdata.eu/" target="_blank" rel="noopener noreferrer">Chapel Hill Expert Survey</a></td><td>Expert survey</td><td>1999 to 2024</td><td>277</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sources-note">Party counts and year ranges describe input coverage before estimation. Full references are in the paper.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span class="copyright-year">2026</span> Seimel &middot; <a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copyright-year').forEach(function(el) {
+      el.textContent = new Date().getFullYear();
+    });
+  </script>
+
+  <script src="../assets/vendor/papaparse.min.js"></script>
+  <script src="../assets/vendor/chart.umd.min.js"></script>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+body {
+  max-width: var(--content-width) !important;
+}
+
+.site-header {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.party2d-intro {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.party2d-page h2,
+.party2d-page h3 {
+  border-bottom: 1px solid #333 !important;
+  padding-bottom: 0.4rem !important;
+}
+
+.party2d-intro p {
+  max-width: 760px !important;
+  text-align: justify !important;
+}
+
+.party2d-controls {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 1rem !important;
+  align-items: end !important;
+  margin: 1.5rem 0 !important;
+  padding: 1rem !important;
+  border: 1px solid #333 !important;
+  background: #fffefa !important;
+}
+
+.control-block label {
+  display: block !important;
+  margin-bottom: 0.35rem !important;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+}
+
+.picker-row {
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
+.party2d-controls input[type="search"],
+.party2d-controls button,
+.party2d-controls input[type="range"] {
+  font-family: inherit !important;
+  font-size: 0.95rem !important;
+}
+
+.party2d-controls input[type="search"] {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 0.4rem !important;
+  border: 1px solid #777 !important;
+  background: #fff !important;
+}
+
+.party2d-controls button,
+.party-chip button {
+  border: 1px solid #333 !important;
+  background: #fefdfb !important;
+  color: #1a1a1a !important;
+  cursor: pointer !important;
+  padding: 0.4rem 0.65rem !important;
+}
+
+.party2d-controls button:hover,
+.party-chip button:hover {
+  background: #f0f0f0 !important;
+}
+
+.party2d-controls button:disabled,
+.party2d-controls input[type="search"]:disabled,
+.party2d-controls input:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.55 !important;
+}
+
+.year-control input[type="range"] {
+  width: 100% !important;
+}
+
+.year-bounds {
+  display: flex !important;
+  justify-content: space-between !important;
+  color: #666 !important;
+  font-size: 0.85rem !important;
+}
+
+.view-options {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.55rem !important;
+}
+
+.view-options label {
+  font-weight: normal !important;
+  margin: 0 !important;
+}
+
+.party-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  min-height: 2rem !important;
+}
+
+.party-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  border: 1px solid #333 !important;
+  padding: 0.25rem 0.35rem 0.25rem 0.5rem !important;
+  background: #fffefa !important;
+  font-size: 0.9rem !important;
+}
+
+.party-color-dot {
+  width: 0.85rem !important;
+  height: 0.85rem !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(0, 0, 0, 0.25) !important;
+  flex: 0 0 auto !important;
+}
+
+.party-chip button {
+  padding: 0.05rem 0.35rem !important;
+  line-height: 1.2 !important;
+}
+
+.empty-state,
+.loading-message {
+  color: #666 !important;
+  font-style: italic !important;
+}
+
+.chart-panel {
+  position: relative !important;
+  height: 580px !important;
+  margin: 1.5rem 0 0.5rem !important;
+  padding: 1rem !important;
+  border: 1px solid #333 !important;
+  background: #fff !important;
+}
+
+.line-style-note {
+  margin: 0 0 1.5rem 0 !important;
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  font-style: italic !important;
+}
+
+.loading-message {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(254, 253, 251, 0.9) !important;
+  z-index: 2 !important;
+}
+
+.loading-message.hidden {
+  display: none !important;
+}
+
+.party-name-cell {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+@media (max-width: 820px) {
+  body {
+    max-width: var(--content-width) !important;
+  }
+
+  .party2d-controls {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chart-panel {
+    height: 480px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .picker-row {
+    flex-direction: column !important;
+  }
+
+  .chart-panel {
+    height: 420px !important;
+    padding: 0.5rem !important;
+  }
+}
+
+
+/* Live Gitea release panel */
+.release-panel {
+  margin: 2rem 0 1rem !important;
+  padding: 1.35rem !important;
+  border: 1px solid #333 !important;
+  background: #fffefa !important;
+}
+
+.release-panel-heading {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.release-panel-heading h3 {
+  margin: 0 !important;
+}
+
+.eyebrow {
+  margin: 0 0 0.2rem !important;
+  color: #666 !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.release-repository-link,
+.release-all-link {
+  color: #1a1a1a !important;
+  text-underline-offset: 0.16em !important;
+}
+
+.release-meta {
+  margin: 0 0 0.65rem !important;
+  color: #555 !important;
+  font-size: 0.9rem !important;
+}
+
+.release-description {
+  margin: 0 0 1rem !important;
+  max-width: 78ch !important;
+  line-height: 1.55 !important;
+  white-space: pre-line !important;
+}
+
+.release-actions {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.65rem !important;
+  margin: 1rem 0 !important;
+}
+
+.release-actions > * {
+  min-width: 0 !important;
+}
+
+.release-download {
+  display: block !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  padding: 0.7rem 0.8rem !important;
+  border: 1px solid #333 !important;
+  background: #fff !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+.release-note {
+  margin: 0.75rem 0 0 !important;
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  font-style: italic !important;
+}
+
+.release-check-button {
+  border: 1px solid #333 !important;
+  background: transparent !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  padding: 0.4rem 0.7rem !important;
+  font: inherit !important;
+  font-size: 0.9rem !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+.release-check-button:disabled {
+  cursor: wait !important;
+  opacity: 0.6 !important;
+}
+
+.sources-panel {
+  margin: 2rem 0 1rem !important;
+  padding: 1.35rem !important;
+  border: 1px solid #333 !important;
+  background: #fffefa !important;
+}
+
+.sources-panel h3 {
+  margin: 0 0 0.6rem !important;
+}
+
+.sources-panel p {
+  max-width: 78ch !important;
+  line-height: 1.55 !important;
+}
+
+.sources-table-wrap {
+  overflow-x: auto !important;
+  margin: 1rem 0 !important;
+}
+
+.sources-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 0.92rem !important;
+}
+
+.sources-table th,
+.sources-table td {
+  padding: 0.5rem 0.65rem !important;
+  border: 1px solid #333 !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+
+.sources-table thead th {
+  font-weight: 700 !important;
+}
+
+.sources-note {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+  color: #555 !important;
+}
+
+.release-prerelease {
+  display: inline-block !important;
+  margin: 0.5rem 0 0 !important;
+  padding: 0.3rem 0.6rem !important;
+  border: 1px solid currentColor !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+
+.party2d-page .sources-panel {
+  background: var(--party-surface) !important;
+  border-color: var(--party-border) !important;
+  color: var(--party-ink) !important;
+}
+
+.party2d-page .sources-table th,
+.party2d-page .sources-table td {
+  border-color: var(--party-border) !important;
+}
+
+.party2d-page .sources-note {
+  color: var(--party-muted) !important;
+}
+
+.release-download:hover,
+.release-download:focus-visible {
+  background: #f0f0f0 !important;
+  text-decoration: underline !important;
+}
+
+.release-footer {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+
+.release-loading,
+.release-error {
+  margin: 0 !important;
+  color: #666 !important;
+  font-style: italic !important;
+}
+
+@media (max-width: 520px) {
+  .release-panel-heading {
+    flex-direction: column !important;
+  }
+
+  .release-actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+ .party2d-download-callout {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 0.2rem 0.55rem !important;
+  margin: 1.15rem 0 0 !important;
+  color: #555 !important;
+  font-size: 0.95rem !important;
+}
+
+.party2d-download-callout a {
+  color: #1a1a1a !important;
+  font-weight: 650 !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.2em !important;
+}
+
+.party2d-download-callout a:hover,
+.party2d-download-callout a:focus-visible {
+  color: #000 !important;
+  text-decoration-thickness: 2px !important;
+}
+
+#latest-release {
+  scroll-margin-top: 1.5rem !important;
+}
+
+
+/* Theme-aware Party2D surfaces */
+.party2d-page { --party-surface:#fffefa; --party-surface-soft:#f3f2ee; --party-ink:#1a1a1a; --party-muted:#5f5b54; --party-border:#333; }
+@media (prefers-color-scheme: dark) { html:not([data-theme]) .party2d-page { --party-surface:#211f1c; --party-surface-soft:#292622; --party-ink:#e9e5dd; --party-muted:#c2bcb1; --party-border:#aaa296; } }
+html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface-soft:#292622; --party-ink:#e9e5dd; --party-muted:#c2bcb1; --party-border:#aaa296; }
+.party2d-page .party2d-controls,.party2d-page .selected-parties,.party2d-page .party-chip,.party2d-page .release-panel,.party2d-page .chart-panel { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .party2d-controls button,.party2d-page .party-chip button,.party2d-page .release-download { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .party2d-controls button:hover,.party2d-page .party-chip button:hover,.party2d-page .release-download:hover,.party2d-page .release-download:focus-visible { background:var(--party-surface-soft) !important; }
+.party2d-page .empty-state,.party2d-page .loading-message,.party2d-page .line-style-note,.party2d-page .release-meta,.party2d-page .eyebrow,.party2d-page .release-error,.party2d-page .party2d-download-callout { color:var(--party-muted) !important; }
+.party2d-page .loading-message { background:color-mix(in srgb, var(--party-surface) 92%, transparent) !important; }
+
+.party2d-page input[type="search"],.party2d-page select { background:var(--party-surface) !important; border-color:var(--party-border) !important; color:var(--party-ink) !important; }
+.party2d-page .release-repository-link,.party2d-page .release-all-link,.party2d-page .party2d-download-callout a { color:var(--party-ink) !important; }
+.party2d-page .party2d-download-callout a:hover,.party2d-page .party2d-download-callout a:focus-visible { color:var(--party-ink) !important; }
+.party2d-page .party-color-dot { border-color:var(--party-border) !important; }

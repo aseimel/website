@@ -1,0 +1,322 @@
+party_id,party_name,group,year,mean,lower_95,upper_95,significant
+379,SD,Social Democrats,1945,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1945,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1945,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1946,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1946,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1946,0.0,0.0,0.0,false
+379,SD,Social Democrats,1947,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1947,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1948,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1948,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1949,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1949,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1949,0.0,0.0,0.0,false
+379,SD,Social Democrats,1950,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1950,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1950,0.21383196971500001,0.045053369999999995,0.451874675,true
+1083,Gaullists,Historic Early Contesters,1951,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1951,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1952,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1953,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1953,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1953,0.0,0.0,0.0,false
+379,SD,Social Democrats,1953,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1953,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1953,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1954,0.10774839520500001,0.0069841015,0.30707929999999994,true
+1567,Conservatives,Conservatives,1955,0.212978229515,0.04720431,0.45064395,true
+463,FPÖ,Eurosceptic Right,1956,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1956,0.1531119258,0.0181134675,0.38374185000000016,true
+163,ARP,Historic Early Contesters,1956,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1957,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1957,0.0,0.0,0.0,false
+379,SD,Social Democrats,1957,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1957,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1958,0.10699993837499998,0.006980424,0.3171429500000001,true
+1083,Gaullists,Historic Early Contesters,1958,0.1790074669325,0.036134765,0.4032309000000001,true
+8054,PCI,Historic Early Contesters,1958,0.17981132955749998,0.029754794999999997,0.42256395000000013,true
+463,FPÖ,Eurosceptic Right,1959,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1959,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1959,0.0,0.0,0.0,false
+379,SD,Social Democrats,1960,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1960,0.5574626340000001,0.30768442500000004,0.8013451500000003,true
+1424,Volksunie,Historic Early Contesters,1961,0.1086334845425,0.00596923,0.31032242500000007,true
+211,CDU/CSU,Conservatives,1961,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1961,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1962,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1962,0.16088529613,0.021649142499999996,0.38198495000000005,true
+8054,PCI,Historic Early Contesters,1963,0.172300143165,0.0235159325,0.41840425000000003,true
+163,ARP,Historic Early Contesters,1963,0.0616802265075,0.0019279495000000002,0.229925525,true
+379,SD,Social Democrats,1964,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1964,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1964,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1965,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1965,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1965,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1966,0.0,0.0,0.0,false
+379,SD,Social Democrats,1966,0.046971126752499995,0.0019244614999999999,0.167537925,true
+1134,Retsforbundet,Historic Early Contesters,1966,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1966,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1967,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1967,0.0809305821525,0.003172908,0.26896895000000004,true
+1424,Volksunie,Historic Early Contesters,1968,0.0,0.0,0.0,false
+379,SD,Social Democrats,1968,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1968,0.57489887225,0.3234465,0.8070029000000001,true
+1083,Gaullists,Historic Early Contesters,1968,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1968,0.1831772015425,0.02816479,0.42341622500000003,true
+211,CDU/CSU,Conservatives,1969,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1969,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1970,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1970,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1971,0.18217083488,0.0405169625,0.39179440000000004,true
+1424,Volksunie,Historic Early Contesters,1971,0.0,0.0,0.0,false
+379,SD,Social Democrats,1971,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1971,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1971,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1972,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1972,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1972,0.0,0.0,0.0,false
+163,ARP,Historic Early Contesters,1972,0.0,0.0,0.0,false
+379,SD,Social Democrats,1973,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1973,0.61523789525,0.389809925,0.8240036500000001,true
+1083,Gaullists,Historic Early Contesters,1973,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1974,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1974,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1974,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1975,0.0,0.0,0.0,false
+379,SD,Social Democrats,1975,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1975,0.59601730075,0.36140725,0.821621775,true
+211,CDU/CSU,Conservatives,1976,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1976,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1976,0.0,0.0,0.0,false
+655,PS,Social Democrats,1976,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1977,0.0,0.0,0.0,false
+379,SD,Social Democrats,1977,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1977,0.580431694,0.334908,0.8095025250000001,true
+441,PP,Conservatives,1977,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1977,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1977,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1978,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1978,0.20318745462,0.0352544575,0.4706057750000001,true
+463,FPÖ,Eurosceptic Right,1979,0.0,0.0,0.0,false
+379,SD,Social Democrats,1979,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1979,0.5903029679999999,0.3548486,0.808428875,true
+441,PP,Conservatives,1979,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1979,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1979,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1979,0.0,0.0,0.0,false
+655,PS,Social Democrats,1979,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1980,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1980,0.0,0.0,0.0,false
+655,PS,Social Democrats,1980,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1981,0.0,0.0,0.0,false
+379,SD,Social Democrats,1981,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1981,0.58600103775,0.34447544999999996,0.8126126,true
+1083,Gaullists,Historic Early Contesters,1981,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1981,0.0,0.0,0.0,false
+441,PP,Conservatives,1982,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1982,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1983,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,1983,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1983,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1983,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,1983,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1983,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1983,0.1821812351075,0.02552823,0.43651927500000015,true
+655,PS,Social Democrats,1983,0.0,0.0,0.0,false
+379,SD,Social Democrats,1984,0.0,0.0,0.0,false
+1134,Retsforbundet,Historic Early Contesters,1984,0.7079112224999999,0.540459225,0.859999675,true
+1424,Volksunie,Historic Early Contesters,1985,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1985,0.0,0.0,0.0,false
+655,PS,Social Democrats,1985,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1986,0.0,0.0,0.0,false
+441,PP,Conservatives,1986,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1986,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,1986,0.415889226475,0.19527485,0.6622169,true
+1083,Gaullists,Historic Early Contesters,1986,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1987,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,1987,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1987,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1987,0.0,0.0,0.0,false
+379,SD,Social Democrats,1987,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,1987,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,1987,0.3097652484500001,0.1414711,0.5092006250000001,true
+8054,PCI,Historic Early Contesters,1987,0.0,0.0,0.0,false
+655,PS,Social Democrats,1987,0.0,0.0,0.0,false
+379,SD,Social Democrats,1988,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,1988,0.0,0.0,0.0,false
+1083,Gaullists,Historic Early Contesters,1988,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,1988,0.47507062599999994,0.27022505,0.7010798250000001,true
+441,PP,Conservatives,1989,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1989,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1989,0.0,0.0,0.0,false
+1775,Green Party IE,Green Parties,1989,0.32533042455,0.12604435,0.5705133000000003,true
+1537,GroenLinks,Green Parties,1989,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1990,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,1990,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1990,0.0,0.0,0.0,false
+379,SD,Social Democrats,1990,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1990,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,1990,0.0,0.0,0.0,false
+1424,Volksunie,Historic Early Contesters,1991,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,1991,0.0,0.0,0.0,false
+655,PS,Social Democrats,1991,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,1991,0.54348802925,0.33796395,0.7531028,true
+1567,Conservatives,Conservatives,1992,0.34093441002499997,0.179448875,0.52113215,true
+1775,Green Party IE,Green Parties,1992,0.28071698225,0.12685335,0.46641542500000005,true
+1221,Lega,Eurosceptic Right,1992,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1992,0.0,0.0,0.0,false
+441,PP,Conservatives,1993,0.06661217646249999,0.002375472,0.22931267500000002,true
+1338,PSOE,Social Democrats,1993,0.11379754760750001,0.0071660662499999995,0.32418062500000017,true
+433,FN/RN,Eurosceptic Right,1993,0.391173359,0.195469075,0.6114868250000001,true
+794,Néa Dimokratía,Conservatives,1993,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,1994,0.326840312175,0.145514675,0.5390359,true
+211,CDU/CSU,Conservatives,1994,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1994,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,1994,0.0,0.0,0.0,false
+379,SD,Social Democrats,1994,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,1994,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,1994,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1994,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,1994,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,1994,0.514116365,0.3042167,0.7245074249999999,true
+1424,Volksunie,Historic Early Contesters,1995,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,1995,0.0,0.0,0.0,false
+655,PS,Social Democrats,1995,0.0,0.0,0.0,false
+441,PP,Conservatives,1996,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,1996,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,1996,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,1996,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,1996,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,1997,0.41266551325,0.21529167500000002,0.6201795750000001,true
+1567,Conservatives,Conservatives,1997,0.36409201285,0.1940047,0.551878175,true
+1775,Green Party IE,Green Parties,1997,0.300048447225,0.143063325,0.4964256000000001,true
+211,CDU/CSU,Conservatives,1998,0.0,0.0,0.0,false
+383,SPD,Social Democrats,1998,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,1998,0.0,0.0,0.0,false
+379,SD,Social Democrats,1998,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,1998,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,1998,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,1998,0.49256967075,0.30508215000000005,0.6838180750000001,true
+463,FPÖ,Eurosceptic Right,1999,0.27913203955,0.12573247499999998,0.46004215000000015,true
+1424,Volksunie,Historic Early Contesters,1999,0.275911165115,0.057167659999999995,0.5789056,true
+479,Vihreät,Green Parties,1999,0.0,0.0,0.0,false
+655,PS,Social Democrats,1999,0.0,0.0,0.0,false
+441,PP,Conservatives,2000,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2000,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,2000,0.0,0.0,0.0,false
+379,SD,Social Democrats,2001,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2001,0.40037253575,0.2220628,0.6000922,true
+1221,Lega,Eurosceptic Right,2001,0.0,0.0,0.0,false
+8054,PCI,Historic Early Contesters,2001,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2002,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,2002,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2002,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2002,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,2002,0.48505500499999993,0.3088976,0.6631566000000001,true
+1595,Les Républicains,Conservatives,2002,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,2002,0.0,0.0,0.0,false
+1775,Green Party IE,Green Parties,2002,0.33529462675000005,0.1713311,0.512587325,true
+1537,GroenLinks,Green Parties,2002,0.0,0.0,0.0,false
+655,PS,Social Democrats,2002,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,2002,0.46520651175,0.26901427499999997,0.6721929000000001,true
+479,Vihreät,Green Parties,2003,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,2003,0.0,0.0,0.0,false
+441,PP,Conservatives,2004,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2004,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,2004,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,2005,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2005,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2005,0.0,0.0,0.0,false
+379,SD,Social Democrats,2005,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2005,0.3869153306,0.21301985,0.579635025,true
+655,PS,Social Democrats,2005,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2006,0.4267626176,0.235541825,0.6283675,true
+1691,Fidesz,Eurosceptic Right,2006,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,2006,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,2006,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,2006,0.314068583575,0.14484235,0.51809865,true
+379,SD,Social Democrats,2007,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,2007,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,2007,0.0,0.0,0.0,false
+1595,Les Républicains,Conservatives,2007,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,2007,0.0,0.0,0.0,false
+1775,Green Party IE,Green Parties,2007,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2008,0.4543599715,0.260228025,0.648320275,true
+441,PP,Conservatives,2008,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2008,0.0,0.0,0.0,false
+802,PD,Social Democrats,2008,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,2008,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,2009,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2009,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2009,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,2009,0.0,0.0,0.0,false
+655,PS,Social Democrats,2009,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2010,0.38699141499999995,0.225765825,0.5594979250000001,true
+1691,Fidesz,Eurosceptic Right,2010,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,2010,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,2010,0.32172461312499995,0.143466125,0.5271934,true
+379,SD,Social Democrats,2011,0.0,0.0,0.0,false
+441,PP,Conservatives,2011,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2011,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,2011,0.0,0.0,0.0,false
+1775,Green Party IE,Green Parties,2011,0.0,0.0,0.0,false
+655,PS,Social Democrats,2011,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,2012,0.5986054835,0.39979597499999997,0.7871751000000001,true
+1595,Les Républicains,Conservatives,2012,0.0,0.0,0.0,false
+794,Néa Dimokratía,Conservatives,2012,0.0,0.0,0.0,false
+1537,GroenLinks,Green Parties,2012,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2013,0.4462278719999999,0.25345615,0.6470475250000001,true
+211,CDU/CSU,Conservatives,2013,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2013,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2013,0.0,0.0,0.0,false
+1976,AfD,Eurosceptic Right,2013,0.6546692184999999,0.45138280000000003,0.8435066250000001,true
+802,PD,Social Democrats,2013,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,2013,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,2014,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,2014,0.0,0.0,0.0,false
+379,SD,Social Democrats,2015,0.0,0.0,0.0,false
+441,PP,Conservatives,2015,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2015,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,2015,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2015,0.44356744474999993,0.2317916,0.668413375,true
+794,Néa Dimokratía,Conservatives,2015,0.0,0.0,0.0,false
+655,PS,Social Democrats,2015,0.0,0.0,0.0,false
+441,PP,Conservatives,2016,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2016,0.1115942562775,0.00514438575,0.322779775,true
+1775,Green Party IE,Green Parties,2016,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2017,0.45449690825000005,0.230579075,0.6930428000000001,true
+211,CDU/CSU,Conservatives,2017,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2017,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2017,0.0,0.0,0.0,false
+1976,AfD,Eurosceptic Right,2017,0.5616189405,0.342296825,0.78886415,true
+433,FN/RN,Eurosceptic Right,2017,0.6028412444999999,0.40789454999999997,0.79074035,true
+1595,Les Républicains,Conservatives,2017,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2017,0.431265028175,0.21843674999999999,0.652479875,true
+1537,GroenLinks,Green Parties,2017,0.0,0.0,0.0,false
+1691,Fidesz,Eurosceptic Right,2018,0.331597485775,0.16528212499999997,0.5228625,true
+802,PD,Social Democrats,2018,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,2018,0.4843671567499999,0.2623787,0.7110319500000001,true
+456,Miljöpartiet,Green Parties,2018,0.0,0.0,0.0,false
+463,FPÖ,Eurosceptic Right,2019,0.42946067100000007,0.26897527500000007,0.5972322750000001,true
+379,SD,Social Democrats,2019,0.0,0.0,0.0,false
+441,PP,Conservatives,2019,0.0,0.0,0.0,false
+1338,PSOE,Social Democrats,2019,0.0,0.0,0.0,false
+479,Vihreät,Green Parties,2019,0.0,0.0,0.0,false
+1567,Conservatives,Conservatives,2019,0.48301228725,0.3185429,0.6511853,true
+794,Néa Dimokratía,Conservatives,2019,0.0,0.0,0.0,false
+655,PS,Social Democrats,2019,0.0,0.0,0.0,false
+1775,Green Party IE,Green Parties,2020,0.0,0.0,0.0,false
+211,CDU/CSU,Conservatives,2021,0.0,0.0,0.0,false
+383,SPD,Social Democrats,2021,0.0,0.0,0.0,false
+1816,Grüne,Green Parties,2021,0.0,0.0,0.0,false
+1976,AfD,Eurosceptic Right,2021,0.57268336875,0.36807532499999995,0.7846161,true
+1537,GroenLinks,Green Parties,2021,0.0,0.0,0.0,false
+379,SD,Social Democrats,2022,0.0,0.0,0.0,false
+433,FN/RN,Eurosceptic Right,2022,0.50916439225,0.30326095,0.718993875,true
+1595,Les Républicains,Conservatives,2022,0.0,0.0,0.0,false
+802,PD,Social Democrats,2022,0.0,0.0,0.0,false
+1221,Lega,Eurosceptic Right,2022,0.460401807625,0.23111822499999998,0.6984886,true
+655,PS,Social Democrats,2022,0.0,0.0,0.0,false
+456,Miljöpartiet,Green Parties,2022,0.0,0.0,0.0,false
