@@ -243,7 +243,8 @@
 
   // Draws per-election error bars with a dot for the point estimate.
   // Significant elections get a vertical bar plus dot in the party color.
-  // Insignificant elections get a small gray tick at zero, matching the paper.
+  // Insignificant elections get a short tick at zero, also in the party
+  // color so series stay comparable. The paper prints these ticks gray.
   var errorBarPlugin = {
     id: 'euErrorBars',
     afterDatasetsDraw: function(chart) {
@@ -278,8 +279,8 @@
           } else {
             var yZero = chart.scales.y.getPixelForValue(0);
             ctx.save();
-            ctx.strokeStyle = '#808080';
-            ctx.lineWidth = 2;
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
             ctx.moveTo(x, yZero - 5);
             ctx.lineTo(x, yZero + 5);

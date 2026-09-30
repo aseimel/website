@@ -443,3 +443,25 @@ html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface
 .party2d-page .release-repository-link,.party2d-page .release-all-link,.party2d-page .party2d-download-callout a { color:var(--party-ink) !important; }
 .party2d-page .party2d-download-callout a:hover,.party2d-page .party2d-download-callout a:focus-visible { color:var(--party-ink) !important; }
 .party2d-page .party-color-dot { border-color:var(--party-border) !important; }
+
+.encoding-key {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.4rem 1.2rem !important;
+}
+
+.key-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  font-style: normal !important;
+}
+
+.key-glyph {
+  flex: 0 0 auto !important;
+}
+
+.key-hint {
+  font-style: italic !important;
+}

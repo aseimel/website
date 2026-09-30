@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://seimel.io/eu-contestation/">
     <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
   <link rel="stylesheet" href="../css/style.css?v=6">
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <script src="../js/theme.js?v=2"></script>
 </head>
 <body>
@@ -47,8 +47,8 @@
       <h2>EU Contestation</h2>
       <p>Interactive estimates of how intensely parties contested European integration. Select parties below to compare contestation intensity across elections.</p>
       <p>Contestation intensity (theta) runs from 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election. Estimates come from a Bayesian measurement model combining coded manifesto and media texts with expert surveys, covering 25 selected parties in 28 European countries from 1945 to 2022.</p>
-      <p>Each dot is the posterior mean for one party in one election, with 95 percent credible intervals. Gray ticks at zero mark elections with no measurable contestation. Estimates are distinct per election, so points are not connected by lines.</p>
-      <p class="release-prerelease">Paper forthcoming at the European Journal of Political Research.</p>
+      <p>This page presents data from Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022, forthcoming at the European Journal of Political Research.</p>
+      <p>Each dot is the posterior mean for one party in one election, with 95 percent credible intervals. Short ticks at zero mark elections with no measurable contestation. Estimates are distinct per election, so points are not connected by lines.</p>
       <p class="party2d-download-callout"><a href="#latest-release">Jump to the data release <span aria-hidden="true">↓</span></a></p>
     </section>
 
@@ -92,7 +92,7 @@
       <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
       <canvas id="party-chart"></canvas>
     </section>
-    <p class="line-style-note">Dots show posterior means per election with 95 percent credible intervals. Gray ticks at zero mark elections with no measurable contestation.</p>
+    <p class="line-style-note encoding-key"><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="2" x2="7" y2="20" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="2" x2="11" y2="2" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="20" x2="11" y2="20" stroke="currentColor" stroke-width="1.5" /><circle cx="7" cy="11" r="3.2" fill="currentColor" /></svg> posterior mean with 95 percent credible interval</span><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="6" x2="7" y2="16" stroke="currentColor" stroke-width="2.5" /></svg> no measurable contestation</span><span class="key-hint">Both marks use the party colour.</span></p>
 
     <section id="latest-release" class="release-panel" aria-labelledby="release-title">
       <div class="release-panel-heading">
@@ -148,6 +148,6 @@
 
   <script src="../assets/vendor/papaparse.min.js"></script>
   <script src="../assets/vendor/chart.umd.min.js"></script>
-  <script src="js/app.js?v=1"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>
