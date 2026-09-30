@@ -49,6 +49,17 @@
     'ARP': 'ARP (Netherlands)'
   };
 
+  var PARTY_COUNTRY = {
+    'AfD': 'Germany', 'SPD': 'Germany', 'CDU/CSU': 'Germany', 'Grüne': 'Germany',
+    'Gaullists': 'France', 'FN/RN': 'France', 'PS': 'France', 'Les Républicains': 'France',
+    'Lega': 'Italy', 'PD': 'Italy', 'PCI': 'Italy',
+    'PSOE': 'Spain', 'PP': 'Spain',
+    'Fidesz': 'Hungary', 'FPÖ': 'Austria', 'Conservatives': 'United Kingdom',
+    'SD': 'Sweden', 'Miljöpartiet': 'Sweden', 'Vihreät': 'Finland',
+    'GroenLinks': 'Netherlands', 'ARP': 'Netherlands', 'Volksunie': 'Belgium',
+    'Retsforbundet': 'Denmark', 'Green Party IE': 'Ireland', 'Néa Dimokratía': 'Greece'
+  };
+
   var state = {
     parties: [],
     partySearch: new Map(),
@@ -145,6 +156,9 @@
           observations: []
         };
         party.displayName = DISPLAY_NAMES[party.name] || party.name;
+        party.country = PARTY_COUNTRY[party.name] || '';
+        party.enName = party.displayName.replace(/ \([^)]*\)$/, '');
+        party.searchLabel = party.country ? party.name + ' - ' + party.enName + ' (' + party.country + ')' : party.displayName;
         party.color = partyColor(party);
         map.set(id, party);
       }
@@ -191,7 +205,7 @@
     state.partySearch.clear();
     el.partyOptions.innerHTML = '';
     visibleParties().forEach(function(party) {
-      var value = party.name + ' - ' + party.displayName + ' (' + party.group + ', ' + party.firstYear + '-' + party.lastYear + ')';
+      var value = party.searchLabel;
       state.partySearch.set(value, party.id);
       state.partySearch.set(party.id, party.id);
       var option = document.createElement('option');
@@ -324,7 +338,9 @@
     var theme = chartTheme();
     var datasets = [];
     var selectedParties = state.selectedIds.map(function(id) { return state.partyMap.get(id); }).filter(Boolean);
-    var visibleYears = [];
+    var X_MIN = 1945;
+    var X_MAX = 2022;
+    var DODGE_STEP = (X_MAX - X_MIN) * 0.02;
 
     // Dodge points that share an election year so overlapping parties
     // show side by side instead of on top of each other.
@@ -340,7 +356,7 @@
       if (n < 2) return obs.year;
       var k = yearSeen[obs.year] || 0;
       yearSeen[obs.year] = k + 1;
-      return obs.year + (k - (n - 1) / 2) * 0.4;
+      return obs.year + (k - (n - 1) / 2) * DODGE_STEP;
     }
 
     selectedParties.forEach(function(party) {
@@ -348,7 +364,6 @@
       var data = [];
       var rawObs = [];
       party.observations.forEach(function(obs) {
-        visibleYears.push(obs.year);
         rawObs.push(obs);
         if (obs.significant) {
           data.push({ x: dodgedX(obs), y: obs.mean });
@@ -377,7 +392,7 @@
       });
     });
 
-    var xBounds = yearBounds(visibleYears);
+    var xBounds = { min: X_MIN, max: X_MAX };
 
     if (state.chart) {
       applyChartTheme();
@@ -488,14 +503,6 @@
     var ng = Math.round(g + (255 - g) * mix);
     var nb = Math.round(b + (255 - b) * mix);
     return '#' + [nr, ng, nb].map(function(v) { var h = v.toString(16); return h.length === 1 ? '0' + h : h; }).join('');
-  }
-
-  function yearBounds(years) {
-    if (years.length === 0) return { min: 1945, max: 2022 };
-    var min = Math.min.apply(null, years);
-    var max = Math.max.apply(null, years);
-    if (min === max) return { min: min - 1, max: max + 1 };
-    return { min: min, max: max };
   }
 
   function partyColor(party) {
