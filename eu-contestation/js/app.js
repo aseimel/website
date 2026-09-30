@@ -282,7 +282,7 @@
             ctx.moveTo(x, yLow);
             ctx.lineTo(x, yHigh);
             ctx.stroke();
-            var cap = 4;
+            var cap = 3;
             ctx.beginPath();
             ctx.moveTo(x - cap, yLow);
             ctx.lineTo(x + cap, yLow);
@@ -394,12 +394,45 @@
 
     var xBounds = { min: X_MIN, max: X_MAX };
 
+    // Pushes marks apart in pixel space when elections from different
+    // selections fall within a few pixels of each other, so close
+    // elections do not overlap. Tooltips still report the true year.
+    function declutterOverlaps() {
+      var chart = state.chart;
+      if (!chart || !chart.scales.x) return false;
+      var xScale = chart.scales.x;
+      var MIN_PX = 11;
+      var points = [];
+      chart.data.datasets.forEach(function(dataset, datasetIndex) {
+        if (dataset.role !== 'estimate') return;
+        if (!chart.isDatasetVisible(datasetIndex)) return;
+        var meta = chart.getDatasetMeta(datasetIndex);
+        meta.data.forEach(function(point, i) {
+          if (!point || typeof point.x !== 'number') return;
+          points.push({ dataset: dataset, index: i, px: point.x });
+        });
+      });
+      points.sort(function(a, b) { return a.px - b.px; });
+      var changed = false;
+      for (var k = 1; k < points.length; k++) {
+        if (points[k].px - points[k - 1].px < MIN_PX) {
+          var value = xScale.getValueForPixel(points[k - 1].px + MIN_PX);
+          value = Math.max(X_MIN, Math.min(X_MAX, value));
+          points[k].dataset.data[points[k].index].x = value;
+          points[k].px = xScale.getPixelForValue(value);
+          changed = true;
+        }
+      }
+      return changed;
+    }
+
     if (state.chart) {
       applyChartTheme();
       state.chart.data.datasets = datasets;
       state.chart.options.scales.x.min = xBounds.min;
       state.chart.options.scales.x.max = xBounds.max;
       state.chart.update();
+      if (declutterOverlaps()) { state.chart.update(); }
       return;
     }
 
@@ -438,7 +471,7 @@
             callbacks: {
               title: function(items) {
                 var dataset = items[0].dataset;
-                return dataset._party.displayName + ' (' + dataset._party.group + ')';
+                return dataset._party.searchLabel;
               },
               label: function(item) {
                 var obs = item.dataset.rawObs[item.dataIndex];
@@ -476,6 +509,7 @@
         }
       }
     });
+    if (declutterOverlaps()) { state.chart.update(); }
   }
 
   function isDarkTheme() {
