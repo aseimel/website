@@ -461,7 +461,3 @@ html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface
 .key-glyph {
   flex: 0 0 auto !important;
 }
-
-.key-hint {
-  font-style: italic !important;
-}

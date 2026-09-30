@@ -326,6 +326,23 @@
     var selectedParties = state.selectedIds.map(function(id) { return state.partyMap.get(id); }).filter(Boolean);
     var visibleYears = [];
 
+    // Dodge points that share an election year so overlapping parties
+    // show side by side instead of on top of each other.
+    var yearCounts = {};
+    selectedParties.forEach(function(party) {
+      party.observations.forEach(function(obs) {
+        yearCounts[obs.year] = (yearCounts[obs.year] || 0) + 1;
+      });
+    });
+    var yearSeen = {};
+    function dodgedX(obs) {
+      var n = yearCounts[obs.year] || 1;
+      if (n < 2) return obs.year;
+      var k = yearSeen[obs.year] || 0;
+      yearSeen[obs.year] = k + 1;
+      return obs.year + (k - (n - 1) / 2) * 0.4;
+    }
+
     selectedParties.forEach(function(party) {
       var color = chartLineColor(party.color);
       var data = [];
@@ -334,9 +351,9 @@
         visibleYears.push(obs.year);
         rawObs.push(obs);
         if (obs.significant) {
-          data.push({ x: obs.year, y: obs.mean });
+          data.push({ x: dodgedX(obs), y: obs.mean });
         } else {
-          data.push({ x: obs.year, y: 0 });
+          data.push({ x: dodgedX(obs), y: 0 });
         }
       });
 
