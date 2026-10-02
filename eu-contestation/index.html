@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://seimel.io/eu-contestation/">
     <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
   <link rel="stylesheet" href="../css/style.css?v=6">
-  <link rel="stylesheet" href="../css/data-page.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <script src="../js/theme.js?v=2"></script>
 </head>
 <body>
@@ -43,78 +43,80 @@
   </div>
 
   <main class="party2d-page">
-    <section class="chart-block">
-      <h2>How strongly do parties contest the EU?</h2>
-      <p class="chart-subtitle">Contestation intensity θ (0–1) per party and election: dots are estimates, bars 95&nbsp;% credible intervals, ticks at zero mean no measurable contestation.</p>
-      <div class="chart-controls">
-        <label for="party-search">Edit parties</label>
-        <input type="search" id="party-search" list="party-options" placeholder="Search party" disabled>
-        <datalist id="party-options"></datalist>
-        <button type="button" id="add-party" disabled>Add</button>
-        <label for="group-filter" class="visually-hidden">Party group</label>
-        <select id="group-filter">
-          <option value="all">All groups</option>
-          <option value="Eurosceptic Right">Eurosceptic Right</option>
-          <option value="Social Democrats">Social Democrats</option>
-          <option value="Conservatives">Conservatives</option>
-          <option value="Green Parties">Green Parties</option>
-          <option value="Historic Early Contesters">Historic Early Contesters</option>
-        </select>
-        <button type="button" id="clear-parties" class="text-link-button" disabled>Clear</button>
-        <span id="party-links" class="party-links" aria-live="polite"></span>
-      </div>
-      <div class="chart-area">
-        <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
-        <canvas id="party-chart"></canvas>
-      </div>
-      <div id="chart-table" hidden>
-        <table class="chart-data-table">
-          <thead>
-            <tr><th scope="col">Party</th><th scope="col">Election</th><th scope="col">θ</th><th scope="col">95 % CI</th></tr>
-          </thead>
-          <tbody id="chart-table-body"></tbody>
-        </table>
-      </div>
-      <nav class="chart-views" aria-label="Chart views">
-        <button type="button" id="view-chart" aria-pressed="true">Chart</button>
-        <span aria-hidden="true"> · </span>
-        <button type="button" id="view-table" aria-pressed="false">Table</button>
-        <span aria-hidden="true"> · </span>
-        <a href="#sources">Sources</a>
-        <span aria-hidden="true"> · </span>
-        <a href="#download">Download</a>
-      </nav>
-      <p class="chart-source">Data source: Seimel (forthcoming), EU Contestation data · <a href="#about">Learn more about this data ↓</a> · Licence: to be announced</p>
+    <section class="party2d-intro">
+      <h2>EU Contestation</h2>
+      <p>Interactive estimates of how intensely parties contested European integration. Select parties below to compare contestation intensity across elections.</p>
+      <p>Contestation intensity (theta) runs from 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election. Estimates come from a Bayesian measurement model combining coded manifesto and media texts with expert surveys, covering 25 selected parties in 28 European countries from 1945 to 2022.</p>
+      <p>This page presents data from Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022, forthcoming at the European Journal of Political Research.</p>
+      <p>Each dot is the posterior mean for one party in one election, with 95 percent credible intervals. Short ticks at zero mark elections with no measurable contestation. Estimates are distinct per election, so points are not connected by lines.</p>
+      <p class="party2d-download-callout"><a href="#latest-release">Jump to the data release <span aria-hidden="true">↓</span></a></p>
     </section>
 
-    <section id="know">
-      <h3>What you should know about this data</h3>
-      <ul>
-        <li>Contestation intensity (theta) runs from 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election.</li>
-        <li>Each dot is the posterior mean for one party in one election, with 95 percent credible intervals. Short ticks at zero mark elections with no measurable contestation. Estimates are distinct per election, so points are not connected by lines.</li>
-        <li>Estimates cover 25 selected parties in 28 European countries from 1945 to 2022 and come from a Bayesian measurement model combining coded manifesto and media texts with expert surveys.</li>
-        <li>This page presents data from Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022, forthcoming at the European Journal of Political Research.</li>
-      </ul>
+    <section class="party2d-controls" aria-label="Contestation estimate controls">
+      <div class="control-block party-picker">
+        <label for="party-search">Add party</label>
+        <div class="picker-row">
+          <input type="search" id="party-search" list="party-options" placeholder="Search party" disabled>
+          <datalist id="party-options"></datalist>
+          <button type="button" id="add-party" disabled>Add</button>
+        </div>
+      </div>
+
+      <div class="control-block group-filter-block">
+        <label for="group-filter">Party group</label>
+        <div class="picker-row">
+          <select id="group-filter">
+            <option value="all">All groups</option>
+            <option value="Eurosceptic Right">Eurosceptic Right</option>
+            <option value="Social Democrats">Social Democrats</option>
+            <option value="Conservatives">Conservatives</option>
+            <option value="Green Parties">Green Parties</option>
+            <option value="Historic Early Contesters">Historic Early Contesters</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="control-block view-options">
+        <button type="button" id="clear-parties" disabled>Clear selection</button>
+      </div>
     </section>
 
-    <section id="about">
-      <h3>About this data</h3>
-      <dl>
-        <dt>Topic</dt>
-        <dd>How intensely parties contested European integration.</dd>
-        <dt>Measure</dt>
-        <dd>Contestation intensity (theta), 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election.</dd>
-        <dt>Coverage</dt>
-        <dd>25 selected parties in 28 European countries, 1945 to 2022.</dd>
-        <dt>Method</dt>
-        <dd>Bayesian measurement model combining coded manifesto and media texts with expert surveys.</dd>
-        <dt>Source</dt>
-        <dd>Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022, forthcoming at the European Journal of Political Research.</dd>
-      </dl>
+    <section class="selected-parties" aria-live="polite">
+      <h3>Selected Parties</h3>
+      <div id="party-chips" class="party-chips">
+        <span class="empty-state">No parties selected yet.</span>
+      </div>
     </section>
 
-    <section id="sources">
-      <h3>Sources and methods</h3>
+    <section class="chart-panel" aria-label="Party contestation time series chart">
+      <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
+      <canvas id="party-chart"></canvas>
+    </section>
+    <p class="line-style-note encoding-key"><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="2" x2="7" y2="20" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="2" x2="11" y2="2" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="20" x2="11" y2="20" stroke="currentColor" stroke-width="1.5" /><circle cx="7" cy="11" r="3.2" fill="currentColor" /></svg> posterior mean with 95 percent credible interval</span><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="6" x2="7" y2="16" stroke="currentColor" stroke-width="2.5" /></svg> no measurable contestation</span></p>
+
+    <section id="latest-release" class="release-panel" aria-labelledby="release-title">
+      <div class="release-panel-heading">
+        <div>
+          <p class="eyebrow">Data access</p>
+          <h3 id="release-title">EU contestation data</h3>
+        </div>
+        <a class="release-repository-link" href="https://doi.org/10.7910/DVN/NH2LU1" target="_blank" rel="noopener noreferrer">Harvard Dataverse</a>
+      </div>
+      <div id="release-content" class="release-content" aria-live="polite">
+        <h4 class="release-name">Party contestation trajectories, 1945 to 2022</h4>
+        <p class="release-meta">Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022. Forthcoming, European Journal of Political Research.</p>
+        <p class="release-description">Posterior party contestation trajectories for 25 selected parties. The Dataverse deposit is forthcoming and not yet public. A copy of the plotted file is available locally below.</p>
+        <div class="release-actions">
+          <a class="release-download" href="party_contestation.csv" download title="party_contestation.csv">Download plotted data (.csv)</a>
+          <a class="release-download" href="https://doi.org/10.7910/DVN/NH2LU1" target="_blank" rel="noopener noreferrer" title="Harvard Dataverse deposit">Harvard Dataverse deposit (forthcoming)</a>
+        </div>
+        <p class="release-footer">If you use the data, please cite the paper as forthcoming at the European Journal of Political Research.</p>
+      </div>
+    </section>
+
+    <section class="sources-panel" aria-labelledby="sources-title">
+      <p class="eyebrow">Sources</p>
+      <h3 id="sources-title">Data sources behind the estimates</h3>
       <p>The contestation estimates combine coded manifesto and media texts with expert surveys of party positions. If you use the data, please cite the paper.</p>
       <div class="sources-table-wrap">
         <table class="sources-table">
@@ -132,20 +134,6 @@
       <p class="sources-note">Party counts and year ranges describe input coverage before estimation. Full references are in the paper.</p>
     </section>
 
-    <section id="download">
-      <h3>Download and reuse</h3>
-      <h4 class="release-name">Party contestation trajectories, 1945 to 2022</h4>
-      <p class="release-meta">Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022. Forthcoming, European Journal of Political Research.</p>
-      <p class="release-description">Posterior party contestation trajectories for 25 selected parties. The Dataverse deposit is forthcoming and not yet public. A copy of the plotted file is available locally below.</p>
-      <div class="release-actions">
-        <a class="release-download" href="party_contestation.csv" download title="party_contestation.csv">Download plotted data (.csv)</a>
-        <a class="release-download" href="https://doi.org/10.7910/DVN/NH2LU1" target="_blank" rel="noopener noreferrer" title="Harvard Dataverse deposit">Harvard Dataverse deposit (forthcoming)</a>
-      </div>
-      <p class="release-footer">If you use the data, please cite the paper as forthcoming at the European Journal of Political Research.</p>
-      <p class="release-licence">Licence: to be announced.</p>
-      <p class="release-cite">How to cite: Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022. Forthcoming, European Journal of Political Research.</p>
-    </section>
-
   </main>
 
   <footer class="site-footer">
@@ -160,6 +148,6 @@
 
   <script src="../assets/vendor/papaparse.min.js"></script>
   <script src="../assets/vendor/chart.umd.min.js"></script>
-  <script src="js/app.js?v=6"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>

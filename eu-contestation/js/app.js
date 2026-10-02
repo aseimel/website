@@ -79,13 +79,8 @@
     el.addParty = document.getElementById('add-party');
     el.groupFilter = document.getElementById('group-filter');
     el.clearParties = document.getElementById('clear-parties');
-    el.partyLinks = document.getElementById('party-links');
+    el.partyChips = document.getElementById('party-chips');
     el.loading = document.getElementById('loading-message');
-    el.chartArea = document.querySelector('.chart-area');
-    el.chartTable = document.getElementById('chart-table');
-    el.chartTableBody = document.getElementById('chart-table-body');
-    el.viewChart = document.getElementById('view-chart');
-    el.viewTable = document.getElementById('view-table');
 
     wireEvents();
     loadData();
@@ -117,10 +112,7 @@
       render();
     });
 
-    el.viewChart.addEventListener('click', function() { setChartView(true); });
-    el.viewTable.addEventListener('click', function() { setChartView(false); });
-
-    el.partyLinks.addEventListener('click', function(event) {
+    el.partyChips.addEventListener('click', function(event) {
       var button = event.target.closest('button[data-party-id]');
       if (!button) return;
       removeParty(button.dataset.partyId);
@@ -243,44 +235,24 @@
 
   function render() {
     el.clearParties.disabled = state.selectedIds.length === 0;
-    renderSelectedLinks();
-    renderTable();
+    renderChips();
     renderChart();
   }
 
-  function setChartView(showChart) {
-    el.chartArea.hidden = !showChart;
-    el.chartTable.hidden = showChart;
-    el.viewChart.setAttribute('aria-pressed', showChart ? 'true' : 'false');
-    el.viewTable.setAttribute('aria-pressed', showChart ? 'false' : 'true');
-    if (showChart && state.chart) { state.chart.update(); }
-  }
-
-  function renderTable() {
-    var rows = [];
-    state.selectedIds.forEach(function(id) {
-      var party = state.partyMap.get(id);
-      if (!party) return;
-      party.observations.forEach(function(obs) {
-        var interval = (obs.significant && obs.low !== null && obs.high !== null)
-          ? formatNumber(obs.low) + ' to ' + formatNumber(obs.high)
-          : 'no measurable contestation';
-        rows.push('<tr><td>' + escapeHtml(party.displayName) + '</td><td>' + obs.year + '</td><td>' + formatNumber(obs.mean) + '</td><td>' + interval + '</td></tr>');
-      });
-    });
-    el.chartTableBody.innerHTML = rows.join('');
-  }
-
-  function renderSelectedLinks() {
+  function renderChips() {
     if (state.selectedIds.length === 0) {
-      el.partyLinks.innerHTML = '<span class="empty-state">No parties selected yet.</span>';
+      el.partyChips.innerHTML = '<span class="empty-state">No parties selected yet.</span>';
       return;
     }
 
-    el.partyLinks.innerHTML = state.selectedIds.map(function(id) {
+    el.partyChips.innerHTML = state.selectedIds.map(function(id) {
       var party = state.partyMap.get(id);
-      return '<button type="button" class="party-link" data-party-id="' + party.id + '" aria-label="Remove ' + escapeHtml(party.displayName) + '" style="color:' + chartLineColor(party.color) + '">' + escapeHtml(party.name) + ' &times;</button>';
-    }).join(' ');
+      return '<span class="party-chip">' +
+        '<span class="party-color-dot" style="background:' + chartLineColor(party.color) + '"></span>' +
+        escapeHtml(party.displayName) +
+        '<button type="button" data-party-id="' + party.id + '" aria-label="Remove ' + escapeHtml(party.displayName) + '">&times;</button>' +
+        '</span>';
+    }).join('');
   }
 
   // Draws per-election error bars with a dot for the point estimate.
@@ -334,33 +306,8 @@
     }
   };
 
-  // Labels each selected party directly at its most recent estimate point,
-  // in that party's color, so no legend or chips block is needed.
-  var directLabelPlugin = {
-    id: 'euDirectLabels',
-    afterDatasetsDraw: function(chart) {
-      var ctx = chart.ctx;
-      chart.data.datasets.forEach(function(dataset, datasetIndex) {
-        if (dataset.role !== 'estimate') return;
-        if (!chart.isDatasetVisible(datasetIndex)) return;
-        var meta = chart.getDatasetMeta(datasetIndex);
-        if (!meta.data.length) return;
-        var last = meta.data[meta.data.length - 1];
-        if (!last || typeof last.x !== 'number' || typeof last.y !== 'number') return;
-        ctx.save();
-        ctx.fillStyle = dataset.borderColor;
-        ctx.font = '12px "Latin Modern", "Computer Modern", Georgia, serif';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(dataset._party.name, last.x + 8, last.y);
-        ctx.restore();
-      });
-    }
-  };
-
   if (typeof Chart !== 'undefined' && Chart.register) {
     Chart.register(errorBarPlugin);
-    Chart.register(directLabelPlugin);
   }
 
   function chartTheme() {
@@ -371,6 +318,8 @@
   function applyChartTheme() {
     if (!state.chart) return;
     var theme = chartTheme();
+    state.chart.options.plugins.title.color = theme.ink;
+    state.chart.options.plugins.legend.labels.color = theme.ink;
     state.chart.options.plugins.tooltip.backgroundColor = theme.surface;
     state.chart.options.plugins.tooltip.titleColor = theme.ink;
     state.chart.options.plugins.tooltip.bodyColor = theme.ink;
@@ -380,7 +329,7 @@
       dataset.borderColor = chartLineColor(dataset._partyColor);
       dataset.backgroundColor = chartLineColor(dataset._partyColor);
     });
-    renderSelectedLinks();
+    renderChips();
   }
 
   window.addEventListener('site-theme-change', function() { if (state.chart) { applyChartTheme(); state.chart.update(); } });
@@ -487,10 +436,6 @@
       return;
     }
 
-    if (typeof Chart !== 'undefined' && Chart.defaults && Chart.defaults.font) {
-      Chart.defaults.font.family = "'Latin Modern', 'Computer Modern', Georgia, serif";
-    }
-
     state.chart = new Chart(document.getElementById('party-chart'), {
       type: 'scatter',
       data: { datasets: datasets },
@@ -499,9 +444,23 @@
         maintainAspectRatio: false,
         parsing: false,
         animation: false,
-        layout: { padding: { right: 70 } },
         plugins: {
-          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Party contestation intensity over time',
+            color: theme.ink,
+            font: { family: "'CMU Serif', Georgia, serif", size: 17, weight: 'normal' }
+          },
+          legend: {
+            labels: {
+              color: theme.ink,
+              boxWidth: 12,
+              boxHeight: 12,
+              usePointStyle: true,
+              pointStyle: 'circle',
+              font: { family: "'CMU Serif', Georgia, serif" }
+            }
+          },
           tooltip: {
             backgroundColor: theme.surface,
             titleColor: theme.ink,
@@ -533,7 +492,7 @@
             min: xBounds.min,
             max: xBounds.max,
             title: { display: true, text: 'Election year', color: theme.ink },
-            grid: { display: false },
+            grid: { color: theme.grid },
             ticks: {
               color: theme.muted,
               precision: 0,
@@ -543,7 +502,7 @@
           y: {
             min: 0,
             max: Y_MAX,
-            title: { display: true, text: 'Contestation (θ)', color: theme.ink },
+            title: { display: true, text: 'Contestation intensity (theta)', color: theme.ink },
             grid: { color: theme.grid },
             ticks: { color: theme.muted }
           }
