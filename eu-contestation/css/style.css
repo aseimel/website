@@ -20,6 +20,10 @@ body {
   padding-bottom: 0.4rem !important;
 }
 
+.party2d-page h2 { font-size: 1.2rem !important; }
+.party2d-page h3 { font-size: 1.05rem !important; }
+.party2d-page h4 { font-size: 1rem !important; }
+
 .party2d-intro p {
   max-width: 760px !important;
   text-align: justify !important;
