@@ -47,6 +47,13 @@
       <h2>How strongly do parties contest the EU?</h2>
     </section>
 
+    <section class="selected-parties" aria-live="polite">
+      <h3>Selected Parties</h3>
+      <div id="party-chips" class="party-chips">
+        <span class="empty-state">No parties selected yet.</span>
+      </div>
+    </section>
+
     <section class="chart-panel" aria-label="Party contestation time series chart">
       <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
       <canvas id="party-chart"></canvas>
@@ -82,14 +89,8 @@
       </div>
     </section>
 
-    <section class="selected-parties" aria-live="polite">
-      <h3>Selected Parties</h3>
-      <div id="party-chips" class="party-chips">
-        <span class="empty-state">No parties selected yet.</span>
-      </div>
-    </section>
-
     <section class="party2d-intro">
+      <h3>About the data</h3>
       <p>Interactive estimates of how intensely parties contested European integration. Select parties below to compare contestation intensity across elections.</p>
       <p>Contestation intensity (theta) runs from 0 to 1. Higher values mean a party combined Eurosceptic positioning with sustained attention to European issues in that election. Estimates come from a Bayesian measurement model combining coded manifesto and media texts with expert surveys, covering 25 selected parties in 28 European countries from 1945 to 2022.</p>
       <p>This page presents data from Seimel, Tracking a Sleeping Giant: Political Contestation of European Integration, 1945 to 2022, forthcoming at the European Journal of Political Research.</p>
