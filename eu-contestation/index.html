@@ -47,6 +47,12 @@
       <h2>How strongly do parties contest the EU?</h2>
     </section>
 
+    <section class="chart-panel" aria-label="Party contestation time series chart">
+      <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
+      <canvas id="party-chart"></canvas>
+    </section>
+    <p class="line-style-note encoding-key"><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="2" x2="7" y2="20" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="2" x2="11" y2="2" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="20" x2="11" y2="20" stroke="currentColor" stroke-width="1.5" /><circle cx="7" cy="11" r="3.2" fill="currentColor" /></svg> posterior mean with 95 percent credible interval</span><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="6" x2="7" y2="16" stroke="currentColor" stroke-width="2.5" /></svg> no measurable contestation</span></p>
+
     <section class="party2d-controls" aria-label="Contestation estimate controls">
       <div class="control-block party-picker">
         <label for="party-search">Add party</label>
@@ -82,12 +88,6 @@
         <span class="empty-state">No parties selected yet.</span>
       </div>
     </section>
-
-    <section class="chart-panel" aria-label="Party contestation time series chart">
-      <div class="loading-message" id="loading-message">Loading contestation estimates...</div>
-      <canvas id="party-chart"></canvas>
-    </section>
-    <p class="line-style-note encoding-key"><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="2" x2="7" y2="20" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="2" x2="11" y2="2" stroke="currentColor" stroke-width="1.5" /><line x1="3" y1="20" x2="11" y2="20" stroke="currentColor" stroke-width="1.5" /><circle cx="7" cy="11" r="3.2" fill="currentColor" /></svg> posterior mean with 95 percent credible interval</span><span class="key-item"><svg class="key-glyph" width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><line x1="7" y1="6" x2="7" y2="16" stroke="currentColor" stroke-width="2.5" /></svg> no measurable contestation</span></p>
 
     <section class="party2d-intro">
       <p>Interactive estimates of how intensely parties contested European integration. Select parties below to compare contestation intensity across elections.</p>
