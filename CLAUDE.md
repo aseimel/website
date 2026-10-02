@@ -68,6 +68,8 @@ Every data page (`eu-contestation/`, `party2d/`, and any future one) uses the sa
 - Structure only. Do not change a chart's mechanics, controls, styling or wording unless explicitly asked.
 - Keep all transparency and context text; move it, never cut it.
 - Use the same section classes and heading levels on every data page.
+- Heading sizes on data pages: `h2` 1.2rem, `h3` 1.05rem, `h4` 1rem. Same font and weight as the rest of the site.
+- These rules are enforced by Abide (`.abide/rubric.json`, committed). After changing this section, recompile the rubric (`abide compile`, or edit it by hand and run `abide rubric validate`).
 
 ## CSS Guidelines
 

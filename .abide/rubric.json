@@ -1,0 +1,381 @@
+{
+  "version": 1,
+  "compiledAt": "2026-10-02T00:00:00.000Z",
+  "compiledBy": "claude",
+  "sources": [
+    {
+      "path": "CLAUDE.md",
+      "sha": "227e6423ef7f3c54344fa4c3b8255e284b7637a7b9fe931db8be350cda926052",
+      "scope": "**/*"
+    }
+  ],
+  "rules": [
+    {
+      "id": "add-profile-photo",
+      "text": "Before deployment, add: Profile photo: Save as `assets/images/profile.jpg`",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 39
+      },
+      "check": {
+        "type": "unenforceable",
+        "reason": "a deployment to-do, not a property of a code change"
+      },
+      "status": "active"
+    },
+    {
+      "id": "no-cdn-assets",
+      "text": "Prefer local, vendored copies of CSS, JavaScript, and font assets over CDN or externally hosted resources.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 44
+      },
+      "scope": [
+        "**/*.html",
+        "**/*.css",
+        "**/*.js"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change add a reference that loads CSS, JavaScript or a font from an external host (an http(s):// or // URL in a <script src>, <link href>, @import or @font-face src) instead of a local file path?",
+          "criteria": {
+            "true": "<script src=\"https://cdn.jsdelivr.net/npm/d3@7\"></script>",
+            "false": "<script src=\"assets/vendor/d3.min.js\"></script>"
+          }
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 18,
+        "median": 0.03,
+        "min": 0.02,
+        "max": 0.04,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "no-runtime-third-party-requests",
+      "text": "Avoid runtime third-party asset requests unless explicitly required.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 45
+      },
+      "scope": [
+        "**/*.html",
+        "**/*.css",
+        "**/*.js"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change add code that requests a resource from a third-party host at runtime, such as fetch(), XMLHttpRequest, an <img>, <iframe> or url() pointing at an external http(s) domain? Ordinary <a href> links do not count.",
+          "criteria": {
+            "true": "fetch('https://api.example.com/data.json')",
+            "false": "fetch('data/elections.json') or <a href=\"https://gesis.org\">"
+          }
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 18,
+        "median": 0.025,
+        "min": 0.02,
+        "max": 0.71,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "computer-modern-typography",
+      "text": "Keep the LaTeX-style typography as close as practical to Computer Modern; the local `assets/vendor/latex.css` file embeds Latin Modern.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 46
+      },
+      "scope": [
+        "**/*.html",
+        "**/*.css",
+        "**/*.js"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change set a font-family (in CSS, an inline style, or chart code) to a typeface other than Latin Modern / Computer Modern or inherit, for example Arial, Helvetica, Roboto, system-ui or sans-serif?",
+          "criteria": {
+            "true": "font-family: Helvetica, Arial, sans-serif !important;",
+            "false": "font-family: inherit !important;"
+          }
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 18,
+        "median": 0.065,
+        "min": 0.03,
+        "max": 0.89,
+        "fired": 1,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "background-sepia",
+      "text": "Background: Very light sepia (#fefdfb)",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 50
+      },
+      "scope": [
+        "**/*.css",
+        "**/*.html"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change set the page body or html background to a color other than #fefdfb?",
+          "criteria": {
+            "true": "body { background: #ffffff !important; }",
+            "false": "body { background: #fefdfb !important; } or a background on a small element like a tooltip"
+          }
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 13,
+        "median": 0.13,
+        "min": 0.04,
+        "max": 0.53,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "max-width-800",
+      "text": "Max content width: 800px",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 51
+      },
+      "scope": [
+        "**/*.css",
+        "**/*.html"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change set the max-width of the main page content container (body, main, or the top-level content wrapper) to a value other than 800px?",
+          "criteria": {
+            "true": "body { max-width: 1100px !important; }",
+            "false": "body { max-width: 800px !important; } or max-width on an image"
+          }
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 13,
+        "median": 0.23,
+        "min": 0.09,
+        "max": 0.78,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "boxed-header",
+      "text": "Header: Boxed title with name and institution",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 52
+      },
+      "scope": [
+        "**/*.html",
+        "**/*.css"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change remove the name or the institution from the page header, or remove the border/box styling around the header title?"
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 13,
+        "median": 0.05,
+        "min": 0.03,
+        "max": 0.07,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "horizontal-nav",
+      "text": "Navigation: Horizontal links (Home | CV | Papers)",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 53
+      },
+      "scope": [
+        "**/*.html",
+        "**/*.css"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change remove the Home, CV or Papers link from the site navigation, or make the navigation links stack vertically or collapse into a hamburger/dropdown menu?"
+        }
+      },
+      "status": "active",
+      "calibration": {
+        "at": "2026-10-02T10:13:03.455Z",
+        "hunks": 13,
+        "median": 0.04,
+        "min": 0.02,
+        "max": 0.06,
+        "fired": 0,
+        "verdict": "decisive"
+      }
+    },
+    {
+      "id": "css-always-important",
+      "text": "When modifying CSS, always use `!important` on property values.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 76
+      },
+      "scope": [
+        "**/*.css"
+      ],
+      "check": {
+        "type": "lint",
+        "how": "stylelint declaration that lacks !important (custom plugin or grep for declarations without !important)",
+        "pattern": "^\\s*[a-z-]+\\s*:\\s*[^;{}]*(?<!!important)\\s*;"
+      },
+      "status": "active"
+    },
+    {
+      "id": "commit-after-every-change",
+      "text": "Always commit changes immediately after completing each task or modification. Do not batch multiple changes into a single commit.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 80
+      },
+      "check": {
+        "type": "unenforceable",
+        "reason": "about the git workflow, not the code in a diff"
+      },
+      "status": "active"
+    },
+    {
+      "id": "data-page-section-order",
+      "text": "Every data page uses the same structure, in this order: question heading, Selected Parties, chart, key (optional), add interface, About the data, data release/access, data sources.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 57
+      },
+      "scope": [
+        "eu-contestation/index.html",
+        "party2d/index.html",
+        "*/index.html"
+      ],
+      "when": "turn",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Ignore pages without a chart canvas. On a data page with a chart, after this change, is the order of the main sections anything other than: h2 question heading, then Selected Parties, then the chart, then an optional key, then the add/filter controls, then 'About the data', then the data release/access section, then the data sources section? Also true if the h2 is a dataset name instead of a question.",
+          "criteria": {
+            "true": "<h2>Party2D</h2> followed by intro text before the chart",
+            "false": "<h2>Where do parties stand economically and culturally?</h2> then Selected Parties then the chart"
+          }
+        }
+      },
+      "status": "active"
+    },
+    {
+      "id": "data-page-keep-context-text",
+      "text": "Keep all transparency and context text; move it, never cut it.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 69
+      },
+      "scope": [
+        "eu-contestation/index.html",
+        "party2d/index.html",
+        "*/index.html"
+      ],
+      "when": "turn",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change delete explanatory, methods, source or data-access text from a data page without the same text reappearing elsewhere in the diff?",
+          "criteria": {
+            "true": "a paragraph explaining the estimates is removed and not re-added",
+            "false": "the paragraph is moved under the 'About the data' heading"
+          }
+        }
+      },
+      "status": "active"
+    },
+    {
+      "id": "data-page-structure-only",
+      "text": "Structure only. Do not change a chart's mechanics, controls, styling or wording unless explicitly asked.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 68
+      },
+      "check": {
+        "type": "unenforceable",
+        "reason": "depends on what the user asked, which the diff does not show"
+      },
+      "status": "active"
+    },
+    {
+      "id": "data-page-heading-sizes",
+      "text": "Heading sizes on data pages: h2 1.2rem, h3 1.05rem, h4 1rem. Same font and weight as the rest of the site.",
+      "source": {
+        "path": "CLAUDE.md",
+        "line": 71
+      },
+      "scope": [
+        "eu-contestation/css/*.css",
+        "party2d/css/*.css",
+        "*/css/*.css"
+      ],
+      "when": "edit",
+      "check": {
+        "type": "model",
+        "question": {
+          "type": "boolean",
+          "instructions": "Does this change set the font-size of data-page h2, h3 or h4 headings to anything other than h2 1.2rem, h3 1.05rem, h4 1rem, or change their font family or weight?",
+          "criteria": {
+            "true": ".party2d-page h2 { font-size: 1.5rem !important; }",
+            "false": ".party2d-page h2 { font-size: 1.2rem !important; }"
+          }
+        }
+      },
+      "status": "active"
+    }
+  ]
+}
