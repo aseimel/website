@@ -469,7 +469,7 @@ html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface
 
 /* One compact panel for adding parties and managing the selection. */
 .party2d-controls {
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(0, 1fr) !important;
   gap: 0.75rem 1rem !important;
   margin: 1rem 0 !important;
   padding: 0.85rem !important;

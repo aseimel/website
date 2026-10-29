@@ -65,7 +65,6 @@
     partySearch: new Map(),
     partyMap: new Map(),
     selectedIds: [],
-    groupFilter: 'all',
     chart: null
   };
 
@@ -77,7 +76,6 @@
     el.partySearch = document.getElementById('party-search');
     el.partyOptions = document.getElementById('party-options');
     el.addParty = document.getElementById('add-party');
-    el.groupFilter = document.getElementById('group-filter');
     el.clearParties = document.getElementById('clear-parties');
     el.partyChips = document.getElementById('party-chips');
     el.loading = document.getElementById('loading-message');
@@ -100,11 +98,6 @@
         event.preventDefault();
         addSelectedParty(resolvePartySearch(el.partySearch.value));
       }
-    });
-
-    el.groupFilter.addEventListener('change', function() {
-      state.groupFilter = el.groupFilter.value;
-      setupControls();
     });
 
     el.clearParties.addEventListener('click', function() {
@@ -196,15 +189,10 @@
     return a.name.localeCompare(b.name);
   }
 
-  function visibleParties() {
-    if (state.groupFilter === 'all') return state.parties;
-    return state.parties.filter(function(party) { return party.group === state.groupFilter; });
-  }
-
   function setupControls() {
     state.partySearch.clear();
     el.partyOptions.innerHTML = '';
-    visibleParties().forEach(function(party) {
+    state.parties.forEach(function(party) {
       var value = party.searchLabel;
       state.partySearch.set(value, party.id);
       state.partySearch.set(party.id, party.id);
