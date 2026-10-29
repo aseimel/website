@@ -32,7 +32,7 @@ seimel_website/
 
 ## Development
 
-To view the website locally, simply open `index.html` in a web browser. No build step required.
+To view the website locally, run `python3 preview.py` from the repository and open `http://127.0.0.1:8000/`. Use `--port 8001` if port 8000 is already in use. No build step or additional packages are required. Open data pages through this HTTP preview: browsers can block the CSV requests when HTML files are opened directly with `file://`.
 
 ### Missing Assets
 
