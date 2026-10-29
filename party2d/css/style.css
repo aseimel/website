@@ -447,3 +447,85 @@ html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface
 .party2d-page .release-repository-link,.party2d-page .release-all-link,.party2d-page .party2d-download-callout a { color:var(--party-ink) !important; }
 .party2d-page .party2d-download-callout a:hover,.party2d-page .party2d-download-callout a:focus-visible { color:var(--party-ink) !important; }
 .party2d-page .party-color-dot { border-color:var(--party-border) !important; }
+
+
+/* One compact panel for adding parties and managing the selection. */
+.party2d-controls {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important;
+  gap: 0.75rem 1rem !important;
+  margin: 1rem 0 !important;
+  padding: 0.85rem !important;
+}
+
+.party2d-controls > * {
+  min-width: 0 !important;
+}
+
+.party2d-controls .picker-row {
+  flex-direction: row !important;
+  align-items: stretch !important;
+}
+
+.party2d-controls .view-options {
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.4rem 0.75rem !important;
+  padding-bottom: 0.4rem !important;
+}
+
+.party2d-controls select {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 0.4rem !important;
+  border: 1px solid var(--party-border) !important;
+  font-family: inherit !important;
+  font-size: 0.95rem !important;
+}
+
+.party2d-controls .selected-parties {
+  grid-column: 1 / -1 !important;
+  border-top: 1px solid var(--party-border) !important;
+  padding-top: 0.65rem !important;
+}
+
+.selection-heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.party2d-controls .selection-heading h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.party2d-controls .selection-heading button {
+  padding: 0.2rem 0.5rem !important;
+  font-size: 0.85rem !important;
+}
+
+.party2d-controls .party-chip {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-wrap: anywhere !important;
+}
+
+.party2d-controls .party-chip button {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 520px) {
+  .party2d-controls {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .party2d-controls .view-options {
+    padding-bottom: 0 !important;
+  }
+}

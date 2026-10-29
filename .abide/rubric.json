@@ -288,7 +288,7 @@
     },
     {
       "id": "data-page-section-order",
-      "text": "Every data page uses the same structure, in this order: question heading, Selected Parties, chart, key (optional), add interface, About the data, data release/access, data sources.",
+      "text": "Every data page uses the same structure, in this order: question heading, combined add/filter and Selected Parties panel, chart, key (optional), About the data, data release/access, data sources.",
       "source": {
         "path": "CLAUDE.md",
         "line": 57
@@ -303,10 +303,10 @@
         "type": "model",
         "question": {
           "type": "boolean",
-          "instructions": "Ignore pages without a chart canvas. On a data page with a chart, after this change, is the order of the main sections anything other than: h2 question heading, then Selected Parties, then the chart, then an optional key, then the add/filter controls, then 'About the data', then the data release/access section, then the data sources section? Also true if the h2 is a dataset name instead of a question.",
+          "instructions": "Ignore pages without a chart canvas. On a data page with a chart, after this change, is the order of the main sections anything other than: h2 question heading, then one combined panel containing add/search and page-specific filters or dimension toggles followed by Selected Parties with chips and Clear selection, then the chart, then an optional key, then 'About the data', then the data release/access section, then the data sources section? Also true if the h2 is a dataset name instead of a question.",
           "criteria": {
             "true": "<h2>Party2D</h2> followed by intro text before the chart",
-            "false": "<h2>Where do parties stand economically and culturally?</h2> then Selected Parties then the chart"
+            "false": "<h2>Where do parties stand economically and culturally?</h2> then combined add/search and selected-party controls then the chart"
           }
         }
       },

@@ -57,13 +57,12 @@ Before deployment, add:
 Every data page (`eu-contestation/`, `party2d/`, and any future one) uses the same structure, in this order. Reference: `eu-contestation/index.html`.
 
 1. **Question heading** (`h2`): the question the chart answers, e.g. "How strongly do parties contest the EU?". Not the dataset name.
-2. **Selected Parties** (`h3`): the selected-series chips.
-3. **The chart.** Nothing but the heading and the selection sits above it.
+2. **Combined party controls**, above the chart: add/search and page-specific filters or dimension toggles, followed by Selected Parties (`h3`), selected-series chips and Clear selection inside the same compact panel.
+3. **The chart.**
 4. **Key**, directly under the chart, only if the chart has an encoding that needs one.
-5. **Add interface**: add/search, filters, Clear selection.
-6. **About the data** (`h3`): the description and context text.
-7. **Data release / access** section.
-8. **Data sources** section.
+5. **About the data** (`h3`): the description and context text.
+6. **Data release / access** section.
+7. **Data sources** section.
 
 - Structure only. Do not change a chart's mechanics, controls, styling or wording unless explicitly asked.
 - Keep all transparency and context text; move it, never cut it.
