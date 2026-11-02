@@ -9,7 +9,7 @@
   <title>Papers | Armin Seimel</title>
   <link rel="canonical" href="https://seimel.io/papers.html">
     <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -68,44 +68,63 @@
   </div>
 
   <main>
-    <p class="expand-hint">Click on titles marked with &#9654; to view abstracts.</p>
+    <section class="publications-section" aria-labelledby="accepted-heading">
+      <h2 id="accepted-heading">Accepted</h2>
 
-    <section class="publications-section">
-      <h2>Peer-Reviewed Articles</h2>
-
-      <div class="publication">
-        <p class="citation">
-          <button class="expand-btn" aria-expanded="false">
-            Seimel, A. (2024). <span class="paper-title">Political communication in the real world: evidence from a natural experiment in Germany.</span> <span class="venue">Political Science Research and Methods</span>. <span class="expand-icon">&#9654;</span>
-          </button>
-        </p>
-        <div class="abstract" hidden>
-          <p>Various robust communication effects have been identified, but evidence is overwhelmingly based on artificial survey treatments with limited real-world insight. This study conducted a natural experiment on the impact of the European&ndash;Turkey statement closing the Balkan route during the 2015/16 European refugee crisis in Germany. Treatment and control groups were identified based on timing to demonstrate the effect on perceptions of the crisis, asylum attitudes, and policy preferences. Effects are largest immediately following the announcement but decline rapidly, showing political communication can significantly change opinion within a limited time frame.</p>
-          <a href="https://doi.org/10.1017/psrm.2024.3" class="full-article-link" target="_blank" rel="noopener">&rarr; Read full article</a>
+      <article class="publication" id="party2d" aria-labelledby="title-party2d">
+        <h3 class="publication-title" id="title-party2d">A two-dimensional party-position panel from text and expert data</h3>
+        <p class="authors">Armin Seimel</p>
+        <p class="publication-meta"><span class="venue">Scientific Data</span> &middot; Accepted</p>
+        <div class="publication-resources"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="abstract-party2d" aria-label="Abstract: A two-dimensional party-position panel from text and expert data"><span aria-hidden="true" class="expand-icon">&#9654;</span> Abstract</button> <a href="assets/papers/seimel-party2d-accepted.pdf" download aria-label="PDF: A two-dimensional party-position panel from text and expert data">PDF</a> <a href="party2d/" aria-label="Data: A two-dimensional party-position panel from text and expert data">Data</a></div>
+        <div class="abstract" id="abstract-party2d" hidden>
+          <p>This Data Descriptor releases an election-year panel of economic left-right and cultural cosmopolitan–traditionalist party positions for 708 parties in 65 countries from 1944 to 2025. The panel supports comparative analyses connecting party-level ideological supply to elections, regions, voters, institutions, or political economy over long periods. Estimates are produced by a Bayesian dynamic item-response model that places heterogeneous text and expert evidence on a common latent scale and reports posterior uncertainty for every party-election estimate. The model combines the temporal reach of manifesto and media text data with the precision of expert placements by treating expert surveys, manifesto codings, media sentence codings, and historical expert data as noisy item-level signals of underlying party positions. Text counts enter through a two-part hurdle binomial likelihood, aggregate expert means enter through beta-binomial likelihoods, general left-right ratings inform the relationship between dimensions, and party positions evolve through random walks within party segments. Technical validation combines item-response diagnostics, random and party-blocked held-out expert prediction, convergent and discriminant checks, posterior predictive coverage, evidence-composition balance, robustness analyses, and convergence diagnostics.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="publication">
-        <p class="citation">
-          <button class="expand-btn" aria-expanded="false">
-            Seimel, A. (2024). <span class="paper-title">Elite polarization &mdash; The boon and bane of democracy: Evidence from thirty democracies.</span> <span class="venue">Electoral Studies</span>, 90, 102801. <span class="expand-icon">&#9654;</span>
-          </button>
-        </p>
-        <div class="abstract" hidden>
-          <p>The empirical evidence on the link between elite polarization and democracy is mixed, with scholars finding elite polarization increases turnout but decreases democratic satisfaction. This study presents a new individual-level measure of perceived elite polarization that reveals the complexities of individual perceptions beyond macro elite polarization. Results confirm that higher perceptions of elite polarization can engage citizens but reduce satisfaction with democracy. However, higher perceptions also decrease the likelihood of people being simultaneously satisfied with democracy and voting, indicating high perceived elite polarization can be detrimental to democracy.</p>
-          <a href="https://doi.org/10.1016/j.electstud.2024.102801" class="full-article-link" target="_blank" rel="noopener">&rarr; Read full article</a>
+      <article class="publication" id="eu-contestation" aria-labelledby="title-eu-contestation">
+        <h3 class="publication-title" id="title-eu-contestation">Tracking a Sleeping Giant: Political Contestation of European Integration, 1945–2022</h3>
+        <p class="authors">Armin Seimel</p>
+        <p class="publication-meta"><span class="venue">European Journal of Political Research</span> &middot; Accepted</p>
+        <div class="publication-resources"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="abstract-eu-contestation" aria-label="Abstract: Tracking a Sleeping Giant: Political Contestation of European Integration, 1945–2022"><span aria-hidden="true" class="expand-icon">&#9654;</span> Abstract</button> <a href="assets/papers/seimel-eu-contestation-accepted.pdf" download aria-label="PDF: Tracking a Sleeping Giant: Political Contestation of European Integration, 1945–2022">PDF</a> <a href="eu-contestation/" aria-label="Data: Tracking a Sleeping Giant: Political Contestation of European Integration, 1945–2022">Data</a></div>
+        <div class="abstract" id="abstract-eu-contestation" hidden>
+          <p>When did contesting European integration begin to pay off at the ballot box? Historians document that parties contested the European project from its founding, but whether this translated into electoral rewards remains untested across the full post-war period. I address this question through a Bayesian measurement model that estimates party EU contestation intensity by combining the temporal scope of manifesto data with the precision of expert surveys, then linking these estimates to electoral outcomes for 416 parties across 28 European countries from 1945 to 2022. The contestation estimates confirm that elite contestation accompanied European integration throughout its history. Yet the vote analysis reveals that electoral rewards for EU contestation emerged only in the post-Eurocrisis era; earlier treaty periods show no significant relationship between contestation and electoral performance. The supply side of EU contestation has always been present. Only recently has the European public responded at the ballot box.</p>
         </div>
-      </div>
+      </article>
     </section>
 
-    <section class="publications-section">
-      <h2>Policy Briefs</h2>
+    <section class="publications-section" aria-labelledby="published-heading">
+      <h2 id="published-heading">Peer-Reviewed Articles</h2>
 
-      <div class="publication policy-brief">
-        <p class="citation">
-          Kuhn, T., Seimel, A., &amp; Michaelis, J. M. (2024). <a href="https://aces.uva.nl/binaries/content/assets/subsites/aces/policy-briefs/eudentify-policy-brief.pdf" class="paper-title-link" target="_blank" rel="noopener">A community of fate: Growing European identity in times of polycrisis.</a> <span class="venue">Amsterdam Centre for European Studies</span>.
-        </p>
-      </div>
+      <article class="publication" id="political-communication" aria-labelledby="title-political-communication">
+        <h3 class="publication-title" id="title-political-communication">Political communication in the real world: evidence from a natural experiment in Germany.</h3>
+        <p class="authors">Armin Seimel</p>
+        <p class="publication-meta"><span class="venue">Political Science Research and Methods</span> &middot; 2024</p>
+        <div class="publication-resources"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="abstract-political-communication" aria-label="Abstract: Political communication in the real world: evidence from a natural experiment in Germany."><span aria-hidden="true" class="expand-icon">&#9654;</span> Abstract</button> <a href="https://doi.org/10.1017/psrm.2024.3" target="_blank" rel="noopener" aria-label="Journal: Political communication in the real world: evidence from a natural experiment in Germany.">Journal</a></div>
+        <div class="abstract" id="abstract-political-communication" hidden>
+          <p>Various robust communication effects have been identified, but evidence is overwhelmingly based on artificial survey treatments with limited real-world insight. This study conducted a natural experiment on the impact of the European&ndash;Turkey statement closing the Balkan route during the 2015/16 European refugee crisis in Germany. Treatment and control groups were identified based on timing to demonstrate the effect on perceptions of the crisis, asylum attitudes, and policy preferences. Effects are largest immediately following the announcement but decline rapidly, showing political communication can significantly change opinion within a limited time frame.</p>
+        </div>
+      </article>
+
+      <article class="publication" id="elite-polarization" aria-labelledby="title-elite-polarization">
+        <h3 class="publication-title" id="title-elite-polarization">Elite polarization — The boon and bane of democracy: Evidence from thirty democracies.</h3>
+        <p class="authors">Armin Seimel</p>
+        <p class="publication-meta"><span class="venue">Electoral Studies, 90, 102801</span> &middot; 2024</p>
+        <div class="publication-resources"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="abstract-elite-polarization" aria-label="Abstract: Elite polarization — The boon and bane of democracy: Evidence from thirty democracies."><span aria-hidden="true" class="expand-icon">&#9654;</span> Abstract</button> <a href="https://doi.org/10.1016/j.electstud.2024.102801" target="_blank" rel="noopener" aria-label="Journal: Elite polarization — The boon and bane of democracy: Evidence from thirty democracies.">Journal</a></div>
+        <div class="abstract" id="abstract-elite-polarization" hidden>
+          <p>The empirical evidence on the link between elite polarization and democracy is mixed, with scholars finding elite polarization increases turnout but decreases democratic satisfaction. This study presents a new individual-level measure of perceived elite polarization that reveals the complexities of individual perceptions beyond macro elite polarization. Results confirm that higher perceptions of elite polarization can engage citizens but reduce satisfaction with democracy. However, higher perceptions also decrease the likelihood of people being simultaneously satisfied with democracy and voting, indicating high perceived elite polarization can be detrimental to democracy.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="publications-section" aria-labelledby="briefs-heading">
+      <h2 id="briefs-heading">Policy Briefs</h2>
+
+      <article class="publication" id="community-of-fate" aria-labelledby="title-community-of-fate">
+        <h3 class="publication-title" id="title-community-of-fate">A community of fate: Growing European identity in times of polycrisis.</h3>
+        <p class="authors">Kuhn, T., Seimel, A., &amp; Michaelis, J. M.</p>
+        <p class="publication-meta"><span class="venue">Amsterdam Centre for European Studies</span> &middot; 2024</p>
+        <div class="publication-resources"><a href="https://aces.uva.nl/binaries/content/assets/subsites/aces/policy-briefs/eudentify-policy-brief.pdf" target="_blank" rel="noopener" aria-label="PDF: A community of fate: Growing European identity in times of polycrisis.">PDF</a></div>
+      </article>
     </section>
   </main>
 
@@ -118,23 +137,14 @@
       el.textContent = new Date().getFullYear();
     });
 
-    // Expandable abstract functionality
-    document.querySelectorAll('.expand-btn').forEach(function(btn) {
+    // Native buttons support Enter and Space; resources stay visible when closed.
+    document.querySelectorAll('.abstract-toggle').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var publication = this.closest('.publication');
-        var abstract = publication.querySelector('.abstract');
-        var icon = this.querySelector('.expand-icon');
+        var abstract = document.getElementById(this.getAttribute('aria-controls'));
         var isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-        if (isExpanded) {
-          abstract.hidden = true;
-          this.setAttribute('aria-expanded', 'false');
-          icon.innerHTML = '&#9654;'; // Right-pointing triangle
-        } else {
-          abstract.hidden = false;
-          this.setAttribute('aria-expanded', 'true');
-          icon.innerHTML = '&#9660;'; // Down-pointing triangle
-        }
+        abstract.hidden = isExpanded;
+        this.setAttribute('aria-expanded', String(!isExpanded));
+        this.querySelector('.expand-icon').innerHTML = isExpanded ? '&#9654;' : '&#9660;';
       });
     });
   </script>
