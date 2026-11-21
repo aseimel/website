@@ -529,3 +529,59 @@ html[data-theme="dark"] .party2d-page { --party-surface:#211f1c; --party-surface
     padding-bottom: 0 !important;
   }
 }
+
+/* How to cite panel */
+.cite-panel {
+  margin: 2rem 0 1rem !important;
+  padding: 1.35rem !important;
+  border: 1px solid var(--party-border) !important;
+  background: var(--party-surface) !important;
+  color: var(--party-ink) !important;
+}
+
+.cite-panel h3 {
+  margin: 0 0 0.6rem !important;
+}
+
+.cite-lead {
+  margin: 0 0 0.85rem !important;
+  max-width: 78ch !important;
+  line-height: 1.55 !important;
+  color: var(--party-muted) !important;
+}
+
+.cite-block {
+  margin: 0 !important;
+  padding: 0.85rem 1rem 0.85rem 1.05rem !important;
+  border-left: 3px solid var(--party-border) !important;
+  background: var(--party-surface-soft) !important;
+  overflow-wrap: anywhere !important;
+}
+
+.cite-block p {
+  margin: 0 !important;
+  max-width: 78ch !important;
+  line-height: 1.6 !important;
+  text-align: left !important;
+}
+
+.cite-copy {
+  margin-top: 1rem !important;
+  padding: 0.45rem 0.9rem !important;
+  border: 1px solid var(--party-border) !important;
+  background: var(--party-surface) !important;
+  color: var(--party-ink) !important;
+  font: inherit !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+}
+
+.cite-copy:hover,
+.cite-copy:focus-visible {
+  background: var(--party-surface-soft) !important;
+}
+
+.cite-copy:focus-visible {
+  outline: 2px solid var(--party-ink) !important;
+  outline-offset: 3px !important;
+}
