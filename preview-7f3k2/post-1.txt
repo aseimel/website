@@ -1,0 +1,19 @@
+A citable party-position panel is now available for research.
+It covers 708 parties in 65 countries from 1944 to 2025.
+
+The panel contains 4,924 election-year rows, with one row per party segment at an election. For each estimate, it records economic left-right and cultural cosmopolitan-traditionalist positions on bounded 0 to 1 scales, posterior uncertainty intervals, and metadata showing which evidence informed the estimate.
+
+The estimates come from a Bayesian dynamic item-response model that combines manifesto and media text codings with expert survey placements. The image is one panel from the paper: nine party-position landmarks on the two dimensions, with the uncertainty interval drawn through each point.
+
+What additional party-position measure would you want a future version of this panel to include?
+Article and data links are in the first comment.
+
+#PoliticalScience #PartyPolitics #ComparativePolitics #ResearchData
+
+---
+
+First comment:
+
+Article: https://doi.org/10.1038/s41597-026-08575-4
+Data (Harvard Dataverse, CC0): https://doi.org/10.7910/DVN/CDNTYJ
+Code release: https://codeberg.org/aseimel/party2d/releases/tag/v1
