@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://seimel.io/party2d/">
     <script data-theme-bootstrap>(function(){try{var t=localStorage.getItem("seimel-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}}());</script>
   <link rel="stylesheet" href="../css/style.css?v=8">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script src="../js/theme.js?v=2"></script>
 </head>
 <body>
@@ -91,10 +91,14 @@
       <p class="paper-resources"><a href="https://doi.org/10.1038/s41597-026-08575-4" target="_blank" rel="noopener noreferrer">Published article (open access)</a> &middot; <a href="../papers.html#party2d">Publication details and abstract</a></p>
     </section>
 
-    <section class="party2d-intro" aria-labelledby="cite-title">
+    <section class="cite-panel" aria-labelledby="cite-title">
+      <p class="eyebrow">Citation</p>
       <h3 id="cite-title">How to cite</h3>
-      <p>When you use the Party2D data or estimates, please cite the Data Descriptor:</p>
-      <p>Seimel, A. A two-dimensional party-position panel from text and expert data. <em>Scientific Data</em> (2026). <a href="https://doi.org/10.1038/s41597-026-08575-4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1038/s41597-026-08575-4</a></p>
+      <p class="cite-lead">If you use the Party2D data or estimates, please cite the Data Descriptor:</p>
+      <div class="cite-block">
+        <p>Seimel, A. A two-dimensional party-position panel from text and expert data. <em>Scientific Data</em> (2026). <a href="https://doi.org/10.1038/s41597-026-08575-4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1038/s41597-026-08575-4</a></p>
+      </div>
+      <button class="cite-copy" type="button" data-cite="Seimel, A. A two-dimensional party-position panel from text and expert data. Scientific Data (2026). https://doi.org/10.1038/s41597-026-08575-4">Copy citation</button>
     </section>
 
     <section id="latest-release" class="release-panel" aria-labelledby="release-title">
@@ -106,14 +110,14 @@
         <a class="release-repository-link" href="https://codeberg.org/aseimel/party2d" target="_blank" rel="noopener noreferrer">Repository</a>
       </div>
       <div id="release-content" class="release-content" aria-live="polite">
-        <h4 class="release-name">Party2D Estimates v0 (pre-release)</h4>
-        <p class="release-meta">Published August 13, 2026</p>
-        <p class="release-description">Two-dimensional party-position estimates release.</p>
+        <h4 class="release-name">Party2D Estimates v1</h4>
+        <p class="release-meta">Released November 2026</p>
+        <p class="release-description">Two-dimensional party-position estimates matching the published Data Descriptor.</p>
         <div class="release-actions">
-          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v0/party_2d_election_year_panel_v0.zip" target="_blank" rel="noopener noreferrer" title="party_2d_election_year_panel_v0.zip">Download election-year panel (.zip)</a>
-          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v0/party_2d_annual_model_output_v0.zip" target="_blank" rel="noopener noreferrer" title="party_2d_annual_model_output_v0.zip">Download annual model output (.zip)</a>
-          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v0/party_2d_diagnostics_report_v0.pdf" target="_blank" rel="noopener noreferrer" title="party_2d_diagnostics_report_v0.pdf">Download diagnostics report (.pdf)</a>
-          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v0/party2d_estimates_full_posterior_v0.tar.gz" target="_blank" rel="noopener noreferrer" title="party2d_estimates_full_posterior_v0.tar.gz">Download full posterior (.tar.gz)</a>
+          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v1/party_2d_election_year_panel_v1.zip" target="_blank" rel="noopener noreferrer" title="party_2d_election_year_panel_v1.zip">Download election-year panel (.zip)</a>
+          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v1/party_2d_annual_model_output_v1.zip" target="_blank" rel="noopener noreferrer" title="party_2d_annual_model_output_v1.zip">Download annual model output (.zip)</a>
+          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v1/party_2d_diagnostics_report_v1.pdf" target="_blank" rel="noopener noreferrer" title="party_2d_diagnostics_report_v1.pdf">Download diagnostics report (.pdf)</a>
+          <a class="release-download" href="https://codeberg.org/aseimel/party2d/releases/download/v1/party2d_estimates_full_posterior_v1.tar.gz" target="_blank" rel="noopener noreferrer" title="party2d_estimates_full_posterior_v1.tar.gz">Download full posterior (.tar.gz)</a>
         </div>
         <p class="release-footer"><a class="release-all-link" href="https://codeberg.org/aseimel/party2d/releases" target="_blank" rel="noopener noreferrer">View all releases and release notes</a></p>
       </div>
@@ -155,10 +159,35 @@
     document.querySelectorAll('.copyright-year').forEach(function(el) {
       el.textContent = new Date().getFullYear();
     });
+
+    document.querySelectorAll('.cite-copy').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = btn.getAttribute('data-cite');
+        var original = btn.textContent;
+        var done = function() {
+          btn.textContent = 'Copied';
+          setTimeout(function() { btn.textContent = original; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, done);
+        } else {
+          var area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'absolute';
+          area.style.left = '-9999px';
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(area);
+          done();
+        }
+      });
+    });
   </script>
 
   <script src="../assets/vendor/papaparse.min.js"></script>
   <script src="../assets/vendor/chart.umd.min.js"></script>
-  <script src="js/app.js?v=11"></script>
+  <script src="js/app.js?v=12"></script>
 </body>
 </html>

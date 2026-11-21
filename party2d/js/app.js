@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var DATA_URL = 'party2d_estimates_v0.csv';
+  var DATA_URL = 'party2d_estimates_v1.csv';
   var DEFAULT_PARTY_IDS = ['463'];
   var COUNTRY_NAMES = {
     AL: 'Albania', AD: 'Andorra', AM: 'Armenia', AR: 'Argentina', AU: 'Australia', AZ: 'Azerbaijan', AT: 'Austria', BA: 'Bosnia and Herzegovina', BE: 'Belgium', BG: 'Bulgaria', BO: 'Bolivia', BR: 'Brazil', BY: 'Belarus', CA: 'Canada', CH: 'Switzerland', CL: 'Chile', CO: 'Colombia', CR: 'Costa Rica', CY: 'Cyprus', CZ: 'Czechia',
